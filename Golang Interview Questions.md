@@ -27,5853 +27,601 @@ This comprehensive collection now includes **detailed explanations** for each pr
 3. [String Manipulation (35 problems)](#string-manipulation)
 4. [Mathematical/Logical Problems (30 problems)](#mathematicallogical-problems)
 5. [Nested Loops Problems (25 problems)](#nested-loops-problems)
-6. [Data Structure Problems (20 problems)](#data-structure-problems)
-7. [Algorithm Design Problems (15 problems)](#algorithm-design-problems)
-8. [System Design & Concurrency (10 problems)](#system-design--concurrency)
-9. [Common Interview Challenges (15 problems)](#common-interview-challenges)
+6. [Common Interview Challenges (15 problems)](#common-interview-challenges)
+7. [Advanced Pattern Problems (5 problems)](#advanced-pattern-problems)
+8. [Data Structure Problems (10 problems)](#data-structure-problems)
+9. [Algorithm Design Problems (10 problems)](#algorithm-design-problems)
+10. [System Design & Concurrency (7 problems)](#system-design--concurrency)
 
 ---
 
-## Number Patterns
+## String Manipulation
 
-### 1. Right Triangle Pattern
-**Description**: 
-Create a right-angled triangle pattern where each row contains numbers from 1 to the row number. This is a fundamental pattern problem that tests understanding of nested loops and number sequencing.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Each row should have numbers starting from 1
-2. **Row Logic**: Row i should contain numbers 1, 2, 3, ..., i
-3. **Spacing**: Numbers should be separated by spaces
-4. **Structure**: Triangle should be right-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print numbers from 1 to i
-3. **Formatting**: Add space after each number
-4. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-1 2 
-1 2 3 
-1 2 3 4 
-1 2 3 4 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**: Nested loops, number patterns, right triangle logic, loop control.
-
-```go
-package main
-
-import "fmt"
-
-func rightTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    rightTriangle(5)
-}
-```
-
-### 2. Inverted Right Triangle
+### 1. String Length
 
 **Description**: 
-Create an inverted right-angled triangle pattern where the number of elements decreases in each row. This tests understanding of reverse iteration and nested loop control.
+Calculate the length of a string without using built-in functions. This tests understanding of string traversal, loop algorithms, and basic string operations.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Triangle should be upside down
-2. **Row Logic**: Row i should have i elements (decreasing from n to 1)
-3. **Numbering**: Each row starts from 1 and goes up to the row number
-4. **Structure**: Should look like an inverted pyramid
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate from n down to 1 (reverse order)
-2. **Inner Loop**: For each row i, print numbers from 1 to i
-3. **Formatting**: Add space after each number
-4. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 2 3 4 5 
-1 2 3 4 
-1 2 3 
-1 2 
-1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**: Reverse iteration, inverted patterns, nested loops, loop control.
-
-```go
-package main
-
-import "fmt"
-
-func invertedRightTriangle(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= i; j++ {
-            fmt.Print(j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    invertedRightTriangle(5)
-}
-```
-
-### 3. Pyramid Pattern
-
-**Description**: 
-Create a centered pyramid pattern where each row contains the same number repeated. This tests understanding of spacing, centering, and the relationship between row number and elements.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Centered pyramid with numbers
-2. **Row Logic**: Row i should have (2*i-1) elements of number i
-3. **Spacing**: Each row needs leading spaces for centering
-4. **Structure**: Should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Number Loop**: Print (2*i-1) copies of the row number
-4. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1
-   222
-  33333
- 4444444
-555555555
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**: Pyramid patterns, spacing logic, centered alignment, nested loops.
-
-```go
-package main
-
-import "fmt"
-
-func pyramid(n int) {
-    for i := 1; i <= n; i++ {
-        // Print spaces
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        // Print numbers
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(i)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    pyramid(5)
-}
-```
-
-### 4. Diamond Pattern
-
-**Description**: 
-Create a diamond pattern using asterisks (*) that is perfectly centered. This combines pyramid and inverted pyramid concepts, testing understanding of complex nested loops and pattern symmetry.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond shape with asterisks
-2. **Upper Half**: Regular pyramid (1 to n rows)
-3. **Lower Half**: Inverted pyramid (n-1 to 1 rows)
-4. **Symmetry**: Both halves should be identical but inverted
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) asterisks
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) asterisks
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   ***
-  *****
- *******
-*********
- *******
-  *****
-   ***
-    *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**: Diamond patterns, symmetric patterns, upper/lower halves, spacing logic.
-
-```go
-package main
-
-import "fmt"
-
-func diamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    diamond(5)
-}
-```
-
-### 5. Pascal's Triangle
-
-**Description**: 
-Create Pascal's triangle where each number is the sum of the two numbers above it. This tests understanding of mathematical patterns, recursion, and complex nested loops with mathematical calculations.
-
-**How to Understand the Problem**:
-1. **Mathematical Pattern**: Each element is sum of two elements above it
-2. **Edge Cases**: First and last elements of each row are always 1
-3. **Formula**: C(n,r) = C(n-1,r-1) + C(n-1,r)
-4. **Visual Structure**: Triangle with proper spacing and alignment
-5. **Recursion**: Can be solved using recursive combinations
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (0 to n-1)
-2. **Space Loop**: Print leading spaces for centering
-3. **Value Loop**: Calculate and print each element in the row
-4. **Calculation**: Use recursive formula for combinations
-5. **Formatting**: Add space after each number
-
-**Sample Input**: n = 6
-**Sample Output**:
-```
-     1 
-    1 1 
-   1 2 1 
-  1 3 3 1 
- 1 4 6 4 1 
-1 5 10 10 5 1 
-```
-
-**Time Complexity**: O(n³) - Due to recursive calculations
-**Space Complexity**: O(n) - Recursion stack space
-
-**Key Learning Points**:
-- Mathematical pattern recognition
-- Recursive function implementation
-- Combination formula application
-- Pattern spacing and alignment
-
-```go
-package main
-
-import "fmt"
-
-func pascalTriangle(n int) {
-    for i := 0; i < n; i++ {
-        // Print spaces
-        for j := 0; j < n-i-1; j++ {
-            fmt.Print(" ")
-        }
-        // Calculate and print values
-        for j := 0; j <= i; j++ {
-            fmt.Print(calculatePascalValue(i, j), " ")
-        }
-        fmt.Println()
-    }
-}
-
-func calculatePascalValue(row, col int) int {
-    if col == 0 || col == row {
-        return 1
-    }
-    return calculatePascalValue(row-1, col-1) + calculatePascalValue(row-1, col)
-}
-
-func main() {
-    pascalTriangle(6)
-}
-```
-
-### 6. Hollow Triangle
-
-**Description**: 
-Create a triangle pattern where only the border is filled with asterisks (*) and the interior is empty. This tests understanding of conditional logic within nested loops and pattern recognition for hollow shapes.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Triangle outline with empty interior
-2. **Border Logic**: Only print asterisks on the border positions
-3. **Position Rules**: First column, last column of each row, and last row
-4. **Spacing**: Use spaces for interior positions
-5. **Structure**: Should maintain triangle shape with hollow center
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to i)
-3. **Condition Check**: Print asterisk if:
-   - It's the first column (j == 1)
-   - It's the last column of the row (j == i)
-   - It's the last row (i == n)
-4. **Else**: Print spaces for interior positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-* 
-* * 
-*   * 
-*     * 
-* * * * * 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Conditional logic in nested loops
-- Pattern recognition for hollow shapes
-- Border detection algorithms
-- Space management in patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            if i == n || j == 1 || j == i {
-                fmt.Print("* ")
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowTriangle(5)
-}
-```
-
-### 7. Number Triangle (1 to n)
-
-**Description**: 
-Create a right-angled triangle where each row contains sequential numbers starting from 1. This is a fundamental pattern that tests basic nested loop understanding and number sequencing.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with numbers
-2. **Row Logic**: Row i contains numbers 1, 2, 3, ..., i
-3. **Sequential**: Each row starts from 1 and increments
-4. **Spacing**: Numbers separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print numbers from 1 to i
-3. **Numbering**: Use loop variable j as the number to print
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-1 2 
-1 2 3 
-1 2 3 4 
-1 2 3 4 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Basic nested loop structure
-- Sequential number generation
-- Pattern spacing and formatting
-- Loop variable usage
-
-```go
-package main
-
-import "fmt"
-
-func numberTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    numberTriangle(5)
-}
-```
-
-### 8. Inverted Number Triangle
-
-**Description**: 
-Create an upside-down triangle where the number of elements decreases in each row. This tests understanding of reverse iteration and the relationship between row number and element count.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Upside-down triangle with decreasing elements
-2. **Row Logic**: Row i has i elements (decreasing from n to 1)
-3. **Numbering**: Each row starts from 1 and goes up to the row number
-4. **Reverse Order**: Rows are processed from n down to 1
-5. **Structure**: Should look like an inverted pyramid
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate from n down to 1 (reverse order)
-2. **Inner Loop**: For each row i, print numbers from 1 to i
-3. **Numbering**: Use loop variable j as the number to print
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 2 3 4 5 
-1 2 3 4 
-1 2 3 
-1 2 
-1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Reverse iteration techniques
-- Decreasing pattern logic
-- Inverted structure understanding
-- Loop control with decrementing
-
-```go
-package main
-
-import "fmt"
-
-func invertedNumberTriangle(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= i; j++ {
-            fmt.Print(j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    invertedNumberTriangle(5)
-}
-```
-
-### 9. Star Pyramid
-
-**Description**: 
-Create a centered pyramid pattern using asterisks (*) where each row has an odd number of stars. This tests understanding of spacing, centering, and the mathematical relationship between row number and star count.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Centered pyramid with asterisks
-2. **Row Logic**: Row i has (2*i-1) stars
-3. **Spacing**: Each row needs leading spaces for centering
-4. **Centering**: Total width should be (2*n-1) for perfect centering
-5. **Structure**: Should be perfectly symmetrical
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Star Loop**: Print (2*i-1) asterisks
-4. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   ***
-  *****
- *******
-*********
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Centering algorithms
-- Mathematical pattern recognition
-- Space management in patterns
-- Symmetry in programming
-
-```go
-package main
-
-import "fmt"
-
-func starPyramid(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    starPyramid(5)
-}
-```
-
-### 10. Inverted Star Pyramid
-
-```go
-package main
-
-import "fmt"
-
-func invertedStarPyramid(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    invertedStarPyramid(5)
-}
-```
-
-### 11. Half Diamond Pattern
-
-**Description**: 
-Create a half diamond pattern using asterisks (*) that combines a right triangle with an inverted right triangle. This tests understanding of combining two different patterns and managing the transition between them.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Half diamond shape with asterisks
-2. **Upper Half**: Right triangle (1 to n rows)
-3. **Lower Half**: Inverted right triangle (n-1 to 1 rows)
-4. **Symmetry**: Both halves should be identical but inverted
-5. **Structure**: Should look like a diamond cut in half vertically
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print i asterisks in each row
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print i asterisks in each row
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-*
-**
-***
-****
-*****
-****
-***
-**
-*
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Combining multiple patterns
-- Symmetry in programming
-- Pattern transition logic
-- Half-diamond structure understanding
-
-```go
-package main
-
-import "fmt"
-
-func halfDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= i; j++ {
-            fmt.Print("*")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    halfDiamond(5)
-}
-```
-
-### 12. Number Square Pattern
-
-**Description**: 
-Create a square pattern where each row contains the same number repeated. This tests understanding of square patterns, row-based repetition, and basic nested loop structure.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Square grid with repeated numbers
-2. **Row Logic**: Each row i contains the number i repeated n times
-3. **Structure**: n×n square with consistent row numbers
-4. **Spacing**: Numbers separated by spaces
-5. **Symmetry**: Each row is identical in content
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print the number i, n times
-3. **Numbering**: Use row number i as the value to print
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
-1 1 1 1 
-2 2 2 2 
-3 3 3 3 
-4 4 4 4 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Square pattern generation
-- Row-based repetition logic
-- Basic nested loop structure
-- Consistent formatting in patterns
-
-```go
-package main
-
-import "fmt"
-
-func numberSquare(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n; j++ {
-            fmt.Print(i, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    numberSquare(4)
-}
-```
-
-### 13. Alphabet Triangle
-
-**Description**: 
-Create a right-angled triangle pattern using alphabets where each row contains sequential letters starting from 'A'. This tests understanding of character manipulation, ASCII values, and alphabet sequencing.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with alphabets
-2. **Row Logic**: Row i contains letters A, B, C, ..., up to the i-th letter
-3. **Character Logic**: Use ASCII values to generate sequential letters
-4. **Spacing**: Letters separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print letters from A to the i-th letter
-3. **Character Generation**: Use 'A' + j - 1 to get sequential letters
-4. **Formatting**: Add space after each letter
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-A 
-A B 
-A B C 
-A B C D 
-A B C D E 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Character manipulation and ASCII values
-- Alphabet sequencing in patterns
-- Character formatting in output
-- Sequential character generation
-
-```go
-package main
-
-import "fmt"
-
-func alphabetTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Printf("%c ", 'A'+j-1)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    alphabetTriangle(5)
-}
-```
-
-### 14. Reverse Alphabet Triangle
-
-**Description**: 
-Create an upside-down triangle pattern using alphabets where each row contains sequential letters but the number of letters decreases in each row. This tests understanding of reverse iteration with character manipulation.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Upside-down triangle with alphabets
-2. **Row Logic**: Row i has i letters (decreasing from n to 1)
-3. **Character Logic**: Each row starts from A and goes up to the i-th letter
-4. **Reverse Order**: Rows are processed from n down to 1
-5. **Structure**: Should look like an inverted alphabet pyramid
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate from n down to 1 (reverse order)
-2. **Inner Loop**: For each row i, print letters from A to the i-th letter
-3. **Character Generation**: Use 'A' + j - 1 to get sequential letters
-4. **Formatting**: Add space after each letter
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-A B C D E 
-A B C D 
-A B C 
-A B 
-A 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Reverse iteration with characters
-- Decreasing pattern logic with alphabets
-- Character manipulation in reverse patterns
-- Inverted structure understanding
-
-```go
-package main
-
-import "fmt"
-
-func reverseAlphabetTriangle(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= i; j++ {
-            fmt.Printf("%c ", 'A'+j-1)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    reverseAlphabetTriangle(5)
-}
-```
-
-### 15. Number Pyramid with Spaces
-
-**Description**: 
-Create a centered pyramid pattern where each row contains sequential numbers with proper spacing for centering. This tests understanding of spacing algorithms, centering techniques, and sequential number generation in patterns.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Centered pyramid with sequential numbers
-2. **Row Logic**: Row i contains numbers 1, 2, 3, ..., i
-3. **Spacing**: Each row needs leading spaces for perfect centering
-4. **Centering**: Total width should be (2*n-1) for perfect alignment
-5. **Structure**: Should be perfectly symmetrical
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Number Loop**: Print numbers from 1 to i
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1 
-   1 2 
-  1 2 3 
- 1 2 3 4 
-1 2 3 4 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Centering algorithms with sequential numbers
-- Space management in centered patterns
-- Sequential number generation
-- Symmetry in number pyramids
-
-```go
-package main
-
-import "fmt"
-
-func numberPyramidWithSpaces(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= i; k++ {
-            fmt.Printf("%d ", k)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    numberPyramidWithSpaces(5)
-}
-```
-
-### 16. Hollow Square with Numbers
-
-**Description**: 
-Create a square pattern where only the border is filled with numbers and the interior is empty. This tests understanding of conditional logic within nested loops, border detection, and hollow shape patterns.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Square outline with numbers, empty interior
-2. **Border Logic**: Only print numbers on the border positions
-3. **Position Rules**: First row, last row, first column, last column
-4. **Numbering**: Use column number j as the value to print
-5. **Spacing**: Use spaces for interior positions
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to n)
-3. **Condition Check**: Print column number j if:
-   - It's the first row (i == 1)
-   - It's the last row (i == n)
-   - It's the first column (j == 1)
-   - It's the last column (j == n)
-4. **Else**: Print spaces for interior positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 2 3 4 5 
-1       5 
-1       5 
-1       5 
-1 2 3 4 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Border detection algorithms
-- Conditional logic in nested loops
-- Hollow shape pattern recognition
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowSquareWithNumbers(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n; j++ {
-            if i == 1 || i == n || j == 1 || j == n {
-                fmt.Print(j, " ")
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowSquareWithNumbers(5)
-}
-```
-
-### 17. Diamond with Numbers
-
-**Description**: 
-Create a diamond pattern where each row contains the same number repeated, combining pyramid and inverted pyramid concepts. This tests understanding of complex nested loops, pattern symmetry, and centering techniques.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond shape with repeated numbers
-2. **Upper Half**: Regular pyramid (1 to n rows)
-3. **Lower Half**: Inverted pyramid (n-1 to 1 rows)
-4. **Numbering**: Each row contains the row number repeated
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) copies of the row number
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) copies of the row number
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1
-   222
-  33333
- 4444444
-555555555
- 4444444
-  33333
-   222
-    1
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Diamond pattern construction
-- Symmetry in programming
-- Centering algorithms
-- Pattern combination techniques
-
-```go
-package main
-
-import "fmt"
-
-func diamondWithNumbers(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(i)
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(i)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    diamondWithNumbers(5)
-}
-```
-
-### 18. Right Triangle with Alphabets
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains the same letter repeated. This tests understanding of character manipulation, ASCII values, and the relationship between row number and character selection.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with repeated letters
-2. **Row Logic**: Row i contains the i-th letter repeated i times
-3. **Character Logic**: Use 'A' + i - 1 to get the row letter
-4. **Spacing**: Letters separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print the i-th letter, i times
-3. **Character Generation**: Use 'A' + i - 1 to get the row letter
-4. **Formatting**: Add space after each letter
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-A 
-B B 
-C C C 
-D D D D 
-E E E E E 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Character manipulation and ASCII values
-- Row-based character repetition
-- Character formatting in patterns
-- Sequential character generation
-
-```go
-package main
-
-import "fmt"
-
-func rightTriangleAlphabets(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Printf("%c ", 'A'+i-1)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    rightTriangleAlphabets(5)
-}
-```
-
-### 19. Inverted Right Triangle with Alphabets
-
-**Description**: 
-Create an upside-down triangle pattern where each row contains the same letter repeated, but the number of letters decreases in each row. This tests understanding of reverse iteration with character manipulation.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Upside-down triangle with repeated letters
-2. **Row Logic**: Row i has i letters (decreasing from n to 1)
-3. **Character Logic**: Each row contains the row letter repeated i times
-4. **Reverse Order**: Rows are processed from n down to 1
-5. **Structure**: Should look like an inverted alphabet pyramid
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate from n down to 1 (reverse order)
-2. **Inner Loop**: For each row i, print the i-th letter, i times
-3. **Character Generation**: Use 'A' + i - 1 to get the row letter
-4. **Formatting**: Add space after each letter
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-E E E E E 
-D D D D 
-C C C 
-B B 
-A 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Reverse iteration with characters
-- Decreasing pattern logic with alphabets
-- Character manipulation in reverse patterns
-- Inverted structure understanding
-
-```go
-package main
-
-import "fmt"
-
-func invertedRightTriangleAlphabets(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= i; j++ {
-            fmt.Printf("%c ", 'A'+i-1)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    invertedRightTriangleAlphabets(5)
-}
-```
-
-### 20. Cross Pattern with Numbers
-
-**Description**: 
-Create a cross pattern using numbers where the main diagonal and anti-diagonal are filled with numbers. This tests understanding of diagonal detection, conditional logic, and cross pattern recognition.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Cross shape with numbers on diagonals
-2. **Diagonal Logic**: Main diagonal (i == j) and anti-diagonal (i + j == n + 1)
-3. **Position Rules**: Only print numbers on diagonal positions
-4. **Numbering**: Use row number i as the value to print
-5. **Spacing**: Use spaces for non-diagonal positions
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to n)
-3. **Condition Check**: Print row number i if:
-   - It's on the main diagonal (i == j)
-   - It's on the anti-diagonal (i + j == n + 1)
-4. **Else**: Print spaces for non-diagonal positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1       5 
-  2   4   
-    3     
-  2   4   
-1       5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Diagonal detection algorithms
-- Cross pattern recognition
-- Conditional logic in nested loops
-- Space management in cross patterns
-
-```go
-package main
-
-import "fmt"
-
-func crossPatternNumbers(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n; j++ {
-            if i == j || i+j == n+1 {
-                fmt.Print(i, " ")
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    crossPatternNumbers(5)
-}
-```
-
-### 21. Hollow Diamond
-
-**Description**: 
-Create a diamond pattern where only the border is filled with asterisks (*) and the interior is empty. This tests understanding of complex conditional logic, border detection, and hollow shape patterns in diamond structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond outline with empty interior
-2. **Upper Half**: Regular hollow pyramid (1 to n rows)
-3. **Lower Half**: Inverted hollow pyramid (n-1 to 1 rows)
-4. **Border Logic**: Only print asterisks on the border positions
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  *   *
- *     *
-*       *
- *     *
-  *   *
-   * *
-    *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex hollow pattern construction
-- Border detection in diamond shapes
-- Conditional logic in nested loops
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowDiamond(5)
-}
-```
-
-### 22. Number Spiral
-
-**Description**: 
-Create a spiral pattern using numbers where the numbers are arranged in a spiral order from outside to inside. This tests understanding of complex nested loops, matrix manipulation, and spiral traversal algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Spiral arrangement of numbers from 1 to n²
-2. **Direction Logic**: Move right, down, left, up in sequence
-3. **Boundary Management**: Track top, bottom, left, right boundaries
-4. **Numbering**: Sequential numbers from 1 to n²
-5. **Structure**: n×n matrix with spiral arrangement
-
-**Step-by-Step Solution**:
-1. **Initialize**: Create n×n matrix and set boundaries
-2. **Spiral Loop**: Continue while boundaries are valid
-3. **Fill Top Row**: Move from left to right
-4. **Fill Right Column**: Move from top to bottom
-5. **Fill Bottom Row**: Move from right to left
-6. **Fill Left Column**: Move from bottom to top
-7. **Update Boundaries**: Shrink the spiral inward
-8. **Print Matrix**: Display the completed spiral
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
- 1  2  3  4 
-12 13 14  5 
-11 16 15  6 
-10  9  8  7 
-```
-
-**Time Complexity**: O(n²) - Fill entire matrix
-**Space Complexity**: O(n²) - Matrix storage
-
-**Key Learning Points**:
-- Spiral traversal algorithms
-- Matrix manipulation techniques
-- Boundary management in loops
-- Complex nested loop control
-
-```go
-package main
-
-import "fmt"
-
-func numberSpiral(n int) {
-    matrix := make([][]int, n)
-    for i := range matrix {
-        matrix[i] = make([]int, n)
-    }
-    
-    num := 1
-    top, bottom := 0, n-1
-    left, right := 0, n-1
-    
-    for top <= bottom && left <= right {
-        // Fill top row
-        for i := left; i <= right; i++ {
-            matrix[top][i] = num
-            num++
-        }
-        top++
-        
-        // Fill right column
-        for i := top; i <= bottom; i++ {
-            matrix[i][right] = num
-            num++
-        }
-        right--
-        
-        // Fill bottom row
-        if top <= bottom {
-            for i := right; i >= left; i-- {
-                matrix[bottom][i] = num
-                num++
-            }
-            bottom--
-        }
-        
-        // Fill left column
-        if left <= right {
-            for i := bottom; i >= top; i-- {
-                matrix[i][left] = num
-                num++
-            }
-            left++
-        }
-    }
-    
-    // Print matrix
-    for i := 0; i < n; i++ {
-        for j := 0; j < n; j++ {
-            fmt.Printf("%2d ", matrix[i][j])
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    numberSpiral(4)
-}
-```
-
-### 23. Triangle with Alternating Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each position contains alternating 1s and 0s based on the sum of row and column indices. This tests understanding of conditional logic, alternating patterns, and mathematical relationships in patterns.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with alternating 1s and 0s
-2. **Row Logic**: Row i contains i alternating numbers
-3. **Alternating Logic**: Print 1 if (i+j) is even, 0 if (i+j) is odd
-4. **Spacing**: Numbers separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print i alternating numbers
-3. **Condition Check**: Print 1 if (i+j) is even, 0 if (i+j) is odd
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-0 1 
-1 0 1 
-0 1 0 1 
-1 0 1 0 1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Alternating pattern logic
-- Mathematical relationships in patterns
-- Conditional statements in nested loops
-- Position-based value assignment
-
-```go
-package main
-
-import "fmt"
-
-func alternatingTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            if (i+j)%2 == 0 {
-                fmt.Print("1 ")
-            } else {
-                fmt.Print("0 ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    alternatingTriangle(5)
-}
-```
-
-### 24. Diamond with Alphabets
-
-**Description**: 
-Create a diamond pattern where each row contains the same letter repeated, combining pyramid and inverted pyramid concepts with character manipulation. This tests understanding of complex nested loops, pattern symmetry, and character generation.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond shape with repeated letters
-2. **Upper Half**: Regular pyramid (1 to n rows)
-3. **Lower Half**: Inverted pyramid (n-1 to 1 rows)
-4. **Character Logic**: Each row contains the row letter repeated
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) copies of the row letter
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) copies of the row letter
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    A
-   BBB
-  CCCCC
- DDDDDDD
-EEEEEEEEE
- DDDDDDD
-  CCCCC
-   BBB
-    A
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Diamond pattern construction with characters
-- Character manipulation in patterns
-- Symmetry in programming
-- Centering algorithms with characters
-
-```go
-package main
-
-import "fmt"
-
-func diamondAlphabets(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Printf("%c", 'A'+i-1)
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Printf("%c", 'A'+i-1)
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    diamondAlphabets(5)
-}
-```
-
-### 25. Hollow Triangle with Numbers
-
-**Description**: 
-Create a triangle pattern where only the border is filled with numbers and the interior is empty. This tests understanding of conditional logic within nested loops, border detection, and hollow shape patterns with number positioning.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Triangle outline with numbers, empty interior
-2. **Border Logic**: Only print numbers on the border positions
-3. **Position Rules**: First column, last column of each row, and last row
-4. **Numbering**: Use column number j as the value to print
-5. **Spacing**: Use spaces for interior positions
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to i)
-3. **Condition Check**: Print column number j if:
-   - It's the first column (j == 1)
-   - It's the last column of the row (j == i)
-   - It's the last row (i == n)
-4. **Else**: Print spaces for interior positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-1 2 
-1   3 
-1     4 
-1 2 3 4 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Border detection algorithms
-- Conditional logic in nested loops
-- Hollow shape pattern recognition
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowTriangleNumbers(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            if i == n || j == 1 || j == i {
-                fmt.Print(j, " ")
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowTriangleNumbers(5)
-}
-```
-
-### 26. Pyramid with Row Numbers
-
-**Description**: 
-Create a centered pyramid pattern where each row contains the row number repeated with proper spacing for centering. This tests understanding of spacing algorithms, centering techniques, and the relationship between row number and element count.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Centered pyramid with repeated row numbers
-2. **Row Logic**: Row i has (2*i-1) copies of the number i
-3. **Spacing**: Each row needs leading spaces for perfect centering
-4. **Centering**: Total width should be (2*n-1) for perfect alignment
-5. **Structure**: Should be perfectly symmetrical
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Number Loop**: Print (2*i-1) copies of the row number
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1 
-   2 2 2 
-  3 3 3 3 3 
- 4 4 4 4 4 4 4 
-5 5 5 5 5 5 5 5 5 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Centering algorithms with numbers
-- Mathematical pattern recognition
-- Space management in centered patterns
-- Symmetry in number pyramids
-
-```go
-package main
-
-import "fmt"
-
-func pyramidRowNumbers(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(i, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    pyramidRowNumbers(5)
-}
-```
-
-### 27. Inverted Pyramid with Row Numbers
-
-**Description**: 
-Create an upside-down centered pyramid pattern where each row contains the row number repeated with proper spacing for centering. This tests understanding of reverse iteration, spacing algorithms, and centering techniques.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Upside-down centered pyramid with repeated row numbers
-2. **Row Logic**: Row i has (2*i-1) copies of the number i (decreasing)
-3. **Spacing**: Each row needs leading spaces for perfect centering
-4. **Reverse Order**: Process rows from n down to 1
-5. **Structure**: Should be perfectly symmetrical and inverted
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate from n down to 1 (reverse order)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Number Loop**: Print (2*i-1) copies of the row number
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-5 5 5 5 5 5 5 5 5 
- 4 4 4 4 4 4 4 
-  3 3 3 3 3 
-   2 2 2 
-    1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Reverse iteration with centering
-- Inverted pattern logic
-- Mathematical relationship in reverse
-- Symmetry in inverted structures
-
-```go
-package main
-
-import "fmt"
-
-func invertedPyramidRowNumbers(n int) {
-    for i := n; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(i, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    invertedPyramidRowNumbers(5)
-}
-```
-
-### 28. Triangle with Sequential Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains sequential numbers starting from 1 and continuing across rows. This tests understanding of sequential number generation, nested loops, and number progression across multiple rows.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with sequential numbers
-2. **Row Logic**: Row i contains i sequential numbers
-3. **Numbering**: Numbers continue from previous row (1, 2, 3, 4, 5, 6, 7, 8, 9, 10...)
-4. **Spacing**: Numbers separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set starting number to 1
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i sequential numbers
-4. **Numbering**: Increment number after each print
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-2 3 
-4 5 6 
-7 8 9 10 
-11 12 13 14 15 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Sequential number generation across rows
-- Number progression in nested loops
-- Pattern spacing and formatting
-- Loop variable management
-
-```go
-package main
-
-import "fmt"
-
-func sequentialTriangle(n int) {
-    num := 1
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    sequentialTriangle(5)
-}
-```
-
-### 29. Hollow Square with Alphabets
-
-**Description**: 
-Create a square pattern where only the border is filled with alphabets and the interior is empty. This tests understanding of conditional logic within nested loops, border detection, and hollow shape patterns with character positioning.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Square outline with alphabets, empty interior
-2. **Border Logic**: Only print alphabets on the border positions
-3. **Position Rules**: First row, last row, first column, last column
-4. **Character Logic**: Use column number j to generate sequential letters
-5. **Spacing**: Use spaces for interior positions
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to n)
-3. **Condition Check**: Print alphabet if:
-   - It's the first row (i == 1)
-   - It's the last row (i == n)
-   - It's the first column (j == 1)
-   - It's the last column (j == n)
-4. **Else**: Print spaces for interior positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-A B C D E 
-A       E 
-A       E 
-A       E 
-A B C D E 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Border detection algorithms with characters
-- Conditional logic in nested loops
-- Hollow shape pattern recognition
-- Character manipulation in patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowSquareAlphabets(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n; j++ {
-            if i == 1 || i == n || j == 1 || j == n {
-                fmt.Printf("%c ", 'A'+j-1)
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowSquareAlphabets(5)
-}
-```
-
-### 30. Diamond with Sequential Numbers
-
-**Description**: 
-Create a diamond pattern where each position contains sequential numbers starting from 1 and continuing across the entire diamond. This tests understanding of complex nested loops, sequential number generation, and diamond pattern construction.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond shape with sequential numbers
-2. **Upper Half**: Regular pyramid (1 to n rows)
-3. **Lower Half**: Inverted pyramid (n-1 to 1 rows)
-4. **Numbering**: Numbers continue sequentially from 1 across the entire diamond
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set starting number to 1
-2. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) sequential numbers
-3. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print (2*i-1) sequential numbers
-4. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
-   1 
-  2 3 4 
- 5 6 7 8 9 
-10 11 12 13 14 15 16 
- 17 18 19 20 21 
-  22 23 24 
-   25 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Diamond pattern construction with sequential numbers
-- Sequential number generation across complex patterns
-- Centering algorithms with sequential numbers
-- Pattern combination techniques
-
-```go
-package main
-
-import "fmt"
-
-func diamondSequential(n int) {
-    num := 1
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    diamondSequential(4)
-}
-```
-
-### 31. Triangle with Reverse Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains numbers in reverse order starting from the row number down to 1. This tests understanding of reverse number generation, nested loops, and mathematical relationships in patterns.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with reverse numbers
-2. **Row Logic**: Row i contains numbers i, i-1, i-2, ..., 1
-3. **Reverse Logic**: Use reverse loop (j from i down to 1)
-4. **Spacing**: Numbers separated by spaces
-5. **Structure**: Triangle should be left-aligned
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print numbers from i down to 1
-3. **Numbering**: Use loop variable j as the number to print
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-2 1 
-3 2 1 
-4 3 2 1 
-5 4 3 2 1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Reverse number generation in patterns
-- Reverse loop iteration
-- Pattern spacing and formatting
-- Loop variable relationships
-
-```go
-package main
-
-import "fmt"
-
-func reverseTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := i; j >= 1; j-- {
-            fmt.Print(j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    reverseTriangle(5)
-}
-```
-
-### 32. Hollow Pyramid
-
-**Description**: 
-Create a centered pyramid pattern where only the border is filled with asterisks (*) and the interior is empty. This tests understanding of complex conditional logic, border detection, and hollow shape patterns in pyramid structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Pyramid outline with empty interior
-2. **Row Logic**: Row i has (2*i-1) positions
-3. **Border Logic**: Only print asterisks on the border positions
-4. **Position Rules**: First position, last position of each row, and last row
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Asterisk Loop**: Print asterisks only on border positions
-4. **Condition Check**: Print asterisk if:
-   - It's the first position (k == 1)
-   - It's the last position (k == 2*i-1)
-   - It's the last row (i == n)
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  *   *
- *     *
-*********
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex hollow pattern construction
-- Border detection in pyramid shapes
-- Conditional logic in nested loops
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowPyramid(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if i == n || k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowPyramid(5)
-}
-```
-
-### 33. Triangle with Alternating Alphabets
-
-**Description**: 
-Create a right-angled triangle pattern where each position contains alternating uppercase and lowercase letters. This tests understanding of character manipulation, alternating patterns, and ASCII value relationships.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with alternating letters
-2. **Row Logic**: Row i contains i alternating letters
-3. **Alternating Logic**: Odd positions show uppercase, even positions show lowercase
-4. **Character Logic**: Use ASCII values to generate alternating letters
-5. **Spacing**: Letters separated by spaces
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print i alternating letters
-3. **Condition Check**: Print uppercase if position is odd, lowercase if even
-4. **Character Generation**: Use 'A' + j - 1 for uppercase, 'a' + j - 1 for lowercase
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-A 
-A b 
-A b C 
-A b C d 
-A b C d E 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Alternating pattern logic with characters
-- Character manipulation and ASCII values
-- Conditional statements in nested loops
-- Pattern recognition in character sequences
-
-```go
-package main
-
-import "fmt"
-
-func alternatingAlphabetTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            if j%2 == 1 {
-                fmt.Printf("%c ", 'A'+j-1)
-            } else {
-                fmt.Printf("%c ", 'a'+j-1)
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    alternatingAlphabetTriangle(5)
-}
-```
-
-### 34. Diamond with Hollow Center
-
-**Description**: 
-Create a diamond pattern where only the border is filled with asterisks (*) and the interior is empty, including the center. This tests understanding of complex conditional logic, border detection, and hollow shape patterns in diamond structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond outline with empty interior
-2. **Upper Half**: Regular hollow pyramid (1 to n rows)
-3. **Lower Half**: Inverted hollow pyramid (n-1 to 1 rows)
-4. **Border Logic**: Only print asterisks on the border positions
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  *   *
- *     *
-*       *
- *     *
-  *   *
-   * *
-    *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex hollow pattern construction
-- Border detection in diamond shapes
-- Conditional logic in nested loops
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowCenterDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || i == n {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowCenterDiamond(5)
-}
-```
-
-### 35. Triangle with Fibonacci Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains Fibonacci numbers in sequence. This tests understanding of mathematical sequences, Fibonacci generation, and nested loop control with mathematical calculations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with Fibonacci numbers
-2. **Row Logic**: Row i contains i Fibonacci numbers
-3. **Fibonacci Logic**: Each number is the sum of the previous two numbers
-4. **Sequence**: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set a = 0, b = 1 for Fibonacci sequence
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i Fibonacci numbers
-4. **Fibonacci Generation**: Use a, b = b, a+b to generate next number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-0 
-1 1 
-2 3 5 
-8 13 21 34 
-55 89 144 233 377 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Fibonacci sequence generation
-- Mathematical sequences in patterns
-- Loop control with mathematical calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func fibonacciTriangle(n int) {
-    a, b := 0, 1
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(a, " ")
-            a, b = b, a+b
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    fibonacciTriangle(5)
-}
-```
-
-### 36. Pyramid with Column Numbers
-
-**Description**: 
-Create a centered pyramid pattern where each row contains numbers in a specific pattern: ascending from 1 to i, then descending from i-1 to 1. This tests understanding of spacing algorithms, centering techniques, and complex number patterns in pyramid structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Centered pyramid with ascending and descending numbers
-2. **Row Logic**: Row i has numbers 1, 2, 3, ..., i, i-1, ..., 2, 1
-3. **Spacing**: Each row needs leading spaces for perfect centering
-4. **Centering**: Total width should be (2*n-1) for perfect alignment
-5. **Structure**: Should be perfectly symmetrical
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Ascending Loop**: Print numbers from 1 to i
-4. **Descending Loop**: Print numbers from i-1 down to 1
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1 
-   1 2 1 
-  1 2 3 2 1 
- 1 2 3 4 3 2 1 
-1 2 3 4 5 4 3 2 1 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Centering algorithms with complex number patterns
-- Mathematical pattern recognition
-- Space management in centered patterns
-- Symmetry in number pyramids
-
-```go
-package main
-
-import "fmt"
-
-func pyramidColumnNumbers(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= i; k++ {
-            fmt.Print(k, " ")
-        }
-        for k := i-1; k >= 1; k-- {
-            fmt.Print(k, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    pyramidColumnNumbers(5)
-}
-```
-
-### 37. Triangle with Prime Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains prime numbers in sequence. This tests understanding of prime number generation, mathematical algorithms, and nested loop control with complex calculations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with prime numbers
-2. **Row Logic**: Row i contains i prime numbers
-3. **Prime Logic**: Each number must be prime (only divisible by 1 and itself)
-4. **Sequence**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set starting number to 2
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i prime numbers
-4. **Prime Check**: Use isPrime function to find next prime
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-2 
-3 5 
-7 11 13 
-17 19 23 29 
-31 37 41 43 47 
-```
-
-**Time Complexity**: O(n² * √n) - Due to prime checking
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Prime number generation and checking
-- Mathematical algorithms in patterns
-- Loop control with complex calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func isPrime(num int) bool {
-    if num < 2 {
-        return false
-    }
-    for i := 2; i*i <= num; i++ {
-        if num%i == 0 {
-            return false
-        }
-    }
-    return true
-}
-
-func primeTriangle(n int) {
-    num := 2
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            for !isPrime(num) {
-                num++
-            }
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    primeTriangle(5)
-}
-```
-
-### 38. Hollow Right Triangle
-
-**Description**: 
-Create a right-angled triangle pattern where only the border is filled with asterisks (*) and the interior is empty. This tests understanding of conditional logic within nested loops, border detection, and hollow shape patterns in triangle structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Triangle outline with empty interior
-2. **Border Logic**: Only print asterisks on the border positions
-3. **Position Rules**: First column, last column of each row, and last row
-4. **Spacing**: Use spaces for interior positions
-5. **Structure**: Should maintain triangle shape with hollow center
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: Iterate through columns (1 to i)
-3. **Condition Check**: Print asterisk if:
-   - It's the first column (j == 1)
-   - It's the last column of the row (j == i)
-   - It's the last row (i == n)
-4. **Else**: Print spaces for interior positions
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-* 
-* * 
-*   * 
-*     * 
-* * * * * 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Border detection algorithms
-- Conditional logic in nested loops
-- Hollow shape pattern recognition
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowRightTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            if i == n || j == 1 || j == i {
-                fmt.Print("* ")
-            } else {
-                fmt.Print("  ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowRightTriangle(5)
-}
-```
-
-### 39. Triangle with Square Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains square numbers (1², 2², 3², etc.). This tests understanding of mathematical calculations, nested loops, and the relationship between position and mathematical functions.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with square numbers
-2. **Row Logic**: Row i contains i square numbers
-3. **Square Logic**: Each number is the square of its position (j²)
-4. **Sequence**: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print i square numbers
-3. **Square Calculation**: Use j*j to calculate square of position
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-4 9 
-16 25 36 
-49 64 81 100 
-121 144 169 196 225 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Mathematical calculations in patterns
-- Square number generation
-- Loop control with mathematical functions
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func squareTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(j*j, " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    squareTriangle(5)
-}
-```
-
-### 40. Diamond with Hollow Borders
-
-**Description**: 
-Create a diamond pattern where only the border is filled with asterisks (*) and the interior is empty, including the center. This tests understanding of complex conditional logic, border detection, and hollow shape patterns in diamond structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond outline with empty interior
-2. **Upper Half**: Regular hollow pyramid (1 to n rows)
-3. **Lower Half**: Inverted hollow pyramid (n-1 to 1 rows)
-4. **Border Logic**: Only print asterisks on the border positions
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print asterisks only on first and last positions of each row
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  *   *
- *     *
-*       *
- *     *
-  *   *
-   * *
-    *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex hollow pattern construction
-- Border detection in diamond shapes
-- Conditional logic in nested loops
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowBorderDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || i == n {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowBorderDiamond(5)
-}
-```
-
-### 41. Triangle with Factorial Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains factorial numbers (1!, 2!, 3!, etc.). This tests understanding of recursive functions, mathematical calculations, and nested loop control with complex mathematical operations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with factorial numbers
-2. **Row Logic**: Row i contains i factorial numbers
-3. **Factorial Logic**: Each number is the factorial of its position (j!)
-4. **Sequence**: 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print i factorial numbers
-3. **Factorial Calculation**: Use recursive function to calculate factorial
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
-1 
-2 6 
-24 120 720 
-5040 40320 362880 3628800 
-```
-
-**Time Complexity**: O(n² * n!) - Due to factorial calculations
-**Space Complexity**: O(n) - Recursion stack space
-
-**Key Learning Points**:
-- Recursive function implementation
-- Factorial number generation
-- Mathematical calculations in patterns
-- Loop control with complex mathematical operations
-
-```go
-package main
-
-import "fmt"
-
-func factorial(n int) int {
-    if n <= 1 {
-        return 1
-    }
-    return n * factorial(n-1)
-}
-
-func factorialTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(factorial(j), " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    factorialTriangle(4)
-}
-```
-
-### 42. Pyramid with Hollow Center
-
-**Description**: 
-Create a centered pyramid pattern where only the border is filled with asterisks (*) and the interior is empty. This tests understanding of complex conditional logic, border detection, and hollow shape patterns in pyramid structures.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Pyramid outline with empty interior
-2. **Row Logic**: Row i has (2*i-1) positions
-3. **Border Logic**: Only print asterisks on the border positions
-4. **Position Rules**: First position, last position of each row, and last row
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Asterisk Loop**: Print asterisks only on border positions
-4. **Condition Check**: Print asterisk if:
-   - It's the first position (k == 1)
-   - It's the last position (k == 2*i-1)
-   - It's the last row (i == n)
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  *   *
- *     *
-*********
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex hollow pattern construction
-- Border detection in pyramid shapes
-- Conditional logic in nested loops
-- Space management in hollow patterns
-
-```go
-package main
-
-import "fmt"
-
-func hollowCenterPyramid(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if i == n || k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    hollowCenterPyramid(5)
-}
-```
-
-### 43. Triangle with Triangular Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains triangular numbers (1, 3, 6, 10, 15, etc.). This tests understanding of mathematical sequences, triangular number generation, and nested loop control with mathematical calculations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with triangular numbers
-2. **Row Logic**: Row i contains i triangular numbers
-3. **Triangular Logic**: Each number is the sum of natural numbers up to that position
-4. **Sequence**: 1, 3, 6, 10, 15, 21, 28, 36, 45, 55...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Inner Loop**: For each row i, print i triangular numbers
-3. **Triangular Calculation**: Use formula n*(n+1)/2 to calculate triangular number
-4. **Formatting**: Add space after each number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-1 
-3 6 
-10 15 21 
-28 36 45 55 
-66 78 91 105 120 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Triangular number generation
-- Mathematical sequences in patterns
-- Loop control with mathematical calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func triangularNumber(n int) int {
-    return n * (n + 1) / 2
-}
-
-func triangularTriangle(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(triangularNumber(j), " ")
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    triangularTriangle(5)
-}
-```
-
-### 44. Diamond with Hollow Diamond Inside
-
-**Description**: 
-Create a diamond pattern where the outer border is filled with asterisks (*) and there's a hollow diamond pattern inside. This tests understanding of complex nested patterns, multiple border detection, and advanced pattern construction.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond with nested hollow diamond inside
-2. **Upper Half**: Regular diamond (1 to n rows)
-3. **Lower Half**: Inverted diamond (n-1 to 1 rows)
-4. **Border Logic**: Outer border and inner hollow diamond
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print asterisks on outer border and inner hollow diamond
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print asterisks on outer border and inner hollow diamond
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 6
-**Sample Output**:
-```
-     *
-    * *
-   *   *
-  *     *
- *       *
-*         *
- *       *
-  *     *
-   *   *
-    * *
-     *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex nested pattern construction
-- Multiple border detection algorithms
-- Advanced pattern recognition
-- Space management in complex patterns
-
-```go
-package main
-
-import "fmt"
-
-func nestedHollowDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || (i > 2 && k == i) {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || (i > 2 && k == i) {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    nestedHollowDiamond(6)
-}
-```
-
-### 45. Triangle with Perfect Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains perfect numbers in sequence. This tests understanding of perfect number generation, mathematical algorithms, and nested loop control with complex calculations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with perfect numbers
-2. **Row Logic**: Row i contains i perfect numbers
-3. **Perfect Logic**: Each number must be perfect (sum of its divisors equals the number)
-4. **Sequence**: 6, 28, 496, 8128, 33550336...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set starting number to 1
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i perfect numbers
-4. **Perfect Check**: Use isPerfect function to find next perfect number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
-6 
-28 496 
-8128 33550336 8589869056 
-137438691328 2305843008139952128 2658455991569831744654692615953842176 191561942608236107294793378084303638130997321548169216 
-```
-
-**Time Complexity**: O(n² * √n) - Due to perfect number checking
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Perfect number generation and checking
-- Mathematical algorithms in patterns
-- Loop control with complex calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func isPerfect(n int) bool {
-    if n <= 1 {
-        return false
-    }
-    sum := 1
-    for i := 2; i*i <= n; i++ {
-        if n%i == 0 {
-            sum += i
-            if i != n/i {
-                sum += n / i
-            }
-        }
-    }
-    return sum == n
-}
-
-func perfectTriangle(n int) {
-    num := 1
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            for !isPerfect(num) {
-                num++
-            }
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    perfectTriangle(4)
-}
-```
-
-### 46. Pyramid with Hollow Pyramid Inside
-
-**Description**: 
-Create a pyramid pattern where the outer border is filled with asterisks (*) and there's a hollow pyramid pattern inside. This tests understanding of complex nested patterns, multiple border detection, and advanced pattern construction.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Pyramid with nested hollow pyramid inside
-2. **Row Logic**: Row i has (2*i-1) positions
-3. **Border Logic**: Outer border and inner hollow pyramid
-4. **Position Rules**: First position, last position of each row, and center position
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through rows (1 to n)
-2. **Space Loop**: Print (n-i) spaces for centering
-3. **Asterisk Loop**: Print asterisks on outer border and inner hollow pyramid
-4. **Condition Check**: Print asterisk if:
-   - It's the first position (k == 1)
-   - It's the last position (k == 2*i-1)
-   - It's the center position (k == i) for rows > 2
-   - It's the last row (i == n)
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 6
-**Sample Output**:
-```
-     *
-    * *
-   *   *
-  *     *
- *       *
-***********
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex nested pattern construction
-- Multiple border detection algorithms
-- Advanced pattern recognition
-- Space management in complex patterns
-
-```go
-package main
-
-import "fmt"
-
-func nestedHollowPyramid(n int) {
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if i == n || k == 1 || k == 2*i-1 || (i > 2 && k == i) {
-                fmt.Print("*")
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    nestedHollowPyramid(6)
-}
-```
-
-### 47. Triangle with Armstrong Numbers
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains Armstrong numbers in sequence. This tests understanding of Armstrong number generation, mathematical algorithms, and nested loop control with complex calculations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with Armstrong numbers
-2. **Row Logic**: Row i contains i Armstrong numbers
-3. **Armstrong Logic**: Each number must be Armstrong (sum of digits raised to power of digit count equals the number)
-4. **Sequence**: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 371, 407, 1634, 8208, 9474...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set starting number to 1
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i Armstrong numbers
-4. **Armstrong Check**: Use isArmstrong function to find next Armstrong number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 4
-**Sample Output**:
-```
-1 
-2 3 
-4 5 6 
-7 8 9 153 
-```
-
-**Time Complexity**: O(n² * log n) - Due to Armstrong number checking
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Armstrong number generation and checking
-- Mathematical algorithms in patterns
-- Loop control with complex calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func isArmstrong(n int) bool {
-    original := n
-    digits := 0
-    temp := n
-    for temp > 0 {
-        temp /= 10
-        digits++
-    }
-    
-    sum := 0
-    temp = n
-    for temp > 0 {
-        digit := temp % 10
-        power := 1
-        for i := 0; i < digits; i++ {
-            power *= digit
-        }
-        sum += power
-        temp /= 10
-    }
-    
-    return sum == original
-}
-
-func armstrongTriangle(n int) {
-    num := 1
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            for !isArmstrong(num) {
-                num++
-            }
-            fmt.Print(num, " ")
-            num++
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    armstrongTriangle(4)
-}
-```
-
-### 48. Diamond with Sequential Hollow
-
-**Description**: 
-Create a diamond pattern where the outer border is filled with row numbers and there's a sequential hollow pattern inside. This tests understanding of complex nested patterns, multiple border detection, and advanced pattern construction.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Diamond with nested hollow diamond inside
-2. **Upper Half**: Regular diamond (1 to n rows)
-3. **Lower Half**: Inverted diamond (n-1 to 1 rows)
-4. **Border Logic**: Outer border and inner hollow diamond
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print row numbers on outer border and inner hollow diamond
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print row numbers on outer border and inner hollow diamond
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    1
-   2 2
-  3   3
- 4     4
-5       5
- 4     4
-  3   3
-   2 2
-    1
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex nested pattern construction
-- Multiple border detection algorithms
-- Advanced pattern recognition
-- Space management in complex patterns
-
-```go
-package main
-
-import "fmt"
-
-func sequentialHollowDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || (i > 1 && k == i) {
-                fmt.Print(i)
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 || (i > 1 && k == i) {
-                fmt.Print(i)
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    sequentialHollowDiamond(5)
-}
-```
-
-### 49. Triangle with Fibonacci Spiral
-
-**Description**: 
-Create a right-angled triangle pattern where each row contains Fibonacci numbers in sequence, creating a spiral-like effect. This tests understanding of Fibonacci sequence generation, nested loops, and mathematical pattern construction.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Right-angled triangle with Fibonacci numbers
-2. **Row Logic**: Row i contains i Fibonacci numbers
-3. **Fibonacci Logic**: Each number is the sum of the previous two numbers
-4. **Sequence**: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
-5. **Spacing**: Numbers separated by spaces
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set a = 0, b = 1 for Fibonacci sequence
-2. **Outer Loop**: Iterate through rows (1 to n)
-3. **Inner Loop**: For each row i, print i Fibonacci numbers
-4. **Fibonacci Generation**: Use a, b = b, a+b to generate next number
-5. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 6
-**Sample Output**:
-```
-0 
-1 1 
-2 3 5 
-8 13 21 34 
-55 89 144 233 377 
-610 987 1597 2584 4181 6765 
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Fibonacci sequence generation
-- Mathematical sequences in patterns
-- Loop control with mathematical calculations
-- Pattern spacing and formatting
-
-```go
-package main
-
-import "fmt"
-
-func fibonacciSpiralTriangle(n int) {
-    a, b := 0, 1
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= i; j++ {
-            fmt.Print(a, " ")
-            a, b = b, a+b
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    fibonacciSpiralTriangle(6)
-}
-```
-
-### 50. Complex Diamond Pattern
-
-**Description**: 
-Create a complex diamond pattern that combines multiple pattern elements including borders, hollow centers, and nested structures. This tests understanding of advanced pattern construction, complex conditional logic, and multiple pattern integration.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Complex diamond with multiple pattern elements
-2. **Upper Half**: Regular diamond (1 to n rows)
-3. **Lower Half**: Inverted diamond (n-1 to 1 rows)
-4. **Border Logic**: Outer border and inner hollow diamond
-5. **Centering**: Each row should be perfectly centered
-
-**Step-by-Step Solution**:
-1. **Upper Half**: 
-   - Loop from 1 to n
-   - Print (n-i) spaces for centering
-   - Print asterisks on outer border and inner hollow diamond
-2. **Lower Half**:
-   - Loop from n-1 down to 1
-   - Print (n-i) spaces for centering
-   - Print asterisks on outer border and inner hollow diamond
-3. **Line Break**: Move to next line after each row
-
-**Sample Input**: n = 5
-**Sample Output**:
-```
-    *
-   * *
-  * 3 *
- *   4  *
-*      5
- *   4  *
-  * 3 *
-   * *
-    *
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Complex nested pattern construction
-- Multiple border detection algorithms
-- Advanced pattern recognition
-- Space management in complex patterns
-
-```go
-package main
-
-import "fmt"
-
-func complexDiamond(n int) {
-    // Upper half
-    for i := 1; i <= n; i++ {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else if k == i {
-                fmt.Print(i)
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-    // Lower half
-    for i := n-1; i >= 1; i-- {
-        for j := 1; j <= n-i; j++ {
-            fmt.Print(" ")
-        }
-        for k := 1; k <= 2*i-1; k++ {
-            if k == 1 || k == 2*i-1 {
-                fmt.Print("*")
-            } else if k == i {
-                fmt.Print(i)
-            } else {
-                fmt.Print(" ")
-            }
-        }
-        fmt.Println()
-    }
-}
-
-func main() {
-    complexDiamond(5)
-}
-```
-
----
-
-## Array Manipulation
-
-### 6. Reverse Array
-
-**Description**: 
-Reverse the elements of an array using two different approaches: creating a new array and in-place reversal. This tests understanding of array manipulation, two-pointer technique, and in-place algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be swapped symmetrically
-2. **Two-Pointer Logic**: Use two pointers from start and end
-3. **Swap Logic**: Swap elements at positions i and n-1-i
-4. **Iteration**: Continue until pointers meet in the middle
-5. **In-Place**: Modify the original array without extra space
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set n = length of array
-2. **Loop**: Iterate from 0 to n/2
-3. **Swap**: Exchange elements at positions i and n-1-i
-4. **Continue**: Until all pairs are swapped
-5. **Result**: Array is reversed in-place
-
-**Sample Input**: arr = [1, 2, 3, 4, 5]
-**Sample Output**: 
-```
-Original: [1 2 3 4 5]
-Reversed: [5 4 3 2 1]
-In-place reversed: [5 4 3 2 1]
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Two-pointer technique
-- In-place array manipulation
-- Symmetric swapping algorithm
-- Array indexing and bounds
-
-```go
-package main
-
-import "fmt"
-
-func reverseArray(arr []int) []int {
-    n := len(arr)
-    reversed := make([]int, n)
-    
-    for i := 0; i < n; i++ {
-        reversed[i] = arr[n-1-i]
-    }
-    return reversed
-}
-
-func reverseArrayInPlace(arr []int) {
-    n := len(arr)
-    for i := 0; i < n/2; i++ {
-        arr[i], arr[n-1-i] = arr[n-1-i], arr[i]
-    }
-}
-
-func main() {
-    arr := []int{1, 2, 3, 4, 5}
-    fmt.Println("Original:", arr)
-    
-    reversed := reverseArray(arr)
-    fmt.Println("Reversed:", reversed)
-    
-    reverseArrayInPlace(arr)
-    fmt.Println("In-place reversed:", arr)
-}
-```
-
-### 7. Bubble Sort
-
-**Description**: 
-Sort an array using the bubble sort algorithm with optimization. The algorithm repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. This tests understanding of sorting algorithms, nested loops, and comparison-based sorting.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Bubble Logic**: Larger elements "bubble" to the end
-3. **Comparison**: Compare adjacent elements and swap if needed
-4. **Optimization**: Stop early if no swaps occur
-5. **Iteration**: Continue until array is sorted
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array length
-2. **Inner Loop**: Compare adjacent elements
-3. **Comparison**: If arr[j] > arr[j+1], swap them
-4. **Optimization**: Break if no swaps in a pass
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [64, 34, 25, 12, 22, 11, 90]
-**Sample Output**: 
-```
-Before sorting: [64 34 25 12 22 11 90]
-After sorting: [11 12 22 25 34 64 90]
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Bubble sort algorithm with optimization
-- Nested loop sorting
-- Comparison-based sorting
-- Array element swapping
-
-```go
-package main
-
-import "fmt"
-
-func bubbleSort(arr []int) {
-    n := len(arr)
-    for i := 0; i < n-1; i++ {
-        swapped := false
-        for j := 0; j < n-i-1; j++ {
-            if arr[j] > arr[j+1] {
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-                swapped = true
-            }
-        }
-        if !swapped {
-            break
-        }
-    }
-}
-
-func main() {
-    arr := []int{64, 34, 25, 12, 22, 11, 90}
-    fmt.Println("Before sorting:", arr)
-    bubbleSort(arr)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 8. Selection Sort
-
-**Description**: 
-Sort an array using the selection sort algorithm, which repeatedly finds the minimum element from the unsorted portion and places it at the beginning. This tests understanding of sorting algorithms, nested loops, and selection-based sorting.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Selection Logic**: Find minimum element in unsorted portion
-3. **Swap Logic**: Swap minimum element with first unsorted element
-4. **Iteration**: Continue until array is sorted
-5. **Efficiency**: O(n²) time complexity
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array length
-2. **Find Minimum**: Find minimum element in unsorted portion
-3. **Swap**: Swap minimum element with first unsorted element
-4. **Continue**: Until array is sorted
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [64, 25, 12, 22, 11]
-**Sample Output**: 
-```
-Before sorting: [64 25 12 22 11]
-After sorting: [11 12 22 25 64]
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Selection sort algorithm
-- Nested loop sorting
-- Minimum element finding
-- Array element swapping
-
-```go
-package main
-
-import "fmt"
-
-func selectionSort(arr []int) {
-    n := len(arr)
-    for i := 0; i < n-1; i++ {
-        minIdx := i
-        for j := i + 1; j < n; j++ {
-            if arr[j] < arr[minIdx] {
-                minIdx = j
-            }
-        }
-        arr[i], arr[minIdx] = arr[minIdx], arr[i]
-    }
-}
-
-func main() {
-    arr := []int{64, 25, 12, 22, 11}
-    fmt.Println("Before sorting:", arr)
-    selectionSort(arr)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 9. Array Rotation
-
-**Description**: 
-Rotate an array to the right by k positions using the reverse algorithm. This tests understanding of array manipulation, modular arithmetic, and efficient rotation algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should shift right by k positions
-2. **Reverse Logic**: Use three reverse operations
-3. **Modular Arithmetic**: Handle k > array length
+1. **Visual Pattern**: Count characters one by one
+2. **Loop Logic**: Use loop to traverse string until null terminator
+3. **Counter Logic**: Increment counter for each character
 4. **Efficiency**: O(n) time complexity
-5. **In-Place**: Modify array without extra space
+5. **String Algorithm**: Length calculation
 
 **Step-by-Step Solution**:
-1. **Normalize**: k = k % n to handle large k values
-2. **Reverse All**: Reverse the entire array
-3. **Reverse First k**: Reverse first k elements
-4. **Reverse Last n-k**: Reverse remaining elements
-5. **Result**: Array is rotated right by k positions
+1. Initialize counter to 0
+2. Loop through string characters
+3. Increment counter for each character
+4. Return counter when null terminator found
 
-**Sample Input**: arr = [1, 2, 3, 4, 5, 6, 7], k = 3
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Original: [1 2 3 4 5 6 7]
-Rotated by 3: [5 6 7 1 2 3 4]
+Input: "Hello"
+Output: 5
+
+Input: "Golang"
+Output: 6
 ```
 
-**Time Complexity**: O(n) - Three reverse operations
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Array rotation algorithm
-- Reverse algorithm technique
-- Modular arithmetic
-- In-place array manipulation
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, loop algorithms, counter logic
 
 ```go
 package main
 
 import "fmt"
 
-func rotateArray(arr []int, k int) {
-    n := len(arr)
-    k = k % n
-    
-    // Reverse the entire array
-    reverse(arr, 0, n-1)
-    // Reverse the first k elements
-    reverse(arr, 0, k-1)
-    // Reverse the remaining elements
-    reverse(arr, k, n-1)
-}
-
-func reverse(arr []int, start, end int) {
-    for start < end {
-        arr[start], arr[end] = arr[end], arr[start]
-        start++
-        end--
+func stringLength(s string) int {
+    length := 0
+    for i := 0; i < len(s); i++ {
+        length++
     }
+    return length
 }
 
 func main() {
-    arr := []int{1, 2, 3, 4, 5, 6, 7}
-    fmt.Println("Original:", arr)
-    rotateArray(arr, 3)
-    fmt.Println("Rotated by 3:", arr)
+    s := "Hello World"
+    length := stringLength(s)
+    fmt.Printf("Length of '%s': %d\n", s, length)
 }
 ```
 
-### 10. Find Maximum and Minimum
+### 2. String Concatenation
 
 **Description**: 
-Find the maximum and minimum elements in an array using a single pass through the array. This tests understanding of array traversal, comparison operations, and efficient algorithms.
+Concatenate two strings without using built-in functions. This tests understanding of string manipulation, loop algorithms, and string building.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared to find extremes
-2. **Comparison Logic**: Compare each element with current max/min
-3. **Update Logic**: Update max/min when larger/smaller element found
-4. **Efficiency**: O(n) time complexity
-5. **Single Pass**: Find both max and min in one iteration
+1. **Visual Pattern**: Combine two strings into one
+2. **Loop Logic**: Copy characters from both strings
+3. **String Building**: Create new string character by character
+4. **Efficiency**: O(m+n) time complexity
+5. **String Algorithm**: Concatenation
 
 **Step-by-Step Solution**:
-1. **Initialize**: Set max and min to first element
-2. **Loop**: Iterate through remaining elements
-3. **Compare**: If element > max, update max
-4. **Compare**: If element < min, update min
-5. **Result**: Return both max and min values
+1. Calculate total length needed
+2. Create result string with total length
+3. Copy characters from first string
+4. Copy characters from second string
+5. Return concatenated string
 
-**Sample Input**: arr = [3, 7, 1, 9, 2, 8]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Min: 1, Max: 9
+Input: "Hello", "World"
+Output: "HelloWorld"
+
+Input: "Go", "Lang"
+Output: "GoLang"
 ```
 
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Array traversal algorithms
-- Comparison operations
-- Efficient max/min finding
-- Single pass optimization
+**Time Complexity**: O(m+n)
+**Space Complexity**: O(m+n)
+**Key Learning Points**: String manipulation, loop algorithms, string building
 
 ```go
 package main
 
 import "fmt"
 
-func findMinMax(arr []int) (int, int) {
-    if len(arr) == 0 {
-        return 0, 0
+func concatenateStrings(s1, s2 string) string {
+    len1 := len(s1)
+    len2 := len(s2)
+    result := make([]byte, len1+len2)
+    
+    for i := 0; i < len1; i++ {
+        result[i] = s1[i]
     }
     
-    min, max := arr[0], arr[0]
-    for i := 1; i < len(arr); i++ {
-        if arr[i] < min {
-            min = arr[i]
-        }
-        if arr[i] > max {
-            max = arr[i]
-        }
+    for i := 0; i < len2; i++ {
+        result[len1+i] = s2[i]
     }
-    return min, max
+    
+    return string(result)
 }
 
 func main() {
-    arr := []int{3, 7, 1, 9, 2, 8}
-    min, max := findMinMax(arr)
-    fmt.Printf("Min: %d, Max: %d\n", min, max)
+    s1 := "Hello"
+    s2 := "World"
+    result := concatenateStrings(s1, s2)
+    fmt.Printf("Concatenated: %s\n", result)
 }
 ```
 
-### 11. Insertion Sort
+### 3. String Comparison
 
 **Description**: 
-Sort an array using the insertion sort algorithm, which builds the final sorted array one element at a time. This tests understanding of sorting algorithms, nested loops, and insertion-based sorting.
+Compare two strings lexicographically without using built-in functions. This tests understanding of string comparison, loop algorithms, and lexicographic ordering.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Insertion Logic**: Insert each element in its correct position
-3. **Shifting Logic**: Shift elements to make room for insertion
-4. **Iteration**: Continue until array is sorted
-5. **Efficiency**: O(n²) time complexity
+1. **Visual Pattern**: Compare characters position by position
+2. **Loop Logic**: Use loop to compare each character
+3. **Comparison Logic**: Return -1, 0, or 1 based on comparison
+4. **Efficiency**: O(min(m,n)) time complexity
+5. **String Algorithm**: Lexicographic comparison
 
 **Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array starting from second element
-2. **Key Selection**: Select current element as key
-3. **Inner Loop**: Shift elements greater than key to the right
-4. **Insertion**: Place key in its correct position
-5. **Result**: Array is sorted in ascending order
+1. Find minimum length of both strings
+2. Loop through characters up to minimum length
+3. Compare characters at each position
+4. Return result based on first difference
+5. Handle case where one string is longer
 
-**Sample Input**: arr = [64, 34, 25, 12, 22, 11, 90]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Before sorting: [64 34 25 12 22 11 90]
-After sorting: [11 12 22 25 34 64 90]
+Input: "apple", "banana"
+Output: -1 (apple < banana)
+
+Input: "hello", "hello"
+Output: 0 (equal)
+
+Input: "zebra", "apple"
+Output: 1 (zebra > apple)
 ```
 
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Insertion sort algorithm
-- Nested loop sorting
-- Element shifting
-- Array element insertion
+**Time Complexity**: O(min(m,n))
+**Space Complexity**: O(1)
+**Key Learning Points**: String comparison, loop algorithms, lexicographic ordering
 
 ```go
 package main
 
 import "fmt"
 
-func insertionSort(arr []int) {
-    for i := 1; i < len(arr); i++ {
-        key := arr[i]
-        j := i - 1
-        
-        for j >= 0 && arr[j] > key {
-            arr[j+1] = arr[j]
-            j--
-        }
-        arr[j+1] = key
-    }
-}
-
-func main() {
-    arr := []int{64, 34, 25, 12, 22, 11, 90}
-    fmt.Println("Before sorting:", arr)
-    insertionSort(arr)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 12. Merge Sort
-
-**Description**: 
-Sort an array using the merge sort algorithm, which divides the array into two halves, sorts them separately, and then merges them back together. This tests understanding of divide-and-conquer algorithms, recursion, and merge operations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Divide Logic**: Split array into two halves recursively
-3. **Conquer Logic**: Sort each half separately
-4. **Merge Logic**: Combine sorted halves into final result
-5. **Efficiency**: O(n log n) time complexity
-
-**Step-by-Step Solution**:
-1. **Base Case**: Return array if length <= 1
-2. **Divide**: Split array into two halves
-3. **Recurse**: Sort each half recursively
-4. **Merge**: Combine sorted halves
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [64, 34, 25, 12, 22, 11, 90]
-**Sample Output**: 
-```
-Before sorting: [64 34 25 12 22 11 90]
-After sorting: [11 12 22 25 34 64 90]
-```
-
-**Time Complexity**: O(n log n) - Divide and conquer
-**Space Complexity**: O(n) - Additional space for merging
-
-**Key Learning Points**:
-- Merge sort algorithm
-- Divide and conquer approach
-- Recursive sorting
-- Merge operation
-
-```go
-package main
-
-import "fmt"
-
-func mergeSort(arr []int) []int {
-    if len(arr) <= 1 {
-        return arr
+func compareStrings(s1, s2 string) int {
+    len1 := len(s1)
+    len2 := len(s2)
+    minLen := len1
+    if len2 < len1 {
+        minLen = len2
     }
     
-    mid := len(arr) / 2
-    left := mergeSort(arr[:mid])
-    right := mergeSort(arr[mid:])
-    
-    return merge(left, right)
-}
-
-func merge(left, right []int) []int {
-    result := make([]int, 0, len(left)+len(right))
-    i, j := 0, 0
-    
-    for i < len(left) && j < len(right) {
-        if left[i] <= right[j] {
-            result = append(result, left[i])
-            i++
-        } else {
-            result = append(result, right[j])
-            j++
+    for i := 0; i < minLen; i++ {
+        if s1[i] < s2[i] {
+            return -1
+        } else if s1[i] > s2[i] {
+            return 1
         }
     }
     
-    for i < len(left) {
-        result = append(result, left[i])
-        i++
-    }
-    
-    for j < len(right) {
-        result = append(result, right[j])
-        j++
-    }
-    
-    return result
-}
-
-func main() {
-    arr := []int{64, 34, 25, 12, 22, 11, 90}
-    fmt.Println("Before sorting:", arr)
-    sorted := mergeSort(arr)
-    fmt.Println("After sorting:", sorted)
-}
-```
-
-### 13. Quick Sort
-
-**Description**: 
-Sort an array using the quick sort algorithm, which chooses a pivot element and partitions the array around it. This tests understanding of divide-and-conquer algorithms, partitioning, and pivot selection.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Pivot Logic**: Choose a pivot element
-3. **Partition Logic**: Rearrange elements around pivot
-4. **Recursion**: Sort subarrays recursively
-5. **Efficiency**: O(n log n) average time complexity
-
-**Step-by-Step Solution**:
-1. **Base Case**: Return if low >= high
-2. **Partition**: Rearrange elements around pivot
-3. **Recurse**: Sort left and right subarrays
-4. **Combine**: No explicit combine step needed
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [64, 34, 25, 12, 22, 11, 90]
-**Sample Output**: 
-```
-Before sorting: [64 34 25 12 22 11 90]
-After sorting: [11 12 22 25 34 64 90]
-```
-
-**Time Complexity**: O(n log n) average, O(n²) worst case
-**Space Complexity**: O(log n) - Recursion stack
-
-**Key Learning Points**:
-- Quick sort algorithm
-- Partitioning technique
-- Pivot selection
-- Divide and conquer approach
-
-```go
-package main
-
-import "fmt"
-
-func quickSort(arr []int, low, high int) {
-    if low < high {
-        pi := partition(arr, low, high)
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
-    }
-}
-
-func partition(arr []int, low, high int) int {
-    pivot := arr[high]
-    i := low - 1
-    
-    for j := low; j < high; j++ {
-        if arr[j] < pivot {
-            i++
-            arr[i], arr[j] = arr[j], arr[i]
-        }
-    }
-    arr[i+1], arr[high] = arr[high], arr[i+1]
-    return i + 1
-}
-
-func main() {
-    arr := []int{64, 34, 25, 12, 22, 11, 90}
-    fmt.Println("Before sorting:", arr)
-    quickSort(arr, 0, len(arr)-1)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 14. Heap Sort
-
-**Description**: 
-Sort an array using the heap sort algorithm, which uses a binary heap data structure. This tests understanding of heap operations, tree data structures, and heap-based sorting.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Heap Logic**: Build max heap from array
-3. **Extract Logic**: Extract maximum element repeatedly
-4. **Heapify Logic**: Maintain heap property after extraction
-5. **Efficiency**: O(n log n) time complexity
-
-**Step-by-Step Solution**:
-1. **Build Heap**: Convert array to max heap
-2. **Extract**: Remove maximum element and place at end
-3. **Heapify**: Restore heap property
-4. **Repeat**: Continue until heap is empty
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [64, 34, 25, 12, 22, 11, 90]
-**Sample Output**: 
-```
-Before sorting: [64 34 25 12 22 11 90]
-After sorting: [11 12 22 25 34 64 90]
-```
-
-**Time Complexity**: O(n log n) - Heap operations
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Heap sort algorithm
-- Binary heap operations
-- Tree data structures
-- Heap property maintenance
-
-```go
-package main
-
-import "fmt"
-
-func heapSort(arr []int) {
-    n := len(arr)
-    
-    // Build max heap
-    for i := n/2 - 1; i >= 0; i-- {
-        heapify(arr, n, i)
-    }
-    
-    // Extract elements from heap
-    for i := n - 1; i > 0; i-- {
-        arr[0], arr[i] = arr[i], arr[0]
-        heapify(arr, i, 0)
-    }
-}
-
-func heapify(arr []int, n, i int) {
-    largest := i
-    left := 2*i + 1
-    right := 2*i + 2
-    
-    if left < n && arr[left] > arr[largest] {
-        largest = left
-    }
-    
-    if right < n && arr[right] > arr[largest] {
-        largest = right
-    }
-    
-    if largest != i {
-        arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
-    }
-}
-
-func main() {
-    arr := []int{64, 34, 25, 12, 22, 11, 90}
-    fmt.Println("Before sorting:", arr)
-    heapSort(arr)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 15. Counting Sort
-
-**Description**: 
-Sort an array using the counting sort algorithm, which counts the number of occurrences of each element and uses this information to place elements in their correct positions. This tests understanding of non-comparison sorting algorithms and counting techniques.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Counting Logic**: Count occurrences of each element
-3. **Placement Logic**: Place elements based on their counts
-4. **Efficiency**: O(n + k) time complexity where k is the range
-5. **Stability**: Maintains relative order of equal elements
-
-**Step-by-Step Solution**:
-1. **Find Max**: Determine the range of elements
-2. **Count**: Count occurrences of each element
-3. **Place**: Place elements in output array based on counts
-4. **Result**: Array is sorted in ascending order
-5. **Return**: Return the sorted array
-
-**Sample Input**: arr = [4, 2, 2, 8, 3, 3, 1]
-**Sample Output**: 
-```
-Before sorting: [4 2 2 8 3 3 1]
-After sorting: [1 2 2 3 3 4 8]
-```
-
-**Time Complexity**: O(n + k) - Where k is the range of input
-**Space Complexity**: O(k) - Additional space for counting
-
-**Key Learning Points**:
-- Counting sort algorithm
-- Non-comparison sorting
-- Counting techniques
-- Range-based sorting
-
-```go
-package main
-
-import "fmt"
-
-func countingSort(arr []int) []int {
-    if len(arr) == 0 {
-        return arr
-    }
-    
-    // Find max element
-    max := arr[0]
-    for i := 1; i < len(arr); i++ {
-        if arr[i] > max {
-            max = arr[i]
-        }
-    }
-    
-    // Create count array
-    count := make([]int, max+1)
-    for i := 0; i < len(arr); i++ {
-        count[arr[i]]++
-    }
-    
-    // Create output array
-    output := make([]int, len(arr))
-    index := 0
-    
-    for i := 0; i <= max; i++ {
-        for count[i] > 0 {
-            output[index] = i
-            index++
-            count[i]--
-        }
-    }
-    
-    return output
-}
-
-func main() {
-    arr := []int{4, 2, 2, 8, 3, 3, 1}
-    fmt.Println("Before sorting:", arr)
-    sorted := countingSort(arr)
-    fmt.Println("After sorting:", sorted)
-}
-```
-
-### 16. Radix Sort
-
-**Description**: 
-Sort an array using the radix sort algorithm, which sorts integers by processing individual digits. This tests understanding of non-comparison sorting algorithms, digit processing, and stable sorting.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in ascending order
-2. **Digit Logic**: Process digits from least significant to most significant
-3. **Counting Logic**: Use counting sort for each digit position
-4. **Stability**: Maintain relative order of equal elements
-5. **Efficiency**: O(d * (n + k)) time complexity where d is number of digits
-
-**Step-by-Step Solution**:
-1. **Find Max**: Determine the maximum number of digits
-2. **Process Digits**: For each digit position from right to left
-3. **Count Sort**: Apply counting sort for current digit
-4. **Update Array**: Place elements in correct positions
-5. **Result**: Array is sorted in ascending order
-
-**Sample Input**: arr = [170, 45, 75, 90, 2, 802, 24, 66]
-**Sample Output**: 
-```
-Before sorting: [170 45 75 90 2 802 24 66]
-After sorting: [2 24 45 66 75 90 170 802]
-```
-
-**Time Complexity**: O(d * (n + k)) - Where d is number of digits
-**Space Complexity**: O(n + k) - Additional space for counting
-
-**Key Learning Points**:
-- Radix sort algorithm
-- Digit processing
-- Non-comparison sorting
-- Stable sorting
-
-```go
-package main
-
-import "fmt"
-
-func radixSort(arr []int) {
-    max := getMax(arr)
-    
-    for exp := 1; max/exp > 0; exp *= 10 {
-        countingSortByDigit(arr, exp)
-    }
-}
-
-func getMax(arr []int) int {
-    max := arr[0]
-    for i := 1; i < len(arr); i++ {
-        if arr[i] > max {
-            max = arr[i]
-        }
-    }
-    return max
-}
-
-func countingSortByDigit(arr []int, exp int) {
-    n := len(arr)
-    output := make([]int, n)
-    count := make([]int, 10)
-    
-    for i := 0; i < n; i++ {
-        count[(arr[i]/exp)%10]++
-    }
-    
-    for i := 1; i < 10; i++ {
-        count[i] += count[i-1]
-    }
-    
-    for i := n - 1; i >= 0; i-- {
-        output[count[(arr[i]/exp)%10]-1] = arr[i]
-        count[(arr[i]/exp)%10]--
-    }
-    
-    for i := 0; i < n; i++ {
-        arr[i] = output[i]
-    }
-}
-
-func main() {
-    arr := []int{170, 45, 75, 90, 2, 802, 24, 66}
-    fmt.Println("Before sorting:", arr)
-    radixSort(arr)
-    fmt.Println("After sorting:", arr)
-}
-```
-
-### 17. Find Second Largest Element
-
-**Description**: 
-Find the second largest element in an array using a single pass through the array. This tests understanding of array traversal, comparison operations, and efficient algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared to find second largest
-2. **Comparison Logic**: Track both largest and second largest elements
-3. **Update Logic**: Update both values when larger element found
-4. **Efficiency**: O(n) time complexity
-5. **Single Pass**: Find both values in one iteration
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set first and second to appropriate values
-2. **Loop**: Iterate through array elements
-3. **Compare**: If element > first, update both first and second
-4. **Compare**: If element > second and != first, update second
-5. **Result**: Return second largest element
-
-**Sample Input**: arr = [12, 35, 1, 10, 34, 1]
-**Sample Output**: 
-```
-Second largest: 34
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Array traversal algorithms
-- Comparison operations
-- Efficient max/second max finding
-- Single pass optimization
-
-```go
-package main
-
-import "fmt"
-
-func findSecondLargest(arr []int) int {
-    if len(arr) < 2 {
+    if len1 < len2 {
         return -1
-    }
-    
-    first, second := arr[0], -1
-    
-    for i := 1; i < len(arr); i++ {
-        if arr[i] > first {
-            second = first
-            first = arr[i]
-        } else if arr[i] > second && arr[i] != first {
-            second = arr[i]
-        }
-    }
-    
-    return second
-}
-
-func main() {
-    arr := []int{12, 35, 1, 10, 34, 1}
-    secondLargest := findSecondLargest(arr)
-    fmt.Printf("Second largest: %d\n", secondLargest)
-}
-```
-
-### 18. Find Kth Largest Element
-
-**Description**: 
-Find the kth largest element in an array by sorting the array in descending order and returning the element at position k-1. This tests understanding of sorting algorithms, array manipulation, and selection algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be sorted in descending order
-2. **Sorting Logic**: Use selection sort to arrange elements
-3. **Selection Logic**: Return element at position k-1
-4. **Efficiency**: O(n²) time complexity
-5. **In-Place**: Sort array without extra space
-
-**Step-by-Step Solution**:
-1. **Validate**: Check if k is valid
-2. **Sort**: Sort array in descending order
-3. **Select**: Return element at position k-1
-4. **Result**: Return kth largest element
-5. **Handle**: Return -1 for invalid k
-
-**Sample Input**: arr = [3, 1, 4, 1, 5, 9, 2, 6], k = 3
-**Sample Output**: 
-```
-Kth largest element: 6
-```
-
-**Time Complexity**: O(n²) - Selection sort
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Selection algorithms
-- Sorting techniques
-- Array manipulation
-- Kth element finding
-
-```go
-package main
-
-import "fmt"
-
-func findKthLargest(arr []int, k int) int {
-    if k > len(arr) || k < 1 {
-        return -1
-    }
-    
-    // Sort array in descending order
-    for i := 0; i < len(arr)-1; i++ {
-        for j := i + 1; j < len(arr); j++ {
-            if arr[i] < arr[j] {
-                arr[i], arr[j] = arr[j], arr[i]
-            }
-        }
-    }
-    
-    return arr[k-1]
-}
-
-func main() {
-    arr := []int{3, 1, 4, 1, 5, 9, 2, 6}
-    k := 3
-    kthLargest := findKthLargest(arr, k)
-    fmt.Printf("Kth largest element: %d\n", kthLargest)
-}
-```
-
-### 19. Find Duplicate Elements
-
-**Description**: 
-Find all duplicate elements in an array using hash maps to track seen elements and duplicates. This tests understanding of hash map operations, duplicate detection, and efficient algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared to find duplicates
-2. **Hash Logic**: Use maps to track seen elements and duplicates
-3. **Duplicate Logic**: Track elements that appear more than once
-4. **Efficiency**: O(n) time complexity
-5. **Uniqueness**: Ensure each duplicate is added only once
-
-**Step-by-Step Solution**:
-1. **Initialize**: Create maps for seen elements and duplicates
-2. **Loop**: Iterate through array elements
-3. **Check Seen**: If element seen before and not in duplicates, add it
-4. **Mark Seen**: Mark element as seen
-5. **Result**: Return slice of duplicate elements
-
-**Sample Input**: arr = [1, 2, 3, 2, 4, 3, 5, 6, 1]
-**Sample Output**: 
-```
-Array: [1 2 3 2 4 3 5 6 1]
-Duplicates: [2 3 1]
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(n) - Additional space for maps
-
-**Key Learning Points**:
-- Hash map operations
-- Duplicate detection algorithms
-- Efficient array traversal
-- Element uniqueness handling
-
-```go
-package main
-
-import "fmt"
-
-func findDuplicates(arr []int) []int {
-    seen := make(map[int]bool)
-    duplicates := make(map[int]bool)
-    var result []int
-    
-    for _, num := range arr {
-        if seen[num] && !duplicates[num] {
-            duplicates[num] = true
-            result = append(result, num)
-        }
-        seen[num] = true
-    }
-    
-    return result
-}
-
-func main() {
-    arr := []int{1, 2, 3, 2, 4, 3, 5, 6, 1}
-    fmt.Println("Array:", arr)
-    duplicates := findDuplicates(arr)
-    fmt.Println("Duplicates:", duplicates)
-}
-```
-
-### 20. Remove Duplicates
-
-**Description**: 
-Remove duplicate elements from an array using hash maps to track seen elements and maintain only unique elements. This tests understanding of hash map operations, duplicate removal, and efficient algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should contain only unique values
-2. **Hash Logic**: Use maps to track seen elements
-3. **Unique Logic**: Only add elements that haven't been seen before
-4. **Efficiency**: O(n) time complexity
-5. **Order**: Maintain original order of first occurrence
-
-**Step-by-Step Solution**:
-1. **Initialize**: Create map for seen elements and result slice
-2. **Loop**: Iterate through array elements
-3. **Check Seen**: If element not seen before, add to result
-4. **Mark Seen**: Mark element as seen
-5. **Result**: Return slice of unique elements
-
-**Sample Input**: arr = [1, 2, 3, 2, 4, 3, 5, 6, 1]
-**Sample Output**: 
-```
-Original array: [1 2 3 2 4 3 5 6 1]
-After removing duplicates: [1 2 3 4 5 6]
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(n) - Additional space for map and result
-
-**Key Learning Points**:
-- Hash map operations
-- Duplicate removal algorithms
-- Efficient array traversal
-- Element uniqueness handling
-
-```go
-package main
-
-import "fmt"
-
-func removeDuplicates(arr []int) []int {
-    seen := make(map[int]bool)
-    var result []int
-    
-    for _, num := range arr {
-        if !seen[num] {
-            seen[num] = true
-            result = append(result, num)
-        }
-    }
-    
-    return result
-}
-
-func main() {
-    arr := []int{1, 2, 3, 2, 4, 3, 5, 6, 1}
-    fmt.Println("Original array:", arr)
-    unique := removeDuplicates(arr)
-    fmt.Println("After removing duplicates:", unique)
-}
-```
-
-### 21. Find Missing Number
-
-**Description**: 
-Find the missing number in an array containing numbers from 1 to n (where one number is missing). This tests understanding of mathematical formulas, array traversal, and arithmetic operations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array should contain numbers 1 to n with one missing
-2. **Mathematical Logic**: Use sum formula to find expected sum
-3. **Difference Logic**: Calculate difference between expected and actual sum
-4. **Efficiency**: O(n) time complexity
-5. **Mathematical Approach**: Use arithmetic progression sum formula
-
-**Step-by-Step Solution**:
-1. **Calculate Expected**: Use formula n*(n+1)/2 for expected sum
-2. **Calculate Actual**: Sum all elements in array
-3. **Find Difference**: Subtract actual sum from expected sum
-4. **Result**: Return the missing number
-5. **Handle Edge Cases**: Ensure n is valid
-
-**Sample Input**: arr = [1, 2, 4, 5, 6], n = 6
-**Sample Output**: 
-```
-Missing number: 3
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Mathematical formulas
-- Arithmetic progression
-- Array traversal
-- Sum calculations
-
-```go
-package main
-
-import "fmt"
-
-func findMissingNumber(arr []int, n int) int {
-    expectedSum := n * (n + 1) / 2
-    actualSum := 0
-    
-    for _, num := range arr {
-        actualSum += num
-    }
-    
-    return expectedSum - actualSum
-}
-
-func main() {
-    arr := []int{1, 2, 4, 5, 6}
-    n := 6
-    missing := findMissingNumber(arr, n)
-    fmt.Printf("Missing number: %d\n", missing)
-}
-```
-
-### 22. Find All Missing Numbers
-
-**Description**: 
-Find all missing numbers in an array containing numbers from 1 to n (where multiple numbers may be missing). This tests understanding of hash maps, array traversal, and set operations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array should contain numbers 1 to n with some missing
-2. **Hash Logic**: Use map to track present numbers
-3. **Missing Logic**: Check which numbers from 1 to n are not present
-4. **Efficiency**: O(n) time complexity
-5. **Set Operations**: Use hash map for efficient lookup
-
-**Step-by-Step Solution**:
-1. **Initialize**: Create map to track present numbers
-2. **Mark Present**: Mark all array elements as present
-3. **Check Missing**: For each number 1 to n, check if present
-4. **Collect Missing**: Add missing numbers to result
-5. **Result**: Return slice of missing numbers
-
-**Sample Input**: arr = [1, 3, 6, 8], n = 8
-**Sample Output**: 
-```
-Missing numbers: [2 4 5 7]
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(n) - Additional space for map
-
-**Key Learning Points**:
-- Hash map operations
-- Set operations
-- Array traversal
-- Missing number detection
-
-```go
-package main
-
-import "fmt"
-
-func findAllMissingNumbers(arr []int, n int) []int {
-    present := make(map[int]bool)
-    var missing []int
-    
-    for _, num := range arr {
-        present[num] = true
-    }
-    
-    for i := 1; i <= n; i++ {
-        if !present[i] {
-            missing = append(missing, i)
-        }
-    }
-    
-    return missing
-}
-
-func main() {
-    arr := []int{1, 3, 6, 8}
-    n := 8
-    missing := findAllMissingNumbers(arr, n)
-    fmt.Printf("Missing numbers: %v\n", missing)
-}
-```
-
-### 23. Find Pair with Given Sum
-
-**Description**: 
-Find a pair of elements in an array that sum to a given target value using nested loops. This tests understanding of array traversal, nested loops, and pair finding algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared in pairs
-2. **Sum Logic**: Check if sum of two elements equals target
-3. **Pair Logic**: Use nested loops to check all possible pairs
-4. **Efficiency**: O(n²) time complexity
-5. **Return Logic**: Return indices of first pair found or empty slice
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array elements
-2. **Inner Loop**: Check with all subsequent elements
-3. **Sum Check**: If sum equals target, return indices
-4. **Continue**: If no pair found, return empty slice
-5. **Result**: Return indices of pair or empty slice
-
-**Sample Input**: arr = [2, 7, 11, 15], target = 9
-**Sample Output**: 
-```
-Pair found at indices: [0 1]
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Nested loop algorithms
-- Pair finding techniques
-- Array traversal
-- Sum calculations
-
-```go
-package main
-
-import "fmt"
-
-func findPairWithSum(arr []int, target int) []int {
-    for i := 0; i < len(arr); i++ {
-        for j := i + 1; j < len(arr); j++ {
-            if arr[i]+arr[j] == target {
-                return []int{i, j}
-            }
-        }
-    }
-    return []int{}
-}
-
-func main() {
-    arr := []int{2, 7, 11, 15}
-    target := 9
-    pair := findPairWithSum(arr, target)
-    if len(pair) == 2 {
-        fmt.Printf("Pair found at indices: %v\n", pair)
-    } else {
-        fmt.Println("No pair found")
-    }
-}
-```
-
-### 24. Find Triplet with Given Sum
-
-**Description**: 
-Find a triplet of elements in an array that sum to a given target value using nested loops. This tests understanding of array traversal, nested loops, and triplet finding algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared in triplets
-2. **Sum Logic**: Check if sum of three elements equals target
-3. **Triplet Logic**: Use nested loops to check all possible triplets
-4. **Efficiency**: O(n³) time complexity
-5. **Return Logic**: Return indices of first triplet found or empty slice
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array elements
-2. **Middle Loop**: Check with all subsequent elements
-3. **Inner Loop**: Check with all elements after middle
-4. **Sum Check**: If sum equals target, return indices
-5. **Result**: Return indices of triplet or empty slice
-
-**Sample Input**: arr = [1, 4, 45, 6, 10, 8], target = 22
-**Sample Output**: 
-```
-Triplet found at indices: [1 2 3]
-```
-
-**Time Complexity**: O(n³) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Nested loop algorithms
-- Triplet finding techniques
-- Array traversal
-- Sum calculations
-
-```go
-package main
-
-import "fmt"
-
-func findTripletWithSum(arr []int, target int) []int {
-    for i := 0; i < len(arr); i++ {
-        for j := i + 1; j < len(arr); j++ {
-            for k := j + 1; k < len(arr); k++ {
-                if arr[i]+arr[j]+arr[k] == target {
-                    return []int{i, j, k}
-                }
-            }
-        }
-    }
-    return []int{}
-}
-
-func main() {
-    arr := []int{1, 4, 45, 6, 10, 8}
-    target := 22
-    triplet := findTripletWithSum(arr, target)
-    if len(triplet) == 3 {
-        fmt.Printf("Triplet found at indices: %v\n", triplet)
-    } else {
-        fmt.Println("No triplet found")
-    }
-}
-```
-
-### 25. Move Zeros to End
-
-**Description**: 
-Move all zeros to the end of an array while maintaining the relative order of non-zero elements. This tests understanding of array manipulation, two-pointer technique, and in-place algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array should have all non-zeros first, then zeros
-2. **Two-Pointer Logic**: Use one pointer for non-zeros, another for zeros
-3. **Order Logic**: Maintain relative order of non-zero elements
-4. **Efficiency**: O(n) time complexity
-5. **In-Place**: Modify array without extra space
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set count to 0 for non-zero elements
-2. **First Pass**: Move all non-zeros to front
-3. **Second Pass**: Fill remaining positions with zeros
-4. **Result**: Array has non-zeros first, then zeros
-5. **Order**: Maintain relative order of non-zero elements
-
-**Sample Input**: arr = [0, 1, 0, 3, 12]
-**Sample Output**: 
-```
-Before: [0 1 0 3 12]
-After: [1 3 12 0 0]
-```
-
-**Time Complexity**: O(n) - Two passes through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Two-pointer technique
-- In-place array manipulation
-- Element reordering
-- Array traversal
-
-```go
-package main
-
-import "fmt"
-
-func moveZerosToEnd(arr []int) {
-    count := 0
-    
-    // Move non-zero elements to front
-    for i := 0; i < len(arr); i++ {
-        if arr[i] != 0 {
-            arr[count] = arr[i]
-            count++
-        }
-    }
-    
-    // Fill remaining positions with zeros
-    for count < len(arr) {
-        arr[count] = 0
-        count++
-    }
-}
-
-func main() {
-    arr := []int{0, 1, 0, 3, 12}
-    fmt.Println("Before:", arr)
-    moveZerosToEnd(arr)
-    fmt.Println("After:", arr)
-}
-```
-
-### 26. Find Peak Element
-
-**Description**: 
-Find a peak element in an array where a peak element is greater than its neighbors. This tests understanding of array traversal, boundary conditions, and peak detection algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be compared with neighbors
-2. **Peak Logic**: Element greater than both neighbors
-3. **Boundary Logic**: Handle edge cases for first and last elements
-4. **Efficiency**: O(n) time complexity
-5. **Return Logic**: Return index of first peak found
-
-**Step-by-Step Solution**:
-1. **Middle Elements**: Check elements with both neighbors
-2. **First Element**: Check if greater than second element
-3. **Last Element**: Check if greater than second-to-last element
-4. **Result**: Return index of peak element
-5. **Handle**: Return 0 if no peak found
-
-**Sample Input**: arr = [1, 2, 3, 1]
-**Sample Output**: 
-```
-Peak element at index: 2, value: 3
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Array traversal algorithms
-- Boundary condition handling
-- Peak detection
-- Element comparison
-
-```go
-package main
-
-import "fmt"
-
-func findPeakElement(arr []int) int {
-    for i := 1; i < len(arr)-1; i++ {
-        if arr[i] > arr[i-1] && arr[i] > arr[i+1] {
-            return i
-        }
-    }
-    
-    // Check first element
-    if len(arr) > 1 && arr[0] > arr[1] {
-        return 0
-    }
-    
-    // Check last element
-    if len(arr) > 1 && arr[len(arr)-1] > arr[len(arr)-2] {
-        return len(arr) - 1
+    } else if len1 > len2 {
+        return 1
     }
     
     return 0
 }
 
 func main() {
-    arr := []int{1, 2, 3, 1}
-    peakIndex := findPeakElement(arr)
-    fmt.Printf("Peak element at index: %d, value: %d\n", peakIndex, arr[peakIndex])
+    s1 := "apple"
+    s2 := "banana"
+    result := compareStrings(s1, s2)
+    fmt.Printf("Comparison result: %d\n", result)
 }
 ```
 
-### 27. Find Majority Element
+### 4. String Copy
 
 **Description**: 
-Find the majority element in an array using Boyer-Moore voting algorithm. A majority element appears more than n/2 times. This tests understanding of voting algorithms, array traversal, and majority detection.
+Copy one string to another without using built-in functions. This tests understanding of string copying, loop algorithms, and memory management.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be counted to find majority
-2. **Voting Logic**: Use Boyer-Moore algorithm for efficient counting
-3. **Majority Logic**: Element must appear more than n/2 times
+1. **Visual Pattern**: Copy characters from source to destination
+2. **Loop Logic**: Use loop to copy each character
+3. **Memory Management**: Handle string allocation
 4. **Efficiency**: O(n) time complexity
-5. **Verification**: Verify candidate is actually majority
+5. **String Algorithm**: String copying
 
 **Step-by-Step Solution**:
-1. **Initialize**: Set candidate to first element, count to 1
-2. **Voting**: For each element, update count and candidate
-3. **Verification**: Count occurrences of candidate
-4. **Result**: Return candidate if majority, -1 otherwise
-5. **Handle**: Return -1 if no majority element
+1. Calculate source string length
+2. Create destination string with same length
+3. Loop through source string characters
+4. Copy each character to destination
+5. Return copied string
 
-**Sample Input**: arr = [3, 3, 4, 2, 4, 4, 2, 4, 4]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Majority element: 4
+Input: "Hello"
+Output: "Hello"
+
+Input: "Golang"
+Output: "Golang"
 ```
 
-**Time Complexity**: O(n) - Two passes through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Boyer-Moore voting algorithm
-- Majority element detection
-- Array traversal
-- Counting techniques
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String copying, loop algorithms, memory management
 
 ```go
 package main
 
 import "fmt"
 
-func findMajorityElement(arr []int) int {
-    count := 1
-    candidate := arr[0]
+func copyString(s string) string {
+    length := len(s)
+    result := make([]byte, length)
     
-    // Find candidate
-    for i := 1; i < len(arr); i++ {
-        if arr[i] == candidate {
-            count++
-        } else {
-            count--
-        }
-        if count == 0 {
-            candidate = arr[i]
-            count = 1
-        }
+    for i := 0; i < length; i++ {
+        result[i] = s[i]
     }
     
-    // Verify candidate
-    count = 0
-    for _, num := range arr {
-        if num == candidate {
-            count++
-        }
+    return string(result)
+}
+
+func main() {
+    s := "Hello World"
+    copied := copyString(s)
+    fmt.Printf("Original: %s\n", s)
+    fmt.Printf("Copied: %s\n", copied)
+}
+```
+
+### 5. String Substring
+
+**Description**: 
+Extract a substring from a string without using built-in functions. This tests understanding of string slicing, loop algorithms, and substring extraction.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Extract characters from start to end position
+2. **Loop Logic**: Use loop to copy characters in range
+3. **Range Logic**: Handle start and end indices
+4. **Efficiency**: O(end-start) time complexity
+5. **String Algorithm**: Substring extraction
+
+**Step-by-Step Solution**:
+1. Validate start and end indices
+2. Calculate substring length
+3. Create result string with substring length
+4. Loop through range and copy characters
+5. Return substring
+
+**Sample Input/Output**:
+```
+Input: "Hello World", start=0, end=5
+Output: "Hello"
+
+Input: "Programming", start=3, end=7
+Output: "gram"
+```
+
+**Time Complexity**: O(end-start)
+**Space Complexity**: O(end-start)
+**Key Learning Points**: String slicing, loop algorithms, substring extraction
+
+```go
+package main
+
+import "fmt"
+
+func substring(s string, start, end int) string {
+    if start < 0 || end > len(s) || start >= end {
+        return ""
     }
     
-    if count > len(arr)/2 {
-        return candidate
+    length := end - start
+    result := make([]byte, length)
+    
+    for i := 0; i < length; i++ {
+        result[i] = s[start+i]
+    }
+    
+    return string(result)
+}
+
+func main() {
+    s := "Hello World"
+    sub := substring(s, 0, 5)
+    fmt.Printf("Substring: %s\n", sub)
+}
+```
+
+### 6. String Find Character
+
+**Description**: 
+Find the first occurrence of a character in a string without using built-in functions. This tests understanding of string searching, loop algorithms, and character matching.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Search for character in string
+2. **Loop Logic**: Use loop to check each character
+3. **Search Logic**: Return index of first match
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Character searching
+
+**Step-by-Step Solution**:
+1. Loop through string characters
+2. Compare each character with target
+3. Return index when match found
+4. Return -1 if not found
+
+**Sample Input/Output**:
+```
+Input: "Hello", 'l'
+Output: 2
+
+Input: "World", 'x'
+Output: -1
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String searching, loop algorithms, character matching
+
+```go
+package main
+
+import "fmt"
+
+func findCharacter(s string, target byte) int {
+    for i := 0; i < len(s); i++ {
+        if s[i] == target {
+            return i
+        }
     }
     return -1
 }
 
 func main() {
-    arr := []int{3, 3, 4, 2, 4, 4, 2, 4, 4}
-    majority := findMajorityElement(arr)
-    fmt.Printf("Majority element: %d\n", majority)
+    s := "Hello World"
+    target := 'l'
+    index := findCharacter(s, target)
+    fmt.Printf("Character '%c' found at index: %d\n", target, index)
 }
 ```
 
-### 28. Find Subarray with Given Sum
+### 7. String Count Character
 
 **Description**: 
-Find a contiguous subarray that sums to a given target value using nested loops. This tests understanding of array traversal, subarray generation, and sum calculations.
+Count the number of occurrences of a character in a string without using built-in functions. This tests understanding of string counting, loop algorithms, and character frequency.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be summed in contiguous subarrays
-2. **Sum Logic**: Check if sum of subarray equals target
-3. **Subarray Logic**: Use nested loops to generate all possible subarrays
-4. **Efficiency**: O(n²) time complexity
-5. **Return Logic**: Return indices of first subarray found or empty slice
-
-**Step-by-Step Solution**:
-1. **Outer Loop**: Iterate through array elements as start points
-2. **Inner Loop**: Generate subarrays from each start point
-3. **Sum Check**: If sum equals target, return indices
-4. **Continue**: If no subarray found, return empty slice
-5. **Result**: Return indices of subarray or empty slice
-
-**Sample Input**: arr = [1, 4, 20, 3, 10, 5], target = 33
-**Sample Output**: 
-```
-Subarray found from index 2 to 4
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Subarray generation
-- Nested loop algorithms
-- Sum calculations
-- Array traversal
-
-```go
-package main
-
-import "fmt"
-
-func findSubarrayWithSum(arr []int, target int) []int {
-    for i := 0; i < len(arr); i++ {
-        currentSum := 0
-        for j := i; j < len(arr); j++ {
-            currentSum += arr[j]
-            if currentSum == target {
-                return []int{i, j}
-            }
-        }
-    }
-    return []int{}
-}
-
-func main() {
-    arr := []int{1, 4, 20, 3, 10, 5}
-    target := 33
-    subarray := findSubarrayWithSum(arr, target)
-    if len(subarray) == 2 {
-        fmt.Printf("Subarray found from index %d to %d\n", subarray[0], subarray[1])
-    } else {
-        fmt.Println("No subarray found")
-    }
-}
-```
-
-### 29. Find Maximum Subarray Sum
-
-**Description**: 
-Find the maximum sum of a contiguous subarray using Kadane's algorithm. This tests understanding of dynamic programming, array traversal, and maximum subarray algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be summed in contiguous subarrays
-2. **Kadane Logic**: Use dynamic programming approach
-3. **Max Logic**: Track maximum sum seen so far
+1. **Visual Pattern**: Count occurrences of character
+2. **Loop Logic**: Use loop to check each character
+3. **Counter Logic**: Increment counter for matches
 4. **Efficiency**: O(n) time complexity
-5. **Dynamic Programming**: Optimal substructure property
+5. **String Algorithm**: Character counting
 
 **Step-by-Step Solution**:
-1. **Initialize**: Set maxSoFar and maxEndingHere to first element
-2. **Loop**: Iterate through remaining elements
-3. **Update Current**: Choose between current element or current + previous
-4. **Update Max**: Update maximum sum if current is greater
-5. **Result**: Return maximum subarray sum
+1. Initialize counter to 0
+2. Loop through string characters
+3. Increment counter for each match
+4. Return final count
 
-**Sample Input**: arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Maximum subarray sum: 6
+Input: "Hello", 'l'
+Output: 2
+
+Input: "Mississippi", 's'
+Output: 4
 ```
 
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Kadane's algorithm
-- Dynamic programming
-- Maximum subarray problem
-- Array traversal
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String counting, loop algorithms, character frequency
 
 ```go
 package main
 
 import "fmt"
 
-func maxSubarraySum(arr []int) int {
-    if len(arr) == 0 {
-        return 0
-    }
-    
-    maxSoFar := arr[0]
-    maxEndingHere := arr[0]
-    
-    for i := 1; i < len(arr); i++ {
-        if maxEndingHere < 0 {
-            maxEndingHere = arr[i]
-        } else {
-            maxEndingHere += arr[i]
-        }
-        
-        if maxEndingHere > maxSoFar {
-            maxSoFar = maxEndingHere
+func countCharacter(s string, target byte) int {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        if s[i] == target {
+            count++
         }
     }
-    
-    return maxSoFar
+    return count
 }
 
 func main() {
-    arr := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
-    maxSum := maxSubarraySum(arr)
-    fmt.Printf("Maximum subarray sum: %d\n", maxSum)
+    s := "Hello World"
+    target := 'l'
+    count := countCharacter(s, target)
+    fmt.Printf("Character '%c' appears %d times\n", target, count)
 }
 ```
 
-### 30. Find Product of Array Except Self
+### 8. String Replace Character
 
 **Description**: 
-Find the product of all elements in an array except the element at each position using two passes. This tests understanding of array manipulation, prefix/suffix products, and in-place algorithms.
+Replace all occurrences of a character in a string without using built-in functions. This tests understanding of string replacement, loop algorithms, and character substitution.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be multiplied except current position
-2. **Left Products**: Calculate products of all elements to the left
-3. **Right Products**: Calculate products of all elements to the right
+1. **Visual Pattern**: Replace old character with new character
+2. **Loop Logic**: Use loop to check and replace each character
+3. **Replacement Logic**: Create new string with replacements
 4. **Efficiency**: O(n) time complexity
-5. **In-Place**: Use result array for intermediate calculations
+5. **String Algorithm**: Character replacement
 
 **Step-by-Step Solution**:
-1. **Initialize**: Create result array and set first element to 1
-2. **Left Pass**: Calculate products of all elements to the left
-3. **Right Pass**: Calculate products of all elements to the right
-4. **Multiply**: Multiply left and right products
-5. **Result**: Return array with products except self
+1. Create result string with same length
+2. Loop through original string
+3. Copy character or replacement based on match
+4. Return modified string
 
-**Sample Input**: arr = [1, 2, 3, 4]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Product except self: [24 12 8 6]
+Input: "Hello", 'l', 'x'
+Output: "Hexxo"
+
+Input: "Mississippi", 's', 'z'
+Output: "Mizzizzippi"
 ```
 
-**Time Complexity**: O(n) - Two passes through array
-**Space Complexity**: O(1) - No extra space used (excluding result)
-
-**Key Learning Points**:
-- Prefix/suffix products
-- Array manipulation
-- In-place algorithms
-- Two-pass techniques
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String replacement, loop algorithms, character substitution
 
 ```go
 package main
 
 import "fmt"
 
-func productExceptSelf(arr []int) []int {
-    n := len(arr)
-    result := make([]int, n)
+func replaceCharacter(s string, oldChar, newChar byte) string {
+    length := len(s)
+    result := make([]byte, length)
     
-    // Calculate left products
-    result[0] = 1
-    for i := 1; i < n; i++ {
-        result[i] = result[i-1] * arr[i-1]
-    }
-    
-    // Calculate right products and multiply
-    rightProduct := 1
-    for i := n - 1; i >= 0; i-- {
-        result[i] = result[i] * rightProduct
-        rightProduct *= arr[i]
-    }
-    
-    return result
-}
-
-func main() {
-    arr := []int{1, 2, 3, 4}
-    result := productExceptSelf(arr)
-    fmt.Printf("Product except self: %v\n", result)
-}
-```
-
-### 31. Find Longest Increasing Subsequence
-
-**Description**: 
-Find the length of the longest increasing subsequence using dynamic programming. This tests understanding of dynamic programming, array traversal, and subsequence algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should form increasing subsequence
-2. **DP Logic**: Use dynamic programming to track longest subsequence
-3. **Comparison Logic**: Compare current element with all previous elements
-4. **Efficiency**: O(n²) time complexity
-5. **Dynamic Programming**: Optimal substructure property
-
-**Step-by-Step Solution**:
-1. **Initialize**: Create DP array with all elements set to 1
-2. **Outer Loop**: Iterate through array elements
-3. **Inner Loop**: Compare with all previous elements
-4. **Update DP**: If element is greater, update DP value
-5. **Result**: Return maximum value in DP array
-
-**Sample Input**: arr = [10, 9, 2, 5, 3, 7, 101, 18]
-**Sample Output**: 
-```
-Longest increasing subsequence length: 4
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(n) - Additional space for DP array
-
-**Key Learning Points**:
-- Dynamic programming
-- Longest increasing subsequence
-- Array traversal
-- Subsequence algorithms
-
-```go
-package main
-
-import "fmt"
-
-func longestIncreasingSubsequence(arr []int) int {
-    if len(arr) == 0 {
-        return 0
-    }
-    
-    dp := make([]int, len(arr))
-    for i := range dp {
-        dp[i] = 1
-    }
-    
-    for i := 1; i < len(arr); i++ {
-        for j := 0; j < i; j++ {
-            if arr[j] < arr[i] && dp[j]+1 > dp[i] {
-                dp[i] = dp[j] + 1
-            }
+    for i := 0; i < length; i++ {
+        if s[i] == oldChar {
+            result[i] = newChar
+        } else {
+            result[i] = s[i]
         }
     }
     
-    maxLen := dp[0]
-    for i := 1; i < len(dp); i++ {
-        if dp[i] > maxLen {
-            maxLen = dp[i]
-        }
-    }
-    
-    return maxLen
+    return string(result)
 }
 
 func main() {
-    arr := []int{10, 9, 2, 5, 3, 7, 101, 18}
-    length := longestIncreasingSubsequence(arr)
-    fmt.Printf("Longest increasing subsequence length: %d\n", length)
+    s := "Hello World"
+    result := replaceCharacter(s, 'l', 'x')
+    fmt.Printf("Original: %s\n", s)
+    fmt.Printf("Replaced: %s\n", result)
 }
 ```
 
-### 32. Find Maximum Product Subarray
+### 9. String To Upper Case
 
 **Description**: 
-Find the maximum product of a contiguous subarray using dynamic programming. This tests understanding of dynamic programming, array traversal, and product calculations.
+Convert a string to uppercase without using built-in functions. This tests understanding of character case conversion, loop algorithms, and ASCII manipulation.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be multiplied in contiguous subarrays
-2. **DP Logic**: Use dynamic programming to track maximum and minimum products
-3. **Negative Logic**: Handle negative numbers by considering both max and min
+1. **Visual Pattern**: Convert lowercase letters to uppercase
+2. **Loop Logic**: Use loop to check each character
+3. **Case Logic**: Convert lowercase to uppercase
 4. **Efficiency**: O(n) time complexity
-5. **Dynamic Programming**: Track both maximum and minimum products
+5. **String Algorithm**: Case conversion
 
 **Step-by-Step Solution**:
-1. **Initialize**: Set maxSoFar, maxEndingHere, and minEndingHere to first element
-2. **Loop**: Iterate through remaining elements
-3. **Update Products**: Consider all possible products (current, current*max, current*min)
-4. **Update Max**: Update maximum product seen so far
-5. **Result**: Return maximum product seen so far
+1. Create result string with same length
+2. Loop through original string
+3. Check if character is lowercase
+4. Convert to uppercase if needed
+5. Return uppercase string
 
-**Sample Input**: arr = [2, 3, -2, 4]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Maximum product: 6
+Input: "hello world"
+Output: "HELLO WORLD"
+
+Input: "GoLang"
+Output: "GOLANG"
 ```
 
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Dynamic programming
-- Maximum product subarray
-- Negative number handling
-- Array traversal
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: Character case conversion, loop algorithms, ASCII manipulation
 
 ```go
 package main
 
 import "fmt"
 
-func maxProductSubarray(arr []int) int {
-    if len(arr) == 0 {
-        return 0
-    }
+func toUpperCase(s string) string {
+    length := len(s)
+    result := make([]byte, length)
     
-    maxSoFar := arr[0]
-    maxEndingHere := arr[0]
-    minEndingHere := arr[0]
-    
-    for i := 1; i < len(arr); i++ {
-        temp := maxEndingHere
-        maxEndingHere = max(arr[i], max(arr[i]*maxEndingHere, arr[i]*minEndingHere))
-        minEndingHere = min(arr[i], min(arr[i]*temp, arr[i]*minEndingHere))
-        
-        if maxEndingHere > maxSoFar {
-            maxSoFar = maxEndingHere
-        }
-    }
-    
-    return maxSoFar
-}
-
-func max(a, b int) int {
-    if a > b {
-        return a
-    }
-    return b
-}
-
-func min(a, b int) int {
-    if a < b {
-        return a
-    }
-    return b
-}
-
-func main() {
-    arr := []int{2, 3, -2, 4}
-    maxProduct := maxProductSubarray(arr)
-    fmt.Printf("Maximum product: %d\n", maxProduct)
-}
-```
-
-### 33. Find Minimum in Rotated Sorted Array
-
-**Description**: 
-Find the minimum element in a rotated sorted array using binary search. This tests understanding of binary search, rotated arrays, and search algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in rotated sorted order
-2. **Binary Search Logic**: Use binary search to find minimum
-3. **Rotation Logic**: Handle rotation by comparing with rightmost element
-4. **Efficiency**: O(log n) time complexity
-5. **Search Algorithm**: Binary search for optimal performance
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set left to 0, right to array length - 1
-2. **Loop**: Continue while left < right
-3. **Calculate Mid**: Find middle element
-4. **Compare**: If mid > right, search right half
-5. **Result**: Return element at left position
-
-**Sample Input**: arr = [4, 5, 6, 7, 0, 1, 2]
-**Sample Output**: 
-```
-Minimum element: 0
-```
-
-**Time Complexity**: O(log n) - Binary search
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Binary search algorithms
-- Rotated array handling
-- Search optimization
-- Array traversal
-
-```go
-package main
-
-import "fmt"
-
-func findMinInRotatedArray(arr []int) int {
-    left, right := 0, len(arr)-1
-    
-    for left < right {
-        mid := left + (right-left)/2
-        
-        if arr[mid] > arr[right] {
-            left = mid + 1
+    for i := 0; i < length; i++ {
+        if s[i] >= 'a' && s[i] <= 'z' {
+            result[i] = s[i] - 32
         } else {
-            right = mid
+            result[i] = s[i]
         }
     }
     
-    return arr[left]
+    return string(result)
 }
 
 func main() {
-    arr := []int{4, 5, 6, 7, 0, 1, 2}
-    min := findMinInRotatedArray(arr)
-    fmt.Printf("Minimum element: %d\n", min)
+    s := "hello world"
+    upper := toUpperCase(s)
+    fmt.Printf("Original: %s\n", s)
+    fmt.Printf("Uppercase: %s\n", upper)
 }
 ```
 
-### 34. Find Target in Rotated Sorted Array
+### 10. String To Lower Case
 
 **Description**: 
-Find a target element in a rotated sorted array using binary search. This tests understanding of binary search, rotated arrays, and search algorithms.
+Convert a string to lowercase without using built-in functions. This tests understanding of character case conversion, loop algorithms, and ASCII manipulation.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in rotated sorted order
-2. **Binary Search Logic**: Use binary search to find target
-3. **Rotation Logic**: Handle rotation by checking which half is sorted
-4. **Efficiency**: O(log n) time complexity
-5. **Search Algorithm**: Binary search for optimal performance
+1. **Visual Pattern**: Convert uppercase letters to lowercase
+2. **Loop Logic**: Use loop to check each character
+3. **Case Logic**: Convert uppercase to lowercase
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Case conversion
 
 **Step-by-Step Solution**:
-1. **Initialize**: Set left to 0, right to array length - 1
-2. **Loop**: Continue while left <= right
-3. **Calculate Mid**: Find middle element
-4. **Check Target**: If mid equals target, return index
-5. **Handle Rotation**: Determine which half is sorted and search accordingly
+1. Create result string with same length
+2. Loop through original string
+3. Check if character is uppercase
+4. Convert to lowercase if needed
+5. Return lowercase string
 
-**Sample Input**: arr = [4, 5, 6, 7, 0, 1, 2], target = 0
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Target 0 found at index: 4
+Input: "HELLO WORLD"
+Output: "hello world"
+
+Input: "GoLang"
+Output: "golang"
 ```
 
-**Time Complexity**: O(log n) - Binary search
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Binary search algorithms
-- Rotated array handling
-- Search optimization
-- Array traversal
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: Character case conversion, loop algorithms, ASCII manipulation
 
 ```go
 package main
 
 import "fmt"
 
-func searchInRotatedArray(arr []int, target int) int {
-    left, right := 0, len(arr)-1
+func toLowerCase(s string) string {
+    length := len(s)
+    result := make([]byte, length)
     
-    for left <= right {
-        mid := left + (right-left)/2
-        
-        if arr[mid] == target {
-            return mid
-        }
-        
-        if arr[left] <= arr[mid] {
-            if target >= arr[left] && target < arr[mid] {
-                right = mid - 1
-            } else {
-                left = mid + 1
-            }
+    for i := 0; i < length; i++ {
+        if s[i] >= 'A' && s[i] <= 'Z' {
+            result[i] = s[i] + 32
         } else {
-            if target > arr[mid] && target <= arr[right] {
-                left = mid + 1
-            } else {
-                right = mid - 1
-            }
+            result[i] = s[i]
         }
     }
     
-    return -1
+    return string(result)
 }
 
 func main() {
-    arr := []int{4, 5, 6, 7, 0, 1, 2}
-    target := 0
-    index := searchInRotatedArray(arr, target)
-    fmt.Printf("Target %d found at index: %d\n", target, index)
+    s := "HELLO WORLD"
+    lower := toLowerCase(s)
+    fmt.Printf("Original: %s\n", s)
+    fmt.Printf("Lowercase: %s\n", lower)
 }
 ```
-
-### 35. Find First and Last Position
-
-**Description**: 
-Find the first and last positions of a target element in a sorted array using binary search. This tests understanding of binary search, array traversal, and search algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be in sorted order
-2. **Binary Search Logic**: Use binary search to find first and last positions
-3. **Position Logic**: Find leftmost and rightmost occurrences
-4. **Efficiency**: O(log n) time complexity
-5. **Search Algorithm**: Binary search for optimal performance
-
-**Step-by-Step Solution**:
-1. **Find First**: Use binary search to find leftmost occurrence
-2. **Find Last**: Use binary search to find rightmost occurrence
-3. **Handle Not Found**: Return [-1, -1] if element not found
-4. **Result**: Return array with first and last positions
-5. **Binary Search**: Use modified binary search for positions
-
-**Sample Input**: arr = [5, 7, 7, 8, 8, 10], target = 8
-**Sample Output**: 
-```
-First and last positions: [3 4]
-```
-
-**Time Complexity**: O(log n) - Binary search
-**Space Complexity**: O(1) - No extra space used
-
-**Key Learning Points**:
-- Binary search algorithms
-- Position finding
-- Search optimization
-- Array traversal
-
-```go
-package main
-
-import "fmt"
-
-func findFirstAndLast(arr []int, target int) []int {
-    first := findFirst(arr, target)
-    last := findLast(arr, target)
-    return []int{first, last}
-}
-
-func findFirst(arr []int, target int) int {
-    left, right := 0, len(arr)-1
-    result := -1
-    
-    for left <= right {
-        mid := left + (right-left)/2
-        if arr[mid] == target {
-            result = mid
-            right = mid - 1
-        } else if arr[mid] < target {
-            left = mid + 1
-        } else {
-            right = mid - 1
-        }
-    }
-    
-    return result
-}
-
-func findLast(arr []int, target int) int {
-    left, right := 0, len(arr)-1
-    result := -1
-    
-    for left <= right {
-        mid := left + (right-left)/2
-        if arr[mid] == target {
-            result = mid
-            left = mid + 1
-        } else if arr[mid] < target {
-            left = mid + 1
-        } else {
-            right = mid - 1
-        }
-    }
-    
-    return result
-}
-
-func main() {
-    arr := []int{5, 7, 7, 8, 8, 10}
-    target := 8
-    positions := findFirstAndLast(arr, target)
-    fmt.Printf("First and last positions: %v\n", positions)
-}
-```
-
-### 36. Find K Closest Elements
-
-**Description**: 
-Find k closest elements to a target value in a sorted array using binary search and two pointers. This tests understanding of binary search, array traversal, and search algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Array elements should be closest to target
-2. **Binary Search Logic**: Use binary search to find target position
-3. **Two Pointer Logic**: Use two pointers to find k closest elements
-4. **Efficiency**: O(log n + k) time complexity
-5. **Search Algorithm**: Binary search for optimal performance
-
-**Step-by-Step Solution**:
-1. **Find Position**: Use binary search to find target position
-2. **Initialize Pointers**: Set pointers to left and right of target
-3. **Compare Distances**: Compare distances to determine closest element
-4. **Add Elements**: Add closest elements to result
-5. **Result**: Return k closest elements
-
-**Sample Input**: arr = [1, 2, 3, 4, 5], k = 4, target = 3
-**Sample Output**: 
-```
-K closest elements: [1 2 3 4]
-```
-
-**Time Complexity**: O(log n + k) - Binary search + two pointers
-**Space Complexity**: O(k) - Additional space for result
-
-**Key Learning Points**:
-- Binary search algorithms
-- Two pointer technique
-- Distance calculations
-- Array traversal
-
-```go
-package main
-
-import "fmt"
-
-func findKClosest(arr []int, k, target int) []int {
-    // Find position of target
-    left, right := 0, len(arr)-1
-    pos := 0
-    
-    for left <= right {
-        mid := left + (right-left)/2
-        if arr[mid] == target {
-            pos = mid
-            break
-        } else if arr[mid] < target {
-            left = mid + 1
-        } else {
-            right = mid - 1
-        }
-    }
-    
-    // Find k closest elements
-    result := make([]int, 0, k)
-    i, j := pos-1, pos
-    
-    for len(result) < k {
-        if i < 0 {
-            result = append(result, arr[j])
-            j++
-        } else if j >= len(arr) {
-            result = append(result, arr[i])
-            i--
-        } else if abs(arr[i]-target) <= abs(arr[j]-target) {
-            result = append(result, arr[i])
-            i--
-        } else {
-            result = append(result, arr[j])
-            j++
-        }
-    }
-    
-    return result
-}
-
-func abs(x int) int {
-    if x < 0 {
-        return -x
-    }
-    return x
-}
-
-func main() {
-    arr := []int{1, 2, 3, 4, 5}
-    k, target := 4, 3
-    closest := findKClosest(arr, k, target)
-    fmt.Printf("K closest elements: %v\n", closest)
-}
-```
-
-### 37. Find Peak Element in 2D Array
-
-**Description**: 
-Find a peak element in a 2D array where a peak element is greater than or equal to all its neighbors. This tests understanding of 2D array traversal, neighbor checking, and matrix algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Peak element is higher than all neighbors
-2. **Neighbor Logic**: Check all 8 directions (including diagonals)
-3. **Matrix Traversal**: Use nested loops for 2D traversal
-4. **Efficiency**: O(m*n) time complexity
-5. **Matrix Algorithm**: 2D array processing
-
-**Step-by-Step Solution**:
-1. **Initialize**: Set up nested loops for matrix traversal
-2. **Check Neighbors**: For each element, check all 8 neighbors
-3. **Peak Condition**: Element is peak if greater than all neighbors
-4. **Return Result**: Return coordinates of first peak found
-5. **Result**: Return peak coordinates
-
-**Sample Input**: matrix = [[1, 4, 3], [2, 5, 2], [1, 3, 1]]
-**Sample Output**: 
-```
-Peak element at: [1 1]
-```
-
-**Time Complexity**: O(m*n) - Matrix traversal
-**Space Complexity**: O(1) - No additional space
-
-**Key Learning Points**:
-- 2D array traversal
-- Neighbor checking
-- Matrix algorithms
-- Coordinate handling
-
-```go
-package main
-
-import "fmt"
-
-func findPeakIn2D(matrix [][]int) []int {
-    rows, cols := len(matrix), len(matrix[0])
-    
-    for i := 0; i < rows; i++ {
-        for j := 0; j < cols; j++ {
-            isPeak := true
-            
-            // Check all neighbors
-            for di := -1; di <= 1; di++ {
-                for dj := -1; dj <= 1; dj++ {
-                    if di == 0 && dj == 0 {
-                        continue
-                    }
-                    ni, nj := i+di, j+dj
-                    if ni >= 0 && ni < rows && nj >= 0 && nj < cols {
-                        if matrix[ni][nj] > matrix[i][j] {
-                            isPeak = false
-                            break
-                        }
-                    }
-                }
-                if !isPeak {
-                    break
-                }
-            }
-            
-            if isPeak {
-                return []int{i, j}
-            }
-        }
-    }
-    
-    return []int{-1, -1}
-}
-
-func main() {
-    matrix := [][]int{
-        {1, 4, 3},
-        {2, 5, 2},
-        {1, 3, 1},
-    }
-    peak := findPeakIn2D(matrix)
-    fmt.Printf("Peak element at: %v\n", peak)
-}
-```
-
-### 38. Find Spiral Order
-
-**Description**: 
-Traverse a 2D matrix in spiral order (clockwise from outside to inside). This tests understanding of matrix traversal, boundary conditions, and spiral algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Spiral traversal from outside to inside
-2. **Direction Logic**: Right → Down → Left → Up pattern
-3. **Boundary Management**: Track top, bottom, left, right boundaries
-4. **Efficiency**: O(m*n) time complexity
-5. **Matrix Algorithm**: Spiral traversal technique
-
-**Step-by-Step Solution**:
-1. **Initialize Boundaries**: Set top, bottom, left, right
-2. **Traverse Right**: Move from left to right on top row
-3. **Traverse Down**: Move from top to bottom on right column
-4. **Traverse Left**: Move from right to left on bottom row
-5. **Traverse Up**: Move from bottom to top on left column
-6. **Update Boundaries**: Adjust boundaries after each direction
-7. **Result**: Return spiral order array
-
-**Sample Input**: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-**Sample Output**: 
-```
-Spiral order: [1 2 3 6 9 8 7 4 5]
-```
-
-**Time Complexity**: O(m*n) - Visit each element once
-**Space Complexity**: O(m*n) - Result array
-
-**Key Learning Points**:
-- Matrix traversal
-- Boundary management
-- Spiral algorithms
-- Direction handling
-
-```go
-package main
-
-import "fmt"
-
-func spiralOrder(matrix [][]int) []int {
-    if len(matrix) == 0 {
-        return []int{}
-    }
-    
-    rows, cols := len(matrix), len(matrix[0])
-    result := make([]int, 0, rows*cols)
-    
-    top, bottom := 0, rows-1
-    left, right := 0, cols-1
-    
-    for top <= bottom && left <= right {
-        // Traverse right
-        for col := left; col <= right; col++ {
-            result = append(result, matrix[top][col])
-        }
-        top++
-        
-        // Traverse down
-        for row := top; row <= bottom; row++ {
-            result = append(result, matrix[row][right])
-        }
-        right--
-        
-        // Traverse left
-        if top <= bottom {
-            for col := right; col >= left; col-- {
-                result = append(result, matrix[bottom][col])
-            }
-            bottom--
-        }
-        
-        // Traverse up
-        if left <= right {
-            for row := bottom; row >= top; row-- {
-                result = append(result, matrix[row][left])
-            }
-            left++
-        }
-    }
-    
-    return result
-}
-
-func main() {
-    matrix := [][]int{
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9},
-    }
-    spiral := spiralOrder(matrix)
-    fmt.Printf("Spiral order: %v\n", spiral)
-}
-```
-
-### 39. Find Matrix Multiplication
-
-**Description**: 
-Multiply two matrices using nested loops. This tests understanding of matrix operations, nested loops, and mathematical computations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Result[i][j] = sum of A[i][k] * B[k][j]
-2. **Nested Loop Logic**: Three nested loops for matrix multiplication
-3. **Dimension Check**: Columns of first matrix = rows of second matrix
-4. **Efficiency**: O(m*n*p) time complexity
-5. **Matrix Algorithm**: Standard matrix multiplication
-
-**Step-by-Step Solution**:
-1. **Check Dimensions**: Verify compatibility of matrix dimensions
-2. **Initialize Result**: Create result matrix with proper dimensions
-3. **Triple Nested Loop**: Use three nested loops for multiplication
-4. **Calculate Product**: Sum products of corresponding elements
-5. **Result**: Return multiplied matrix
-
-**Sample Input**: a = [[1, 2], [3, 4]], b = [[5, 6], [7, 8]]
-**Sample Output**: 
-```
-Matrix multiplication result: [[19 22] [43 50]]
-```
-
-**Time Complexity**: O(m*n*p) - Three nested loops
-**Space Complexity**: O(m*n) - Result matrix
-
-**Key Learning Points**:
-- Matrix operations
-- Nested loop algorithms
-- Mathematical computations
-- Dimension handling
-
-```go
-package main
-
-import "fmt"
-
-func multiplyMatrices(a, b [][]int) [][]int {
-    rowsA, colsA := len(a), len(a[0])
-    rowsB, colsB := len(b), len(b[0])
-    
-    if colsA != rowsB {
-        return nil
-    }
-    
-    result := make([][]int, rowsA)
-    for i := range result {
-        result[i] = make([]int, colsB)
-    }
-    
-    for i := 0; i < rowsA; i++ {
-        for j := 0; j < colsB; j++ {
-            for k := 0; k < colsA; k++ {
-                result[i][j] += a[i][k] * b[k][j]
-            }
-        }
-    }
-    
-    return result
-}
-
-func main() {
-    a := [][]int{{1, 2}, {3, 4}}
-    b := [][]int{{5, 6}, {7, 8}}
-    result := multiplyMatrices(a, b)
-    fmt.Printf("Matrix multiplication result: %v\n", result)
-}
-```
-
-### 40. Find Transpose of Matrix
-
-**Description**: 
-Find the transpose of a matrix by swapping rows and columns. This tests understanding of matrix operations, nested loops, and array manipulation.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Swap rows and columns (A[i][j] becomes A[j][i])
-2. **Nested Loop Logic**: Use nested loops to swap elements
-3. **Dimension Change**: Result matrix has swapped dimensions
-4. **Efficiency**: O(m*n) time complexity
-5. **Matrix Algorithm**: Matrix transpose operation
-
-**Step-by-Step Solution**:
-1. **Initialize Result**: Create result matrix with swapped dimensions
-2. **Nested Loop**: Use nested loops to traverse matrix
-3. **Swap Elements**: Set result[j][i] = matrix[i][j]
-4. **Result**: Return transposed matrix
-
-**Sample Input**: matrix = [[1, 2, 3], [4, 5, 6]]
-**Sample Output**: 
-```
-Transposed matrix: [[1 4] [2 5] [3 6]]
-```
-
-**Time Complexity**: O(m*n) - Visit each element once
-**Space Complexity**: O(m*n) - Result matrix
-
-**Key Learning Points**:
-- Matrix operations
-- Nested loop algorithms
-- Array manipulation
-- Dimension handling
-
-```go
-package main
-
-import "fmt"
-
-func transposeMatrix(matrix [][]int) [][]int {
-    rows, cols := len(matrix), len(matrix[0])
-    result := make([][]int, cols)
-    
-    for i := range result {
-        result[i] = make([]int, rows)
-    }
-    
-    for i := 0; i < rows; i++ {
-        for j := 0; j < cols; j++ {
-            result[j][i] = matrix[i][j]
-        }
-    }
-    
-    return result
-}
-
-func main() {
-    matrix := [][]int{
-        {1, 2, 3},
-        {4, 5, 6},
-    }
-    transposed := transposeMatrix(matrix)
-    fmt.Printf("Transposed matrix: %v\n", transposed)
-}
-```
-
----
-
-## String Manipulation
 
 ### 11. Reverse String
 
@@ -7651,760 +2399,3444 @@ func main() {
 }
 ```
 
----
-
-## Mathematical/Logical Problems
-
-### 16. Factorial
+### 29. String Valid Parentheses
 
 **Description**: 
-Calculate the factorial of a number using loops. This tests understanding of mathematical operations, loop algorithms, and factorial calculation.
+Check if a string has valid parentheses using loops. This tests understanding of string validation, stack simulation, and bracket matching.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: n! = n × (n-1) × (n-2) × ... × 1
-2. **Loop Logic**: Use loop to multiply numbers from 1 to n
-3. **Base Cases**: Handle 0 and 1 as special cases
+1. **Visual Pattern**: Check if brackets are properly matched
+2. **Loop Logic**: Use loop to process each character
+3. **Stack Logic**: Simulate stack using counter
 4. **Efficiency**: O(n) time complexity
-5. **Mathematical Algorithm**: Factorial calculation
+5. **String Algorithm**: Parentheses validation
 
 **Step-by-Step Solution**:
-1. **Check Input**: Handle negative numbers as error case
-2. **Base Cases**: Return 1 for 0 and 1
-3. **Initialize Result**: Set result to 1
-4. **Loop Calculation**: Multiply result by each number from 2 to n
-5. **Return Result**: Return calculated factorial
+1. Initialize counter to 0
+2. Loop through each character
+3. Increment for opening brackets
+4. Decrement for closing brackets
+5. Return true if counter is 0
 
-**Sample Input**: n = 5
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-Factorial of 5 = 120
+Input: "()"
+Output: true
+
+Input: "()[]{}"
+Output: true
+
+Input: "(]"
+Output: false
 ```
 
-**Time Complexity**: O(n) - Single loop from 2 to n
-**Space Complexity**: O(1) - Constant space
-
-**Key Learning Points**:
-- Mathematical operations
-- Loop algorithms
-- Factorial calculation
-- Base case handling
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String validation, stack simulation, bracket matching
 
 ```go
 package main
 
 import "fmt"
 
-func factorial(n int) int {
-    if n < 0 {
-        return -1 // Error case
+func isValidParentheses(s string) bool {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        if s[i] == '(' || s[i] == '[' || s[i] == '{' {
+            count++
+        } else if s[i] == ')' || s[i] == ']' || s[i] == '}' {
+            count--
+            if count < 0 {
+                return false
+            }
+        }
     }
-    if n == 0 || n == 1 {
-        return 1
+    return count == 0
+}
+
+func main() {
+    s := "()[]{}"
+    result := isValidParentheses(s)
+    fmt.Printf("Valid parentheses: %t\n", result)
+}
+```
+
+### 30. String Longest Substring Without Repeating Characters
+
+**Description**: 
+Find the length of the longest substring without repeating characters using loops. This tests understanding of string processing, sliding window, and character tracking.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find longest unique substring
+2. **Loop Logic**: Use nested loops to check substrings
+3. **Unique Logic**: Check for duplicate characters
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Substring processing
+
+**Step-by-Step Solution**:
+1. Loop through each starting position
+2. Loop through each ending position
+3. Check if substring has unique characters
+4. Track maximum length found
+5. Return maximum length
+
+**Sample Input/Output**:
+```
+Input: "abcabcbb"
+Output: 3 (substring "abc")
+
+Input: "bbbbb"
+Output: 1 (substring "b")
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(1)
+**Key Learning Points**: String processing, sliding window, character tracking
+
+```go
+package main
+
+import "fmt"
+
+func lengthOfLongestSubstring(s string) int {
+    maxLen := 0
+    for i := 0; i < len(s); i++ {
+        for j := i; j < len(s); j++ {
+            if hasUniqueChars(s, i, j) {
+                if j-i+1 > maxLen {
+                    maxLen = j - i + 1
+                }
+            } else {
+                break
+            }
+        }
+    }
+    return maxLen
+}
+
+func hasUniqueChars(s string, start, end int) bool {
+    for i := start; i <= end; i++ {
+        for j := i + 1; j <= end; j++ {
+            if s[i] == s[j] {
+                return false
+            }
+        }
+    }
+    return true
+}
+
+func main() {
+    s := "abcabcbb"
+    length := lengthOfLongestSubstring(s)
+    fmt.Printf("Longest substring length: %d\n", length)
+}
+```
+
+### 31. String Valid Anagram
+
+**Description**: 
+Check if two strings are anagrams using loops. This tests understanding of string comparison, character counting, and anagram detection.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Check if strings have same characters
+2. **Loop Logic**: Use loops to count characters
+3. **Anagram Logic**: Compare character frequencies
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Anagram detection
+
+**Step-by-Step Solution**:
+1. Check if strings have same length
+2. Count characters in first string
+3. Count characters in second string
+4. Compare character counts
+5. Return true if all counts match
+
+**Sample Input/Output**:
+```
+Input: "listen", "silent"
+Output: true
+
+Input: "rat", "car"
+Output: false
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(1)
+**Key Learning Points**: String comparison, character counting, anagram detection
+
+```go
+package main
+
+import "fmt"
+
+func isAnagram(s1, s2 string) bool {
+    if len(s1) != len(s2) {
+        return false
     }
     
-    result := 1
-    for i := 2; i <= n; i++ {
-        result *= i
+    for i := 0; i < len(s1); i++ {
+        count1 := 0
+        count2 := 0
+        
+        for j := 0; j < len(s1); j++ {
+            if s1[j] == s1[i] {
+                count1++
+            }
+        }
+        
+        for j := 0; j < len(s2); j++ {
+            if s2[j] == s1[i] {
+                count2++
+            }
+        }
+        
+        if count1 != count2 {
+            return false
+        }
+    }
+    
+    return true
+}
+
+func main() {
+    s1 := "listen"
+    s2 := "silent"
+    result := isAnagram(s1, s2)
+    fmt.Printf("Are anagrams: %t\n", result)
+}
+```
+
+### 32. String Group Anagrams
+
+**Description**: 
+Group anagrams together using loops. This tests understanding of string grouping, anagram detection, and data organization.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Group strings with same characters
+2. **Loop Logic**: Use nested loops to compare strings
+3. **Grouping Logic**: Group anagrams together
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Anagram grouping
+
+**Step-by-Step Solution**:
+1. Loop through each string
+2. Find all anagrams of current string
+3. Group anagrams together
+4. Mark processed strings
+5. Return grouped anagrams
+
+**Sample Input/Output**:
+```
+Input: ["eat","tea","tan","ate","nat","bat"]
+Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(n)
+**Key Learning Points**: String grouping, anagram detection, data organization
+
+```go
+package main
+
+import "fmt"
+
+func groupAnagrams(strs []string) [][]string {
+    var result [][]string
+    used := make([]bool, len(strs))
+    
+    for i := 0; i < len(strs); i++ {
+        if used[i] {
+            continue
+        }
+        
+        var group []string
+        group = append(group, strs[i])
+        used[i] = true
+        
+        for j := i + 1; j < len(strs); j++ {
+            if !used[j] && isAnagram(strs[i], strs[j]) {
+                group = append(group, strs[j])
+                used[j] = true
+            }
+        }
+        
+        result = append(result, group)
+    }
+    
+    return result
+}
+
+func isAnagram(s1, s2 string) bool {
+    if len(s1) != len(s2) {
+        return false
+    }
+    
+    for i := 0; i < len(s1); i++ {
+        count1 := 0
+        count2 := 0
+        
+        for j := 0; j < len(s1); j++ {
+            if s1[j] == s1[i] {
+                count1++
+            }
+        }
+        
+        for j := 0; j < len(s2); j++ {
+            if s2[j] == s1[i] {
+                count2++
+            }
+        }
+        
+        if count1 != count2 {
+            return false
+        }
+    }
+    
+    return true
+}
+
+func main() {
+    strs := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+    result := groupAnagrams(strs)
+    fmt.Printf("Grouped anagrams: %v\n", result)
+}
+```
+
+### 33. String Longest Palindrome
+
+**Description**: 
+Find the longest palindrome substring using loops. This tests understanding of string processing, palindrome detection, and substring analysis.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find longest palindromic substring
+2. **Loop Logic**: Use nested loops to check substrings
+3. **Palindrome Logic**: Check if substring is palindrome
+4. **Efficiency**: O(n³) time complexity
+5. **String Algorithm**: Palindrome detection
+
+**Step-by-Step Solution**:
+1. Loop through each starting position
+2. Loop through each ending position
+3. Check if substring is palindrome
+4. Track longest palindrome found
+5. Return longest palindrome
+
+**Sample Input/Output**:
+```
+Input: "babad"
+Output: "bab" or "aba"
+
+Input: "cbbd"
+Output: "bb"
+```
+
+**Time Complexity**: O(n³)
+**Space Complexity**: O(1)
+**Key Learning Points**: String processing, palindrome detection, substring analysis
+
+```go
+package main
+
+import "fmt"
+
+func longestPalindrome(s string) string {
+    maxLen := 0
+    start := 0
+    
+    for i := 0; i < len(s); i++ {
+        for j := i; j < len(s); j++ {
+            if isPalindrome(s, i, j) && j-i+1 > maxLen {
+                maxLen = j - i + 1
+                start = i
+            }
+        }
+    }
+    
+    return s[start : start+maxLen]
+}
+
+func isPalindrome(s string, start, end int) bool {
+    for start < end {
+        if s[start] != s[end] {
+            return false
+        }
+        start++
+        end--
+    }
+    return true
+}
+
+func main() {
+    s := "babad"
+    result := longestPalindrome(s)
+    fmt.Printf("Longest palindrome: %s\n", result)
+}
+```
+
+### 34. String Valid IP Address
+
+**Description**: 
+Check if a string is a valid IP address using loops. This tests understanding of string validation, IP address format, and number parsing.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Check IP address format
+2. **Loop Logic**: Use loops to parse segments
+3. **Validation Logic**: Check each segment validity
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: IP address validation
+
+**Step-by-Step Solution**:
+1. Split string by dots
+2. Check if exactly 4 segments
+3. Validate each segment
+4. Check segment value range
+5. Return validation result
+
+**Sample Input/Output**:
+```
+Input: "192.168.1.1"
+Output: true
+
+Input: "256.1.1.1"
+Output: false
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String validation, IP address format, number parsing
+
+```go
+package main
+
+import "fmt"
+
+func isValidIP(s string) bool {
+    segments := 0
+    current := ""
+    
+    for i := 0; i < len(s); i++ {
+        if s[i] == '.' {
+            if !isValidSegment(current) {
+                return false
+            }
+            segments++
+            current = ""
+        } else {
+            current += string(s[i])
+        }
+    }
+    
+    if !isValidSegment(current) {
+        return false
+    }
+    segments++
+    
+    return segments == 4
+}
+
+func isValidSegment(segment string) bool {
+    if len(segment) == 0 || len(segment) > 3 {
+        return false
+    }
+    
+    if len(segment) > 1 && segment[0] == '0' {
+        return false
+    }
+    
+    num := 0
+    for i := 0; i < len(segment); i++ {
+        if segment[i] < '0' || segment[i] > '9' {
+            return false
+        }
+        num = num*10 + int(segment[i]-'0')
+    }
+    
+    return num >= 0 && num <= 255
+}
+
+func main() {
+    ip := "192.168.1.1"
+    result := isValidIP(ip)
+    fmt.Printf("Valid IP: %t\n", result)
+}
+```
+
+### 35. String Pattern Matching
+
+**Description**: 
+Find pattern in string using loops. This tests understanding of string searching, pattern matching, and text processing.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find pattern occurrences in text
+2. **Loop Logic**: Use nested loops to search
+3. **Matching Logic**: Compare pattern with substrings
+4. **Efficiency**: O(n*m) time complexity
+5. **String Algorithm**: Pattern matching
+
+**Step-by-Step Solution**:
+1. Loop through text positions
+2. Check if pattern matches at position
+3. Compare characters one by one
+4. Return first match position
+5. Return -1 if not found
+
+**Sample Input/Output**:
+```
+Input: text="hello", pattern="ll"
+Output: 2
+
+Input: text="world", pattern="xyz"
+Output: -1
+```
+
+**Time Complexity**: O(n*m)
+**Space Complexity**: O(1)
+**Key Learning Points**: String searching, pattern matching, text processing
+
+```go
+package main
+
+import "fmt"
+
+func findPattern(text, pattern string) int {
+    for i := 0; i <= len(text)-len(pattern); i++ {
+        match := true
+        for j := 0; j < len(pattern); j++ {
+            if text[i+j] != pattern[j] {
+                match = false
+                break
+            }
+        }
+        if match {
+            return i
+        }
+    }
+    return -1
+}
+
+func main() {
+    text := "hello world"
+    pattern := "world"
+    result := findPattern(text, pattern)
+    fmt.Printf("Pattern found at index: %d\n", result)
+}
+```
+
+### 36. Count Vowels in String
+
+**Description**: 
+Count the number of vowels in a string using loops. This tests understanding of string traversal, character checking, and vowel identification.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count vowels (a, e, i, o, u) in string
+2. **Loop Logic**: Use loop to check each character
+3. **Vowel Logic**: Check if character is vowel
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Vowel counting
+
+**Step-by-Step Solution**:
+1. Initialize vowel count to 0
+2. Loop through each character
+3. Check if character is vowel (a, e, i, o, u)
+4. Increment count for vowels
+5. Return total vowel count
+
+**Sample Input/Output**:
+```
+Input: "Hello World"
+Output: 3 (e, o, o)
+
+Input: "Programming"
+Output: 3 (o, a, i)
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character checking, vowel identification
+
+```go
+package main
+
+import "fmt"
+
+func countVowels(s string) int {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        char := s[i]
+        if char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u' ||
+           char == 'A' || char == 'E' || char == 'I' || char == 'O' || char == 'U' {
+            count++
+        }
+    }
+    return count
+}
+
+func main() {
+    s := "Hello World"
+    count := countVowels(s)
+    fmt.Printf("Number of vowels: %d\n", count)
+}
+```
+
+### 37. Count Consonants in String
+
+**Description**: 
+Count the number of consonants in a string using loops. This tests understanding of string traversal, character checking, and consonant identification.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count consonants (non-vowels) in string
+2. **Loop Logic**: Use loop to check each character
+3. **Consonant Logic**: Check if character is consonant
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Consonant counting
+
+**Step-by-Step Solution**:
+1. Initialize consonant count to 0
+2. Loop through each character
+3. Check if character is consonant (not vowel, not space, not digit)
+4. Increment count for consonants
+5. Return total consonant count
+
+**Sample Input/Output**:
+```
+Input: "Hello World"
+Output: 7 (H, l, l, W, r, l, d)
+
+Input: "Programming"
+Output: 8 (P, r, g, r, m, m, n, g)
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character checking, consonant identification
+
+```go
+package main
+
+import "fmt"
+
+func countConsonants(s string) int {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        char := s[i]
+        if isConsonant(char) {
+            count++
+        }
+    }
+    return count
+}
+
+func isConsonant(char byte) bool {
+    if char >= 'a' && char <= 'z' {
+        return char != 'a' && char != 'e' && char != 'i' && char != 'o' && char != 'u'
+    }
+    if char >= 'A' && char <= 'Z' {
+        return char != 'A' && char != 'E' && char != 'I' && char != 'O' && char != 'U'
+    }
+    return false
+}
+
+func main() {
+    s := "Hello World"
+    count := countConsonants(s)
+    fmt.Printf("Number of consonants: %d\n", count)
+}
+```
+
+### 38. Count Words in Sentence
+
+**Description**: 
+Count the number of words in a sentence using loops. This tests understanding of string traversal, word detection, and space handling.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count words separated by spaces
+2. **Loop Logic**: Use loop to process each character
+3. **Word Logic**: Detect word boundaries
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Word counting
+
+**Step-by-Step Solution**:
+1. Initialize word count to 0
+2. Loop through each character
+3. Check if character is space and previous was not space
+4. Increment word count at word boundaries
+5. Handle last word if string doesn't end with space
+
+**Sample Input/Output**:
+```
+Input: "Hello World"
+Output: 2
+
+Input: "This is a test sentence"
+Output: 5
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, word detection, space handling
+
+```go
+package main
+
+import "fmt"
+
+func countWords(s string) int {
+    if len(s) == 0 {
+        return 0
+    }
+    
+    wordCount := 0
+    inWord := false
+    
+    for i := 0; i < len(s); i++ {
+        if s[i] != ' ' {
+            if !inWord {
+                wordCount++
+                inWord = true
+            }
+        } else {
+            inWord = false
+        }
+    }
+    
+    return wordCount
+}
+
+func main() {
+    s := "Hello World"
+    count := countWords(s)
+    fmt.Printf("Number of words: %d\n", count)
+}
+```
+
+### 39. Count Digits in String
+
+**Description**: 
+Count the number of digits in a string using loops. This tests understanding of string traversal, character checking, and digit identification.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count digits (0-9) in string
+2. **Loop Logic**: Use loop to check each character
+3. **Digit Logic**: Check if character is digit
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Digit counting
+
+**Step-by-Step Solution**:
+1. Initialize digit count to 0
+2. Loop through each character
+3. Check if character is digit (0-9)
+4. Increment count for digits
+5. Return total digit count
+
+**Sample Input/Output**:
+```
+Input: "Hello123World"
+Output: 3 (1, 2, 3)
+
+Input: "Year2024"
+Output: 4 (2, 0, 2, 4)
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character checking, digit identification
+
+```go
+package main
+
+import "fmt"
+
+func countDigits(s string) int {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        if s[i] >= '0' && s[i] <= '9' {
+            count++
+        }
+    }
+    return count
+}
+
+func main() {
+    s := "Hello123World"
+    count := countDigits(s)
+    fmt.Printf("Number of digits: %d\n", count)
+}
+```
+
+### 40. Count Special Characters
+
+**Description**: 
+Count the number of special characters in a string using loops. This tests understanding of string traversal, character checking, and special character identification.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count special characters (!@#$%^&*()_+-=)
+2. **Loop Logic**: Use loop to check each character
+3. **Special Logic**: Check if character is special
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Special character counting
+
+**Step-by-Step Solution**:
+1. Initialize special count to 0
+2. Loop through each character
+3. Check if character is special (not letter, not digit, not space)
+4. Increment count for special characters
+5. Return total special character count
+
+**Sample Input/Output**:
+```
+Input: "Hello@World!"
+Output: 2 (@, !)
+
+Input: "Test#123$"
+Output: 2 (#, $)
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character checking, special character identification
+
+```go
+package main
+
+import "fmt"
+
+func countSpecialChars(s string) int {
+    count := 0
+    for i := 0; i < len(s); i++ {
+        char := s[i]
+        if isSpecialChar(char) {
+            count++
+        }
+    }
+    return count
+}
+
+func isSpecialChar(char byte) bool {
+    if char >= 'a' && char <= 'z' {
+        return false
+    }
+    if char >= 'A' && char <= 'Z' {
+        return false
+    }
+    if char >= '0' && char <= '9' {
+        return false
+    }
+    if char == ' ' {
+        return false
+    }
+    return true
+}
+
+func main() {
+    s := "Hello@World!"
+    count := countSpecialChars(s)
+    fmt.Printf("Number of special characters: %d\n", count)
+}
+```
+
+### 41. Find Most Frequent Character
+
+**Description**: 
+Find the most frequent character in a string using loops. This tests understanding of string traversal, character counting, and frequency analysis.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find character that appears most often
+2. **Loop Logic**: Use nested loops to count frequencies
+3. **Frequency Logic**: Track character frequencies
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Frequency analysis
+
+**Step-by-Step Solution**:
+1. Initialize max frequency and result character
+2. Loop through each character
+3. Count frequency of current character
+4. Update max frequency if current is higher
+5. Return most frequent character
+
+**Sample Input/Output**:
+```
+Input: "hello"
+Output: 'l' (appears 2 times)
+
+Input: "programming"
+Output: 'r' (appears 2 times)
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character counting, frequency analysis
+
+```go
+package main
+
+import "fmt"
+
+func mostFrequentChar(s string) byte {
+    maxCount := 0
+    result := s[0]
+    
+    for i := 0; i < len(s); i++ {
+        count := 0
+        for j := 0; j < len(s); j++ {
+            if s[i] == s[j] {
+                count++
+            }
+        }
+        if count > maxCount {
+            maxCount = count
+            result = s[i]
+        }
+    }
+    
+    return result
+}
+
+func main() {
+    s := "hello"
+    result := mostFrequentChar(s)
+    fmt.Printf("Most frequent character: '%c'\n", result)
+}
+```
+
+### 42. Remove Duplicate Characters
+
+**Description**: 
+Remove duplicate characters from a string using loops. This tests understanding of string manipulation, duplicate detection, and string building.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Remove repeated characters
+2. **Loop Logic**: Use nested loops to check duplicates
+3. **Duplicate Logic**: Check if character already exists
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Duplicate removal
+
+**Step-by-Step Solution**:
+1. Initialize result string
+2. Loop through each character
+3. Check if character already in result
+4. Add character if not duplicate
+5. Return string without duplicates
+
+**Sample Input/Output**:
+```
+Input: "hello"
+Output: "helo"
+
+Input: "programming"
+Output: "progamin"
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(n)
+**Key Learning Points**: String manipulation, duplicate detection, string building
+
+```go
+package main
+
+import "fmt"
+
+func removeDuplicates(s string) string {
+    result := ""
+    
+    for i := 0; i < len(s); i++ {
+        found := false
+        for j := 0; j < len(result); j++ {
+            if s[i] == result[j] {
+                found = true
+                break
+            }
+        }
+        if !found {
+            result += string(s[i])
+        }
+    }
+    
+    return result
+}
+
+func main() {
+    s := "hello"
+    result := removeDuplicates(s)
+    fmt.Printf("String without duplicates: %s\n", result)
+}
+```
+
+### 43. Remove Spaces from String
+
+**Description**: 
+Remove all spaces from a string manually using loops. This tests understanding of string manipulation, character filtering, and string building.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Remove all space characters
+2. **Loop Logic**: Use loop to check each character
+3. **Filter Logic**: Skip space characters
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Character filtering
+
+**Step-by-Step Solution**:
+1. Initialize result string
+2. Loop through each character
+3. Check if character is not space
+4. Add non-space characters to result
+5. Return string without spaces
+
+**Sample Input/Output**:
+```
+Input: "Hello World"
+Output: "HelloWorld"
+
+Input: "  Test  String  "
+Output: "TestString"
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String manipulation, character filtering, string building
+
+```go
+package main
+
+import "fmt"
+
+func removeSpaces(s string) string {
+    result := ""
+    for i := 0; i < len(s); i++ {
+        if s[i] != ' ' {
+            result += string(s[i])
+        }
     }
     return result
 }
 
 func main() {
-    for i := 0; i <= 10; i++ {
-        fmt.Printf("Factorial of %d = %d\n", i, factorial(i))
-    }
+    s := "Hello World"
+    result := removeSpaces(s)
+    fmt.Printf("String without spaces: %s\n", result)
 }
 ```
 
-### 17. Fibonacci Series
+### 44. Convert String to Integer
 
 **Description**: 
-Generate the first n Fibonacci numbers using loops. This tests understanding of mathematical sequences, loop algorithms, and Fibonacci calculation.
+Convert a string to integer manually using loops. This tests understanding of string traversal, character to digit conversion, and number building.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
-2. **Loop Logic**: Use loop to calculate each Fibonacci number
-3. **Base Cases**: Handle first two numbers as 0 and 1
+1. **Visual Pattern**: Convert string digits to number
+2. **Loop Logic**: Use loop to process each character
+3. **Digit Logic**: Convert character to digit
 4. **Efficiency**: O(n) time complexity
-5. **Mathematical Algorithm**: Fibonacci sequence
+5. **String Algorithm**: String to number conversion
 
 **Step-by-Step Solution**:
-1. **Check Input**: Handle edge cases for n <= 0
-2. **Base Cases**: Return appropriate arrays for n = 1 and n = 2
-3. **Initialize Array**: Create array and set first two values
-4. **Loop Calculation**: Calculate each Fibonacci number using previous two
-5. **Return Result**: Return complete Fibonacci sequence
+1. Initialize result to 0
+2. Loop through each character
+3. Check if character is digit
+4. Convert character to digit
+5. Build number: result = result*10 + digit
 
-**Sample Input**: n = 10
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-First 10 Fibonacci numbers: [0 1 1 2 3 5 8 13 21 34]
+Input: "123"
+Output: 123
+
+Input: "4567"
+Output: 4567
 ```
 
-**Time Complexity**: O(n) - Single loop from 2 to n
-**Space Complexity**: O(n) - Array for Fibonacci numbers
-
-**Key Learning Points**:
-- Mathematical sequences
-- Loop algorithms
-- Fibonacci calculation
-- Base case handling
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character to digit conversion, number building
 
 ```go
 package main
 
 import "fmt"
 
-func fibonacci(n int) []int {
-    if n <= 0 {
-        return []int{}
+func stringToInt(s string) int {
+    result := 0
+    for i := 0; i < len(s); i++ {
+        if s[i] >= '0' && s[i] <= '9' {
+            result = result*10 + int(s[i]-'0')
+        }
     }
-    if n == 1 {
-        return []int{0}
-    }
-    if n == 2 {
-        return []int{0, 1}
-    }
-    
-    fib := make([]int, n)
-    fib[0], fib[1] = 0, 1
-    
-    for i := 2; i < n; i++ {
-        fib[i] = fib[i-1] + fib[i-2]
-    }
-    return fib
+    return result
 }
 
 func main() {
-    n := 10
-    fmt.Printf("First %d Fibonacci numbers: %v\n", n, fibonacci(n))
+    s := "123"
+    result := stringToInt(s)
+    fmt.Printf("String '%s' as integer: %d\n", s, result)
 }
 ```
 
-### 18. Prime Numbers
+### 45. Convert Integer to String
 
 **Description**: 
-Check if a number is prime and find all prime numbers up to n using loops and the Sieve of Eratosthenes algorithm. This tests understanding of mathematical algorithms, prime number detection, and sieve algorithms.
+Convert an integer to string manually using loops. This tests understanding of number to string conversion, digit extraction, and string building.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Prime numbers are only divisible by 1 and themselves
-2. **Loop Logic**: Use loops to check divisibility and sieve algorithm
-3. **Optimization**: Only check up to square root for efficiency
-4. **Efficiency**: O(√n) for single prime, O(n log log n) for sieve
-5. **Mathematical Algorithm**: Prime number algorithms
+1. **Visual Pattern**: Convert number digits to string
+2. **Loop Logic**: Use loop to extract digits
+3. **Digit Logic**: Extract digits from number
+4. **Efficiency**: O(log n) time complexity
+5. **String Algorithm**: Number to string conversion
 
 **Step-by-Step Solution**:
-1. **Check Input**: Handle edge cases for n < 2
-2. **Base Cases**: Handle 2 as special case
-3. **Check Even**: If even and not 2, not prime
-4. **Check Odd Divisors**: Check odd numbers up to √n
-5. **Sieve Algorithm**: Mark multiples of each prime as composite
-6. **Collect Primes**: Collect all unmarked numbers as primes
+1. Handle zero case
+2. Extract digits from number
+3. Convert digits to characters
+4. Build string from characters
+5. Return string representation
 
-**Sample Input**: num = 17, n = 30
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-17 is prime: true
-Primes up to 30: [2 3 5 7 11 13 17 19 23 29]
+Input: 123
+Output: "123"
+
+Input: 4567
+Output: "4567"
 ```
 
-**Time Complexity**: O(√n) for single prime, O(n log log n) for sieve
-**Space Complexity**: O(n) for sieve algorithm
-
-**Key Learning Points**:
-- Mathematical algorithms
-- Prime number detection
-- Sieve algorithms
-- Loop optimization
+**Time Complexity**: O(log n)
+**Space Complexity**: O(log n)
+**Key Learning Points**: Number to string conversion, digit extraction, string building
 
 ```go
 package main
 
 import "fmt"
 
-func isPrime(n int) bool {
-    if n < 2 {
-        return false
+func intToString(n int) string {
+    if n == 0 {
+        return "0"
     }
-    if n == 2 {
-        return true
+    
+    var result []byte
+    for n > 0 {
+        digit := n % 10
+        result = append([]byte{byte(digit + '0')}, result...)
+        n /= 10
     }
-    if n%2 == 0 {
+    
+    return string(result)
+}
+
+func main() {
+    n := 123
+    result := intToString(n)
+    fmt.Printf("Integer %d as string: '%s'\n", n, result)
+}
+```
+
+### 46. Check String Rotation
+
+**Description**: 
+Check if one string is rotation of another using loops. This tests understanding of string comparison, rotation detection, and pattern matching.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Check if strings are rotations
+2. **Loop Logic**: Use nested loops to check rotations
+3. **Rotation Logic**: Compare rotated strings
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Rotation detection
+
+**Step-by-Step Solution**:
+1. Check if lengths are equal
+2. Try all possible rotations
+3. Compare rotated string with target
+4. Return true if rotation found
+5. Return false otherwise
+
+**Sample Input/Output**:
+```
+Input: "abcd", "cdab"
+Output: true
+
+Input: "hello", "world"
+Output: false
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(n)
+**Key Learning Points**: String comparison, rotation detection, pattern matching
+
+```go
+package main
+
+import "fmt"
+
+func isRotation(s1, s2 string) bool {
+    if len(s1) != len(s2) {
         return false
     }
     
-    for i := 3; i*i <= n; i += 2 {
-        if n%i == 0 {
+    for i := 0; i < len(s1); i++ {
+        rotated := rotateString(s1, i)
+        if rotated == s2 {
+            return true
+        }
+    }
+    
+    return false
+}
+
+func rotateString(s string, positions int) string {
+    result := ""
+    for i := 0; i < len(s); i++ {
+        result += string(s[(i+positions)%len(s)])
+    }
+    return result
+}
+
+func main() {
+    s1 := "abcd"
+    s2 := "cdab"
+    result := isRotation(s1, s2)
+    fmt.Printf("Is rotation: %t\n", result)
+}
+```
+
+### 47. Remove All Occurrences of Character
+
+**Description**: 
+Remove all occurrences of a specific character from a string using loops. This tests understanding of string manipulation, character filtering, and string building.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Remove all instances of character
+2. **Loop Logic**: Use loop to check each character
+3. **Filter Logic**: Skip target character
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Character removal
+
+**Step-by-Step Solution**:
+1. Initialize result string
+2. Loop through each character
+3. Check if character is not target
+4. Add non-target characters to result
+5. Return filtered string
+
+**Sample Input/Output**:
+```
+Input: "hello", 'l'
+Output: "heo"
+
+Input: "programming", 'm'
+Output: "prograing"
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String manipulation, character filtering, string building
+
+```go
+package main
+
+import "fmt"
+
+func removeAllOccurrences(s string, target byte) string {
+    result := ""
+    for i := 0; i < len(s); i++ {
+        if s[i] != target {
+            result += string(s[i])
+        }
+    }
+    return result
+}
+
+func main() {
+    s := "hello"
+    target := 'l'
+    result := removeAllOccurrences(s, target)
+    fmt.Printf("String after removing '%c': %s\n", target, result)
+}
+```
+
+### 48. Count Repeated Substrings
+
+**Description**: 
+Count repeated substrings of length N in a string using loops. This tests understanding of string processing, substring extraction, and pattern counting.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count occurrences of substrings
+2. **Loop Logic**: Use nested loops to find substrings
+3. **Count Logic**: Count substring occurrences
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Substring counting
+
+**Step-by-Step Solution**:
+1. Loop through all possible substrings
+2. Count occurrences of each substring
+3. Track maximum count found
+4. Return count of most repeated substring
+5. Handle edge cases
+
+**Sample Input/Output**:
+```
+Input: "ababab", length=2
+Output: 3 (substring "ab" appears 3 times)
+
+Input: "hello", length=1
+Output: 2 (substring "l" appears 2 times)
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(n)
+**Key Learning Points**: String processing, substring extraction, pattern counting
+
+```go
+package main
+
+import "fmt"
+
+func countRepeatedSubstrings(s string, length int) int {
+    maxCount := 0
+    
+    for i := 0; i <= len(s)-length; i++ {
+        substring := s[i : i+length]
+        count := 0
+        
+        for j := 0; j <= len(s)-length; j++ {
+            if s[j:j+length] == substring {
+                count++
+            }
+        }
+        
+        if count > maxCount {
+            maxCount = count
+        }
+    }
+    
+    return maxCount
+}
+
+func main() {
+    s := "ababab"
+    length := 2
+    result := countRepeatedSubstrings(s, length)
+    fmt.Printf("Maximum repeated substring count: %d\n", result)
+}
+```
+
+### 49. Reverse Words in Sentence
+
+**Description**: 
+Reverse words in a sentence manually without using strings.Split. This tests understanding of string manipulation, word detection, and string building.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Reverse order of words
+2. **Loop Logic**: Use loops to find word boundaries
+3. **Word Logic**: Extract and reverse words
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Word reversal
+
+**Step-by-Step Solution**:
+1. Find word boundaries in string
+2. Extract each word
+3. Reverse order of words
+4. Build result string
+5. Return reversed sentence
+
+**Sample Input/Output**:
+```
+Input: "hello world"
+Output: "world hello"
+
+Input: "the sky is blue"
+Output: "blue is sky the"
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String manipulation, word detection, string building
+
+```go
+package main
+
+import "fmt"
+
+func reverseWords(s string) string {
+    var words []string
+    var currentWord string
+    
+    for i := 0; i < len(s); i++ {
+        if s[i] != ' ' {
+            currentWord += string(s[i])
+        } else {
+            if currentWord != "" {
+                words = append(words, currentWord)
+                currentWord = ""
+            }
+        }
+    }
+    
+    if currentWord != "" {
+        words = append(words, currentWord)
+    }
+    
+    result := ""
+    for i := len(words) - 1; i >= 0; i-- {
+        if i < len(words)-1 {
+            result += " "
+        }
+        result += words[i]
+    }
+    
+    return result
+}
+
+func main() {
+    s := "hello world"
+    result := reverseWords(s)
+    fmt.Printf("Reversed words: '%s'\n", result)
+}
+```
+
+### 50. Count Palindromic Substrings
+
+**Description**: 
+Count all palindromic substrings in a string using loops. This tests understanding of string processing, palindrome detection, and substring analysis.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count all palindromic substrings
+2. **Loop Logic**: Use nested loops to check substrings
+3. **Palindrome Logic**: Check if substring is palindrome
+4. **Efficiency**: O(n³) time complexity
+5. **String Algorithm**: Palindrome counting
+
+**Step-by-Step Solution**:
+1. Loop through all possible substrings
+2. Check if each substring is palindrome
+3. Count palindromic substrings
+4. Return total count
+5. Handle edge cases
+
+**Sample Input/Output**:
+```
+Input: "abc"
+Output: 3 ("a", "b", "c")
+
+Input: "aaa"
+Output: 6 ("a", "a", "a", "aa", "aa", "aaa")
+```
+
+**Time Complexity**: O(n³)
+**Space Complexity**: O(1)
+**Key Learning Points**: String processing, palindrome detection, substring analysis
+
+```go
+package main
+
+import "fmt"
+
+func countPalindromicSubstrings(s string) int {
+    count := 0
+    
+    for i := 0; i < len(s); i++ {
+        for j := i; j < len(s); j++ {
+            if isPalindrome(s, i, j) {
+                count++
+            }
+        }
+    }
+    
+    return count
+}
+
+func isPalindrome(s string, start, end int) bool {
+    for start < end {
+        if s[start] != s[end] {
+            return false
+        }
+        start++
+        end--
+    }
+    return true
+}
+
+func main() {
+    s := "aaa"
+    result := countPalindromicSubstrings(s)
+    fmt.Printf("Number of palindromic substrings: %d\n", result)
+}
+```
+
+### 51. String Compression
+
+**Description**: 
+Compress string like "aaabbc" → "a3b2c1" using loops. This tests understanding of string manipulation, character counting, and compression algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Replace consecutive characters with character + count
+2. **Loop Logic**: Use loops to count consecutive characters
+3. **Compression Logic**: Build compressed string
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: String compression
+
+**Step-by-Step Solution**:
+1. Loop through string characters
+2. Count consecutive occurrences
+3. Add character and count to result
+4. Handle single characters
+5. Return compressed string
+
+**Sample Input/Output**:
+```
+Input: "aaabbc"
+Output: "a3b2c1"
+
+Input: "aabcccccaaa"
+Output: "a2b1c5a3"
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: String manipulation, character counting, compression algorithms
+
+```go
+package main
+
+import "fmt"
+
+func compressString(s string) string {
+    if len(s) == 0 {
+        return ""
+    }
+    
+    result := ""
+    currentChar := s[0]
+    count := 1
+    
+    for i := 1; i < len(s); i++ {
+        if s[i] == currentChar {
+            count++
+        } else {
+            result += string(currentChar) + fmt.Sprintf("%d", count)
+            currentChar = s[i]
+            count = 1
+        }
+    }
+    
+    result += string(currentChar) + fmt.Sprintf("%d", count)
+    return result
+}
+
+func main() {
+    s := "aaabbc"
+    result := compressString(s)
+    fmt.Printf("Compressed string: %s\n", result)
+}
+```
+
+### 52. Longest Common Prefix
+
+**Description**: 
+Find longest common prefix of array of strings using loops. This tests understanding of string comparison, prefix matching, and array processing.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find common prefix among all strings
+2. **Loop Logic**: Use nested loops to compare characters
+3. **Prefix Logic**: Check character by character
+4. **Efficiency**: O(n*m) time complexity
+5. **String Algorithm**: Prefix matching
+
+**Step-by-Step Solution**:
+1. Find shortest string length
+2. Loop through each character position
+3. Compare character at position across all strings
+4. Stop when characters don't match
+5. Return common prefix
+
+**Sample Input/Output**:
+```
+Input: ["flower", "flow", "flight"]
+Output: "fl"
+
+Input: ["dog", "racecar", "car"]
+Output: ""
+```
+
+**Time Complexity**: O(n*m)
+**Space Complexity**: O(1)
+**Key Learning Points**: String comparison, prefix matching, array processing
+
+```go
+package main
+
+import "fmt"
+
+func longestCommonPrefix(strs []string) string {
+    if len(strs) == 0 {
+        return ""
+    }
+    
+    minLen := len(strs[0])
+    for i := 1; i < len(strs); i++ {
+        if len(strs[i]) < minLen {
+            minLen = len(strs[i])
+        }
+    }
+    
+    for i := 0; i < minLen; i++ {
+        char := strs[0][i]
+        for j := 1; j < len(strs); j++ {
+            if strs[j][i] != char {
+                return strs[0][:i]
+            }
+        }
+    }
+    
+    return strs[0][:minLen]
+}
+
+func main() {
+    strs := []string{"flower", "flow", "flight"}
+    result := longestCommonPrefix(strs)
+    fmt.Printf("Longest common prefix: '%s'\n", result)
+}
+```
+
+### 53. Find First Repeated Character
+
+**Description**: 
+Find first repeated character in a string using loops. This tests understanding of string traversal, character tracking, and duplicate detection.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find first character that appears twice
+2. **Loop Logic**: Use nested loops to check for duplicates
+3. **Duplicate Logic**: Check if character appears again
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Duplicate detection
+
+**Step-by-Step Solution**:
+1. Loop through each character
+2. Check if character appears again later
+3. Return first repeated character found
+4. Return -1 if no repetition
+5. Handle edge cases
+
+**Sample Input/Output**:
+```
+Input: "hello"
+Output: 'l' (first repeated character)
+
+Input: "world"
+Output: -1 (no repeated characters)
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(1)
+**Key Learning Points**: String traversal, character tracking, duplicate detection
+
+```go
+package main
+
+import "fmt"
+
+func findFirstRepeatedChar(s string) byte {
+    for i := 0; i < len(s); i++ {
+        for j := i + 1; j < len(s); j++ {
+            if s[i] == s[j] {
+                return s[i]
+            }
+        }
+    }
+    return 0
+}
+
+func main() {
+    s := "hello"
+    result := findFirstRepeatedChar(s)
+    if result != 0 {
+        fmt.Printf("First repeated character: '%c'\n", result)
+    } else {
+        fmt.Println("No repeated characters found")
+    }
+}
+```
+
+### 54. Find All Anagrams in String
+
+**Description**: 
+Find all anagrams of a string in another string using loops. This tests understanding of string processing, anagram detection, and pattern matching.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find all anagram occurrences
+2. **Loop Logic**: Use nested loops to check substrings
+3. **Anagram Logic**: Check if substring is anagram
+4. **Efficiency**: O(n*m*k) time complexity
+5. **String Algorithm**: Anagram detection
+
+**Step-by-Step Solution**:
+1. Loop through all possible substrings
+2. Check if substring is anagram of pattern
+3. Count anagram occurrences
+4. Return count of anagrams
+5. Handle edge cases
+
+**Sample Input/Output**:
+```
+Input: "cbaebabacd", "abc"
+Output: 2 (substrings "cba" and "bac" are anagrams)
+
+Input: "abab", "ab"
+Output: 3 (substrings "ab", "ba", "ab" are anagrams)
+```
+
+**Time Complexity**: O(n*m*k)
+**Space Complexity**: O(1)
+**Key Learning Points**: String processing, anagram detection, pattern matching
+
+```go
+package main
+
+import "fmt"
+
+func findAnagrams(s, p string) int {
+    count := 0
+    
+    for i := 0; i <= len(s)-len(p); i++ {
+        substring := s[i : i+len(p)]
+        if isAnagram(substring, p) {
+            count++
+        }
+    }
+    
+    return count
+}
+
+func isAnagram(s1, s2 string) bool {
+    if len(s1) != len(s2) {
+        return false
+    }
+    
+    for i := 0; i < len(s1); i++ {
+        count1 := 0
+        count2 := 0
+        
+        for j := 0; j < len(s1); j++ {
+            if s1[j] == s1[i] {
+                count1++
+            }
+        }
+        
+        for j := 0; j < len(s2); j++ {
+            if s2[j] == s1[i] {
+                count2++
+            }
+        }
+        
+        if count1 != count2 {
+            return false
+        }
+    }
+    
+    return true
+}
+
+func main() {
+    s := "cbaebabacd"
+    p := "abc"
+    result := findAnagrams(s, p)
+    fmt.Printf("Number of anagrams: %d\n", result)
+}
+```
+
+### 55. Count Digits, Letters, and Special Characters
+
+**Description**: 
+Count digits, letters, and special characters in a string using loops. This tests understanding of character classification, ASCII values, and string analysis.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Categorize each character by type
+2. **Loop Logic**: Use loop to check each character
+3. **Classification Logic**: Check ASCII ranges for each type
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Character classification
+
+**Step-by-Step Solution**:
+1. Initialize counters for each type
+2. Loop through each character
+3. Check if character is digit, letter, or special
+4. Increment appropriate counter
+5. Print results
+
+**Sample Input/Output**:
+```
+Input: "Hello123!@#"
+Output: Digits: 3, Letters: 5, Special: 3
+
+Input: "abc123"
+Output: Digits: 3, Letters: 3, Special: 0
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: Character classification, ASCII values, string analysis
+
+```go
+package main
+
+import "fmt"
+
+func countCharacterTypes(str string) {
+    digits := 0
+    letters := 0
+    special := 0
+    
+    for i := 0; i < len(str); i++ {
+        char := str[i]
+        if char >= '0' && char <= '9' {
+            digits++
+        } else if (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z') {
+            letters++
+        } else {
+            special++
+        }
+    }
+    
+    fmt.Printf("Digits: %d, Letters: %d, Special: %d\n", digits, letters, special)
+}
+
+func main() {
+    str := "Hello123!@#"
+    countCharacterTypes(str)
+}
+```
+
+### 56. Generate All Substrings
+
+**Description**: 
+Generate all possible substrings of a string using loops. This tests understanding of string manipulation, nested loops, and substring generation.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Generate all contiguous substrings
+2. **Loop Logic**: Use nested loops for start and end positions
+3. **Substring Logic**: Extract substring from start to end
+4. **Efficiency**: O(n²) time complexity
+5. **String Algorithm**: Substring generation
+
+**Step-by-Step Solution**:
+1. Loop through each starting position
+2. Loop through each ending position
+3. Extract substring from start to end
+4. Print or store substring
+5. Handle edge cases
+
+**Sample Input/Output**:
+```
+Input: "abc"
+Output: a, b, c, ab, bc, abc
+
+Input: "xy"
+Output: x, y, xy
+```
+
+**Time Complexity**: O(n²)
+**Space Complexity**: O(n²)
+**Key Learning Points**: String manipulation, nested loops, substring generation
+
+```go
+package main
+
+import "fmt"
+
+func generateAllSubstrings(str string) {
+    for i := 0; i < len(str); i++ {
+        for j := i; j < len(str); j++ {
+            substring := str[i : j+1]
+            fmt.Printf("%s ", substring)
+        }
+    }
+    fmt.Println()
+}
+
+func main() {
+    str := "abc"
+    generateAllSubstrings(str)
+}
+```
+
+### 57. Substring Search (strStr/indexOf)
+
+**Description**: 
+Find first occurrence of substring in string using loops. This tests understanding of string matching, pattern searching, and string algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find pattern within text
+2. **Loop Logic**: Use nested loops to search
+3. **Matching Logic**: Compare characters sequentially
+4. **Efficiency**: O(n*m) time complexity
+5. **String Algorithm**: Pattern matching
+
+**Step-by-Step Solution**:
+1. Loop through each position in text
+2. Check if pattern matches from current position
+3. Compare characters one by one
+4. Return position if match found
+5. Return -1 if no match
+
+**Sample Input/Output**:
+```
+Input: "hello world", "world"
+Output: 6
+
+Input: "hello world", "xyz"
+Output: -1
+```
+
+**Time Complexity**: O(n*m)
+**Space Complexity**: O(1)
+**Key Learning Points**: String matching, pattern searching, string algorithms
+
+```go
+package main
+
+import "fmt"
+
+func strStr(text, pattern string) int {
+    if len(pattern) == 0 {
+        return 0
+    }
+    
+    for i := 0; i <= len(text)-len(pattern); i++ {
+        match := true
+        for j := 0; j < len(pattern); j++ {
+            if text[i+j] != pattern[j] {
+                match = false
+                break
+            }
+        }
+        if match {
+            return i
+        }
+    }
+    
+    return -1
+}
+
+func main() {
+    text := "hello world"
+    pattern := "world"
+    result := strStr(text, pattern)
+    fmt.Printf("Pattern found at index: %d\n", result)
+}
+```
+
+### 58. Prefix Sum Array
+
+**Description**: 
+Implement prefix sum array to answer range sum queries efficiently. This tests understanding of prefix computation, range queries, and optimization techniques.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Precompute cumulative sums for fast range queries
+2. **Loop Logic**: Use loops to build prefix sum array
+3. **Query Logic**: Answer range queries in O(1) time
+4. **Efficiency**: O(n) preprocessing, O(1) queries
+5. **Array Algorithm**: Prefix sum optimization
+
+**Step-by-Step Solution**:
+1. Create prefix sum array
+2. Fill with cumulative sums
+3. Answer range queries using prefix difference
+4. Handle edge cases
+5. Optimize for multiple queries
+
+**Sample Input/Output**:
+```
+Input: [1, 2, 3, 4, 5], queries: [0,2], [1,3], [2,4]
+Output: 6, 9, 12
+
+Input: [10, 20, 30], queries: [0,1], [1,2]
+Output: 30, 50
+```
+
+**Time Complexity**: O(n) preprocessing, O(1) per query
+**Space Complexity**: O(n)
+**Key Learning Points**: Prefix computation, range queries, optimization
+
+```go
+package main
+
+import "fmt"
+
+func buildPrefixSum(arr []int) []int {
+    n := len(arr)
+    prefix := make([]int, n+1)
+    
+    for i := 0; i < n; i++ {
+        prefix[i+1] = prefix[i] + arr[i]
+    }
+    
+    return prefix
+}
+
+func rangeSum(prefix []int, l, r int) int {
+    return prefix[r+1] - prefix[l]
+}
+
+func main() {
+    arr := []int{1, 2, 3, 4, 5}
+    prefix := buildPrefixSum(arr)
+    
+    fmt.Printf("Range [0,2]: %d\n", rangeSum(prefix, 0, 2))
+    fmt.Printf("Range [1,3]: %d\n", rangeSum(prefix, 1, 3))
+    fmt.Printf("Range [2,4]: %d\n", rangeSum(prefix, 2, 4))
+}
+```
+
+### 59. 2D Prefix Sum
+
+**Description**: 
+Implement 2D prefix sum for matrix range sum queries. This tests understanding of 2D prefix computation, matrix operations, and spatial queries.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Precompute 2D cumulative sums
+2. **Loop Logic**: Use nested loops for 2D prefix computation
+3. **Query Logic**: Answer rectangular range queries efficiently
+4. **Efficiency**: O(n*m) preprocessing, O(1) queries
+5. **Matrix Algorithm**: 2D prefix sum optimization
+
+**Step-by-Step Solution**:
+1. Create 2D prefix sum matrix
+2. Fill with cumulative sums
+3. Answer rectangular queries using inclusion-exclusion
+4. Handle edge cases
+5. Optimize for multiple queries
+
+**Sample Input/Output**:
+```
+Input: [[1,2,3],[4,5,6],[7,8,9]], query: (0,0) to (1,1)
+Output: 12 (1+2+4+5)
+
+Input: [[1,1],[1,1]], query: (0,0) to (1,1)
+Output: 4
+```
+
+**Time Complexity**: O(n*m) preprocessing, O(1) per query
+**Space Complexity**: O(n*m)
+**Key Learning Points**: 2D prefix computation, matrix queries, spatial optimization
+
+```go
+package main
+
+import "fmt"
+
+func build2DPrefixSum(matrix [][]int) [][]int {
+    rows := len(matrix)
+    cols := len(matrix[0])
+    
+    prefix := make([][]int, rows+1)
+    for i := 0; i <= rows; i++ {
+        prefix[i] = make([]int, cols+1)
+    }
+    
+    for i := 1; i <= rows; i++ {
+        for j := 1; j <= cols; j++ {
+            prefix[i][j] = matrix[i-1][j-1] + 
+                          prefix[i-1][j] + 
+                          prefix[i][j-1] - 
+                          prefix[i-1][j-1]
+        }
+    }
+    
+    return prefix
+}
+
+func rangeSum2D(prefix [][]int, r1, c1, r2, c2 int) int {
+    return prefix[r2+1][c2+1] - 
+           prefix[r1][c2+1] - 
+           prefix[r2+1][c1] + 
+           prefix[r1][c1]
+}
+
+func main() {
+    matrix := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+    prefix := build2DPrefixSum(matrix)
+    
+    fmt.Printf("Range (0,0) to (1,1): %d\n", rangeSum2D(prefix, 0, 0, 1, 1))
+    fmt.Printf("Range (1,1) to (2,2): %d\n", rangeSum2D(prefix, 1, 1, 2, 2))
+}
+```
+
+### 60. XOR Prefix Sum
+
+**Description**: 
+Implement XOR prefix sum for range XOR queries. This tests understanding of XOR properties, prefix computation, and bitwise operations.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Precompute XOR cumulative values
+2. **Loop Logic**: Use loops for XOR prefix computation
+3. **XOR Logic**: Leverage XOR properties for range queries
+4. **Efficiency**: O(n) preprocessing, O(1) queries
+5. **Bitwise Algorithm**: XOR prefix optimization
+
+**Step-by-Step Solution**:
+1. Create XOR prefix array
+2. Fill with cumulative XOR values
+3. Answer range XOR queries using XOR properties
+4. Handle edge cases
+5. Optimize for multiple queries
+
+**Sample Input/Output**:
+```
+Input: [1, 2, 3, 4, 5], queries: [0,2], [1,3], [2,4]
+Output: 0, 4, 2
+
+Input: [7, 3, 1], queries: [0,1], [1,2]
+Output: 4, 2
+```
+
+**Time Complexity**: O(n) preprocessing, O(1) per query
+**Space Complexity**: O(n)
+**Key Learning Points**: XOR properties, bitwise operations, prefix optimization
+
+```go
+package main
+
+import "fmt"
+
+func buildXORPrefix(arr []int) []int {
+    n := len(arr)
+    prefix := make([]int, n+1)
+    
+    for i := 0; i < n; i++ {
+        prefix[i+1] = prefix[i] ^ arr[i]
+    }
+    
+    return prefix
+}
+
+func rangeXOR(prefix []int, l, r int) int {
+    return prefix[r+1] ^ prefix[l]
+}
+
+func main() {
+    arr := []int{1, 2, 3, 4, 5}
+    prefix := buildXORPrefix(arr)
+    
+    fmt.Printf("XOR Range [0,2]: %d\n", rangeXOR(prefix, 0, 2))
+    fmt.Printf("XOR Range [1,3]: %d\n", rangeXOR(prefix, 1, 3))
+    fmt.Printf("XOR Range [2,4]: %d\n", rangeXOR(prefix, 2, 4))
+}
+```
+
+### 61. Rabin-Karp Algorithm
+
+**Description**: 
+Implement Rabin-Karp algorithm for pattern matching using rolling hash. This tests understanding of string algorithms, hashing, and pattern matching.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Use rolling hash for efficient pattern matching
+2. **Loop Logic**: Use loops to compute rolling hash
+3. **Hash Logic**: Compare hash values for pattern matching
+4. **Efficiency**: O(n+m) average time complexity
+5. **String Algorithm**: Rolling hash optimization
+
+**Step-by-Step Solution**:
+1. Compute pattern hash
+2. Compute rolling hash for text
+3. Compare hash values
+4. Handle hash collisions
+5. Return all matches
+
+**Sample Input/Output**:
+```
+Input: text="abracadabra", pattern="abra"
+Output: [0, 7]
+
+Input: text="hello world", pattern="world"
+Output: [6]
+```
+
+**Time Complexity**: O(n+m) average, O(n*m) worst case
+**Space Complexity**: O(1)
+**Key Learning Points**: Rolling hash, string matching, hash collisions
+
+```go
+package main
+
+import "fmt"
+
+const base = 256
+const mod = 1000000007
+
+func rabinKarp(text, pattern string) []int {
+    n := len(text)
+    m := len(pattern)
+    
+    if m > n {
+        return []int{}
+    }
+    
+    var result []int
+    
+    // Compute pattern hash
+    patternHash := 0
+    for i := 0; i < m; i++ {
+        patternHash = (patternHash*base + int(pattern[i])) % mod
+    }
+    
+    // Compute first window hash
+    textHash := 0
+    for i := 0; i < m; i++ {
+        textHash = (textHash*base + int(text[i])) % mod
+    }
+    
+    // Check first window
+    if textHash == patternHash {
+        if text[:m] == pattern {
+            result = append(result, 0)
+        }
+    }
+    
+    // Rolling hash
+    h := 1
+    for i := 0; i < m-1; i++ {
+        h = (h * base) % mod
+    }
+    
+    for i := m; i < n; i++ {
+        // Remove leading character
+        textHash = (textHash - int(text[i-m])*h) % mod
+        if textHash < 0 {
+            textHash += mod
+        }
+        
+        // Add trailing character
+        textHash = (textHash*base + int(text[i])) % mod
+        
+        // Check hash match
+        if textHash == patternHash {
+            if text[i-m+1:i+1] == pattern {
+                result = append(result, i-m+1)
+            }
+        }
+    }
+    
+    return result
+}
+
+func main() {
+    text := "abracadabra"
+    pattern := "abra"
+    result := rabinKarp(text, pattern)
+    fmt.Printf("Pattern found at indices: %v\n", result)
+}
+```
+
+### 62. Z-Algorithm
+
+**Description**: 
+Implement Z-Algorithm for pattern matching and string analysis. This tests understanding of advanced string algorithms, pattern matching, and string preprocessing.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Use Z-array for efficient string analysis
+2. **Loop Logic**: Use loops to compute Z-array
+3. **Z Logic**: Find longest common prefix for each position
+4. **Efficiency**: O(n+m) time complexity
+5. **String Algorithm**: Z-array optimization
+
+**Step-by-Step Solution**:
+1. Create combined string
+2. Compute Z-array
+3. Find pattern matches
+4. Handle edge cases
+5. Return all matches
+
+**Sample Input/Output**:
+```
+Input: text="abracadabra", pattern="abra"
+Output: [0, 7]
+
+Input: text="hello world", pattern="world"
+Output: [6]
+```
+
+**Time Complexity**: O(n+m)
+**Space Complexity**: O(n+m)
+**Key Learning Points**: Z-array, string preprocessing, pattern matching
+
+```go
+package main
+
+import "fmt"
+
+func zAlgorithm(s string) []int {
+    n := len(s)
+    z := make([]int, n)
+    
+    l, r := 0, 0
+    for i := 1; i < n; i++ {
+        if i <= r {
+            z[i] = min(r-i+1, z[i-l])
+        }
+        
+        for i+z[i] < n && s[z[i]] == s[i+z[i]] {
+            z[i]++
+        }
+        
+        if i+z[i]-1 > r {
+            l, r = i, i+z[i]-1
+        }
+    }
+    
+    return z
+}
+
+func min(a, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+
+func findPattern(text, pattern string) []int {
+    combined := pattern + "$" + text
+    z := zAlgorithm(combined)
+    
+    var result []int
+    m := len(pattern)
+    
+    for i := m + 1; i < len(z); i++ {
+        if z[i] == m {
+            result = append(result, i-m-1)
+        }
+    }
+    
+    return result
+}
+
+func main() {
+    text := "abracadabra"
+    pattern := "abra"
+    result := findPattern(text, pattern)
+    fmt.Printf("Pattern found at indices: %v\n", result)
+}
+```
+
+### 63. Manacher's Algorithm
+
+**Description**: 
+Implement Manacher's algorithm for finding all palindromes in a string. This tests understanding of advanced string algorithms, palindrome detection, and string preprocessing.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find all palindromes efficiently
+2. **Loop Logic**: Use loops with center expansion
+3. **Palindrome Logic**: Use symmetry properties
+4. **Efficiency**: O(n) time complexity
+5. **String Algorithm**: Palindrome optimization
+
+**Step-by-Step Solution**:
+1. Preprocess string with separators
+2. Use center expansion technique
+3. Leverage symmetry properties
+4. Find all palindromes
+5. Return palindrome information
+
+**Sample Input/Output**:
+```
+Input: "ababa"
+Output: All palindromes: a, b, a, b, a, aba, bab, aba, ababa
+
+Input: "racecar"
+Output: All palindromes: r, a, c, e, c, a, r, cec, aceca, racecar
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: Palindrome detection, center expansion, symmetry properties
+
+```go
+package main
+
+import "fmt"
+
+func manacher(s string) []int {
+    // Preprocess string
+    processed := "#"
+    for _, c := range s {
+        processed += string(c) + "#"
+    }
+    
+    n := len(processed)
+    p := make([]int, n)
+    center, right := 0, 0
+    
+    for i := 0; i < n; i++ {
+        if i < right {
+            p[i] = min(right-i, p[2*center-i])
+        }
+        
+        // Expand around center
+        for i+p[i]+1 < n && i-p[i]-1 >= 0 && 
+            processed[i+p[i]+1] == processed[i-p[i]-1] {
+            p[i]++
+        }
+        
+        // Update center and right
+        if i+p[i] > right {
+            center, right = i, i+p[i]
+        }
+    }
+    
+    return p
+}
+
+func findAllPalindromes(s string) []string {
+    p := manacher(s)
+    var palindromes []string
+    
+    for i := 0; i < len(p); i++ {
+        if p[i] > 0 {
+            start := (i - p[i]) / 2
+            length := p[i]
+            palindromes = append(palindromes, s[start:start+length])
+        }
+    }
+    
+    return palindromes
+}
+
+func main() {
+    s := "ababa"
+    palindromes := findAllPalindromes(s)
+    fmt.Printf("All palindromes: %v\n", palindromes)
+}
+```
+
+### 64. Radix Sort
+
+**Description**: 
+Implement Radix Sort for sorting integers using digit-by-digit sorting. This tests understanding of non-comparison sorting, digit manipulation, and stable sorting algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Sort by individual digits from least to most significant
+2. **Loop Logic**: Use loops for digit extraction and counting
+3. **Radix Logic**: Use counting sort for each digit position
+4. **Efficiency**: O(d*(n+k)) time complexity
+5. **Sorting Algorithm**: Non-comparison based sorting
+
+**Step-by-Step Solution**:
+1. Find maximum number to determine digits
+2. Sort by each digit position
+3. Use counting sort for each digit
+4. Maintain stability
+5. Return sorted array
+
+**Sample Input/Output**:
+```
+Input: [170, 45, 75, 90, 2, 802, 24, 66]
+Output: [2, 24, 45, 66, 75, 90, 170, 802]
+
+Input: [432, 8, 530, 90, 88, 231, 11, 45]
+Output: [8, 11, 45, 88, 90, 231, 432, 530]
+```
+
+**Time Complexity**: O(d*(n+k))
+**Space Complexity**: O(n+k)
+**Key Learning Points**: Non-comparison sorting, digit manipulation, stable sorting
+
+```go
+package main
+
+import "fmt"
+
+func radixSort(arr []int) []int {
+    if len(arr) == 0 {
+        return arr
+    }
+    
+    // Find maximum number
+    max := arr[0]
+    for _, num := range arr {
+        if num > max {
+            max = num
+        }
+    }
+    
+    // Sort by each digit
+    for exp := 1; max/exp > 0; exp *= 10 {
+        countingSortByDigit(arr, exp)
+    }
+    
+    return arr
+}
+
+func countingSortByDigit(arr []int, exp int) {
+    n := len(arr)
+    output := make([]int, n)
+    count := make([]int, 10)
+    
+    // Count occurrences of each digit
+    for i := 0; i < n; i++ {
+        count[(arr[i]/exp)%10]++
+    }
+    
+    // Change count to position
+    for i := 1; i < 10; i++ {
+        count[i] += count[i-1]
+    }
+    
+    // Build output array
+    for i := n - 1; i >= 0; i-- {
+        digit := (arr[i] / exp) % 10
+        output[count[digit]-1] = arr[i]
+        count[digit]--
+    }
+    
+    // Copy output back to array
+    for i := 0; i < n; i++ {
+        arr[i] = output[i]
+    }
+}
+
+func main() {
+    arr := []int{170, 45, 75, 90, 2, 802, 24, 66}
+    result := radixSort(arr)
+    fmt.Printf("Sorted array: %v\n", result)
+}
+```
+
+### 65. Counting Sort
+
+**Description**: 
+Implement Counting Sort for sorting integers with limited range. This tests understanding of non-comparison sorting, counting techniques, and range-based algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Count occurrences of each value
+2. **Loop Logic**: Use loops for counting and placement
+3. **Counting Logic**: Use frequency array for sorting
+4. **Efficiency**: O(n+k) time complexity
+5. **Sorting Algorithm**: Range-based sorting
+
+**Step-by-Step Solution**:
+1. Find range of values
+2. Count occurrences of each value
+3. Calculate positions based on counts
+4. Place elements in correct positions
+5. Return sorted array
+
+**Sample Input/Output**:
+```
+Input: [4, 2, 2, 8, 3, 3, 1]
+Output: [1, 2, 2, 3, 3, 4, 8]
+
+Input: [1, 4, 1, 2, 7, 5, 2]
+Output: [1, 1, 2, 2, 4, 5, 7]
+```
+
+**Time Complexity**: O(n+k)
+**Space Complexity**: O(k)
+**Key Learning Points**: Non-comparison sorting, counting techniques, range-based algorithms
+
+```go
+package main
+
+import "fmt"
+
+func countingSort(arr []int) []int {
+    if len(arr) == 0 {
+        return arr
+    }
+    
+    // Find range
+    min, max := arr[0], arr[0]
+    for _, num := range arr {
+        if num < min {
+            min = num
+        }
+        if num > max {
+            max = num
+        }
+    }
+    
+    range_size := max - min + 1
+    count := make([]int, range_size)
+    
+    // Count occurrences
+    for _, num := range arr {
+        count[num-min]++
+    }
+    
+    // Build sorted array
+    result := make([]int, len(arr))
+    index := 0
+    
+    for i := 0; i < range_size; i++ {
+        for count[i] > 0 {
+            result[index] = i + min
+            index++
+            count[i]--
+        }
+    }
+    
+    return result
+}
+
+func main() {
+    arr := []int{4, 2, 2, 8, 3, 3, 1}
+    result := countingSort(arr)
+    fmt.Printf("Sorted array: %v\n", result)
+}
+```
+
+### 66. Bucket Sort
+
+**Description**: 
+Implement Bucket Sort for sorting floating point numbers. This tests understanding of distribution-based sorting, bucket allocation, and floating point handling.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Distribute elements into buckets
+2. **Loop Logic**: Use loops for bucket allocation and sorting
+3. **Bucket Logic**: Sort individual buckets and concatenate
+4. **Efficiency**: O(n+k) average time complexity
+5. **Sorting Algorithm**: Distribution-based sorting
+
+**Step-by-Step Solution**:
+1. Create buckets
+2. Distribute elements into buckets
+3. Sort individual buckets
+4. Concatenate sorted buckets
+5. Return sorted array
+
+**Sample Input/Output**:
+```
+Input: [0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434]
+Output: [0.1234, 0.3434, 0.565, 0.656, 0.665, 0.897]
+
+Input: [0.5, 0.2, 0.8, 0.1, 0.9]
+Output: [0.1, 0.2, 0.5, 0.8, 0.9]
+```
+
+**Time Complexity**: O(n+k) average, O(n²) worst case
+**Space Complexity**: O(n)
+**Key Learning Points**: Distribution-based sorting, bucket allocation, floating point handling
+
+```go
+package main
+
+import "fmt"
+import "sort"
+
+func bucketSort(arr []float64) []float64 {
+    if len(arr) == 0 {
+        return arr
+    }
+    
+    n := len(arr)
+    buckets := make([][]float64, n)
+    
+    // Distribute elements into buckets
+    for _, num := range arr {
+        bucketIndex := int(num * float64(n))
+        if bucketIndex >= n {
+            bucketIndex = n - 1
+        }
+        buckets[bucketIndex] = append(buckets[bucketIndex], num)
+    }
+    
+    // Sort individual buckets
+    for i := 0; i < n; i++ {
+        sort.Float64s(buckets[i])
+    }
+    
+    // Concatenate buckets
+    result := make([]float64, 0, n)
+    for _, bucket := range buckets {
+        result = append(result, bucket...)
+    }
+    
+    return result
+}
+
+func main() {
+    arr := []float64{0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434}
+    result := bucketSort(arr)
+    fmt.Printf("Sorted array: %v\n", result)
+}
+```
+
+### 67. Greedy Algorithm - Activity Selection
+
+**Description**: 
+Implement Activity Selection problem using greedy approach. This tests understanding of greedy algorithms, scheduling problems, and optimization techniques.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Select maximum non-overlapping activities
+2. **Loop Logic**: Use loops to process activities
+3. **Greedy Logic**: Always select earliest finishing activity
+4. **Efficiency**: O(n log n) time complexity
+5. **Algorithm**: Greedy optimization
+
+**Step-by-Step Solution**:
+1. Sort activities by finish time
+2. Select first activity
+3. For each remaining activity, select if compatible
+4. Track selected activities
+5. Return maximum activities
+
+**Sample Input/Output**:
+```
+Input: [(1,4), (3,5), (0,6), (5,7), (8,9), (5,9)]
+Output: [(1,4), (5,7), (8,9)] - 3 activities
+
+Input: [(1,2), (3,4), (0,6), (5,7), (8,9), (5,9)]
+Output: [(1,2), (3,4), (5,7), (8,9)] - 4 activities
+```
+
+**Time Complexity**: O(n log n)
+**Space Complexity**: O(1)
+**Key Learning Points**: Greedy algorithms, scheduling, optimization
+
+```go
+package main
+
+import "fmt"
+import "sort"
+
+type Activity struct {
+    start, finish int
+}
+
+func activitySelection(activities []Activity) []Activity {
+    if len(activities) == 0 {
+        return []Activity{}
+    }
+    
+    // Sort by finish time
+    sort.Slice(activities, func(i, j int) bool {
+        return activities[i].finish < activities[j].finish
+    })
+    
+    var selected []Activity
+    selected = append(selected, activities[0])
+    lastFinish := activities[0].finish
+    
+    for i := 1; i < len(activities); i++ {
+        if activities[i].start >= lastFinish {
+            selected = append(selected, activities[i])
+            lastFinish = activities[i].finish
+        }
+    }
+    
+    return selected
+}
+
+func main() {
+    activities := []Activity{
+        {1, 4}, {3, 5}, {0, 6}, {5, 7}, {8, 9}, {5, 9},
+    }
+    result := activitySelection(activities)
+    fmt.Printf("Selected activities: %v\n", result)
+}
+```
+
+### 68. Greedy Algorithm - Fractional Knapsack
+
+**Description**: 
+Implement Fractional Knapsack problem using greedy approach. This tests understanding of greedy algorithms, optimization problems, and value-to-weight ratios.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Select items with highest value-to-weight ratio
+2. **Loop Logic**: Use loops to process items
+3. **Greedy Logic**: Always select item with highest ratio
+4. **Efficiency**: O(n log n) time complexity
+5. **Algorithm**: Greedy optimization
+
+**Step-by-Step Solution**:
+1. Calculate value-to-weight ratios
+2. Sort items by ratio
+3. Select items greedily
+4. Handle fractional selection
+5. Return maximum value
+
+**Sample Input/Output**:
+```
+Input: weights=[10,20,30], values=[60,100,120], capacity=50
+Output: 240 (select all of item 1, all of item 2, 2/3 of item 3)
+
+Input: weights=[5,10,15], values=[10,20,30], capacity=20
+Output: 40 (select all items)
+```
+
+**Time Complexity**: O(n log n)
+**Space Complexity**: O(1)
+**Key Learning Points**: Greedy algorithms, optimization, value-to-weight ratios
+
+```go
+package main
+
+import "fmt"
+import "sort"
+
+type Item struct {
+    weight, value int
+    ratio         float64
+}
+
+func fractionalKnapsack(items []Item, capacity int) float64 {
+    // Calculate value-to-weight ratios
+    for i := range items {
+        items[i].ratio = float64(items[i].value) / float64(items[i].weight)
+    }
+    
+    // Sort by ratio (descending)
+    sort.Slice(items, func(i, j int) bool {
+        return items[i].ratio > items[j].ratio
+    })
+    
+    totalValue := 0.0
+    remainingCapacity := capacity
+    
+    for _, item := range items {
+        if remainingCapacity >= item.weight {
+            // Take whole item
+            totalValue += float64(item.value)
+            remainingCapacity -= item.weight
+        } else {
+            // Take fraction of item
+            fraction := float64(remainingCapacity) / float64(item.weight)
+            totalValue += fraction * float64(item.value)
+            break
+        }
+    }
+    
+    return totalValue
+}
+
+func main() {
+    items := []Item{
+        {10, 60, 0}, {20, 100, 0}, {30, 120, 0},
+    }
+    capacity := 50
+    result := fractionalKnapsack(items, capacity)
+    fmt.Printf("Maximum value: %.2f\n", result)
+}
+```
+
+### 69. Monotonic Stack - Next Greater Element
+
+**Description**: 
+Implement Next Greater Element using monotonic stack. This tests understanding of stack data structure, monotonic properties, and element comparison algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find next element greater than current using stack
+2. **Loop Logic**: Use loops with stack operations
+3. **Monotonic Logic**: Maintain decreasing order in stack
+4. **Efficiency**: O(n) time complexity
+5. **Stack Algorithm**: Monotonic stack optimization
+
+**Step-by-Step Solution**:
+1. Initialize empty stack
+2. Loop through each element
+3. Pop elements smaller than current
+4. Set next greater for popped elements
+5. Push current element
+
+**Sample Input/Output**:
+```
+Input: [4, 5, 2, 10]
+Output: [5, 10, 10, -1]
+
+Input: [1, 2, 3, 4]
+Output: [2, 3, 4, -1]
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: Monotonic stack, element comparison, stack operations
+
+```go
+package main
+
+import "fmt"
+
+func nextGreaterElement(arr []int) []int {
+    n := len(arr)
+    result := make([]int, n)
+    stack := []int{}
+    
+    for i := 0; i < n; i++ {
+        result[i] = -1
+    }
+    
+    for i := 0; i < n; i++ {
+        for len(stack) > 0 && arr[stack[len(stack)-1]] < arr[i] {
+            index := stack[len(stack)-1]
+            stack = stack[:len(stack)-1]
+            result[index] = arr[i]
+        }
+        stack = append(stack, i)
+    }
+    
+    return result
+}
+
+func main() {
+    arr := []int{4, 5, 2, 10}
+    result := nextGreaterElement(arr)
+    fmt.Printf("Next greater elements: %v\n", result)
+}
+```
+
+### 70. Monotonic Stack - Largest Rectangle in Histogram
+
+**Description**: 
+Find largest rectangle area in histogram using monotonic stack. This tests understanding of stack algorithms, area calculation, and geometric problems.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Find largest rectangle that can be formed
+2. **Loop Logic**: Use loops with stack for area calculation
+3. **Stack Logic**: Maintain increasing heights in stack
+4. **Efficiency**: O(n) time complexity
+5. **Stack Algorithm**: Area optimization
+
+**Step-by-Step Solution**:
+1. Initialize stack and variables
+2. Loop through each bar
+3. Pop bars and calculate area
+4. Push current bar
+5. Handle remaining bars
+
+**Sample Input/Output**:
+```
+Input: [2, 1, 5, 6, 2, 3]
+Output: 10 (rectangle with height 5, width 2)
+
+Input: [1, 2, 3, 4, 5]
+Output: 9 (rectangle with height 3, width 3)
+```
+
+**Time Complexity**: O(n)
+**Space Complexity**: O(n)
+**Key Learning Points**: Monotonic stack, area calculation, geometric algorithms
+
+```go
+package main
+
+import "fmt"
+
+func largestRectangleArea(heights []int) int {
+    if len(heights) == 0 {
+        return 0
+    }
+    
+    stack := []int{}
+    maxArea := 0
+    
+    for i := 0; i <= len(heights); i++ {
+        var h int
+        if i == len(heights) {
+            h = 0
+        } else {
+            h = heights[i]
+        }
+        
+        for len(stack) > 0 && (i == len(heights) || heights[stack[len(stack)-1]] > h) {
+            height := heights[stack[len(stack)-1]]
+            stack = stack[:len(stack)-1]
+            
+            var width int
+            if len(stack) == 0 {
+                width = i
+            } else {
+                width = i - stack[len(stack)-1] - 1
+            }
+            
+            area := height * width
+            if area > maxArea {
+                maxArea = area
+            }
+        }
+        stack = append(stack, i)
+    }
+    
+    return maxArea
+}
+
+func main() {
+    heights := []int{2, 1, 5, 6, 2, 3}
+    result := largestRectangleArea(heights)
+    fmt.Printf("Largest rectangle area: %d\n", result)
+}
+```
+
+### 71. Backtracking - Generate Permutations
+
+**Description**: 
+Generate all permutations of an array using backtracking. This tests understanding of backtracking algorithms, recursion, and permutation generation.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Generate all possible arrangements
+2. **Loop Logic**: Use loops with backtracking
+3. **Backtrack Logic**: Explore all possibilities and backtrack
+4. **Efficiency**: O(n! * n) time complexity
+5. **Algorithm**: Backtracking exploration
+
+**Step-by-Step Solution**:
+1. Initialize result array
+2. Use backtracking to generate permutations
+3. Swap elements and recurse
+4. Backtrack by swapping back
+5. Add complete permutations to result
+
+**Sample Input/Output**:
+```
+Input: [1, 2, 3]
+Output: [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]]
+
+Input: [1, 2]
+Output: [[1,2], [2,1]]
+```
+
+**Time Complexity**: O(n! * n)
+**Space Complexity**: O(n! * n)
+**Key Learning Points**: Backtracking, recursion, permutation generation
+
+```go
+package main
+
+import "fmt"
+
+func permute(nums []int) [][]int {
+    var result [][]int
+    backtrack(nums, 0, &result)
+    return result
+}
+
+func backtrack(nums []int, start int, result *[][]int) {
+    if start == len(nums) {
+        // Make a copy of current permutation
+        perm := make([]int, len(nums))
+        copy(perm, nums)
+        *result = append(*result, perm)
+        return
+    }
+    
+    for i := start; i < len(nums); i++ {
+        // Swap elements
+        nums[start], nums[i] = nums[i], nums[start]
+        
+        // Recurse
+        backtrack(nums, start+1, result)
+        
+        // Backtrack
+        nums[start], nums[i] = nums[i], nums[start]
+    }
+}
+
+func main() {
+    nums := []int{1, 2, 3}
+    result := permute(nums)
+    fmt.Printf("All permutations: %v\n", result)
+}
+```
+
+### 72. Backtracking - N-Queens Problem
+
+**Description**: 
+Solve N-Queens problem using backtracking. This tests understanding of backtracking algorithms, constraint satisfaction, and chess board problems.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Place queens on chess board without attacking
+2. **Loop Logic**: Use loops with backtracking for placement
+3. **Constraint Logic**: Check for valid queen placement
+4. **Efficiency**: O(N!) time complexity
+5. **Algorithm**: Backtracking with constraints
+
+**Step-by-Step Solution**:
+1. Initialize board
+2. Try placing queen in each row
+3. Check if placement is valid
+4. Recurse for next row
+5. Backtrack if no valid placement
+
+**Sample Input/Output**:
+```
+Input: N=4
+Output: 2 solutions
+.Q..
+...Q
+Q...
+..Q.
+
+..Q.
+Q...
+...Q
+.Q..
+```
+
+**Time Complexity**: O(N!)
+**Space Complexity**: O(N²)
+**Key Learning Points**: Backtracking, constraint satisfaction, chess algorithms
+
+```go
+package main
+
+import "fmt"
+
+func solveNQueens(n int) [][]string {
+    var result [][]string
+    board := make([]int, n)
+    backtrackNQueens(board, 0, &result)
+    return result
+}
+
+func backtrackNQueens(board []int, row int, result *[][]string) {
+    n := len(board)
+    if row == n {
+        // Convert to string representation
+        solution := make([]string, n)
+        for i := 0; i < n; i++ {
+            rowStr := ""
+            for j := 0; j < n; j++ {
+                if board[i] == j {
+                    rowStr += "Q"
+                } else {
+                    rowStr += "."
+                }
+            }
+            solution[i] = rowStr
+        }
+        *result = append(*result, solution)
+        return
+    }
+    
+    for col := 0; col < n; col++ {
+        if isValidPlacement(board, row, col) {
+            board[row] = col
+            backtrackNQueens(board, row+1, result)
+        }
+    }
+}
+
+func isValidPlacement(board []int, row, col int) bool {
+    for i := 0; i < row; i++ {
+        if board[i] == col || 
+           board[i]-i == col-row || 
+           board[i]+i == col+row {
             return false
         }
     }
     return true
 }
 
-func sieveOfEratosthenes(n int) []int {
-    if n < 2 {
-        return []int{}
-    }
-    
-    isPrime := make([]bool, n+1)
-    for i := 2; i <= n; i++ {
-        isPrime[i] = true
-    }
-    
-    for i := 2; i*i <= n; i++ {
-        if isPrime[i] {
-            for j := i * i; j <= n; j += i {
-                isPrime[j] = false
-            }
-        }
-    }
-    
-    var primes []int
-    for i := 2; i <= n; i++ {
-        if isPrime[i] {
-            primes = append(primes, i)
-        }
-    }
-    return primes
-}
-
 func main() {
-    num := 17
-    fmt.Printf("%d is prime: %t\n", num, isPrime(num))
-    
-    n := 30
-    primes := sieveOfEratosthenes(n)
-    fmt.Printf("Primes up to %d: %v\n", n, primes)
+    n := 4
+    result := solveNQueens(n)
+    fmt.Printf("Number of solutions for %d-Queens: %d\n", n, len(result))
+    for i, solution := range result {
+        fmt.Printf("Solution %d:\n", i+1)
+        for _, row := range solution {
+            fmt.Println(row)
+        }
+        fmt.Println()
+    }
 }
 ```
 
-### 19. GCD and LCM
+### 73. Bit Manipulation - Single Number
 
 **Description**: 
-Calculate the Greatest Common Divisor (GCD) and Least Common Multiple (LCM) of two numbers using loops and mathematical formulas. This tests understanding of mathematical algorithms, number theory, and loop optimization.
+Find single number in array where every other number appears twice using bit manipulation. This tests understanding of XOR properties, bit operations, and array analysis.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: GCD is largest number that divides both, LCM is smallest number both divide
-2. **Loop Logic**: Use Euclidean algorithm for GCD
-3. **Mathematical Formula**: LCM = (a * b) / GCD(a, b)
-4. **Efficiency**: O(log min(a, b)) time complexity
-5. **Mathematical Algorithm**: Number theory algorithms
+1. **Visual Pattern**: Use XOR to find unique number
+2. **Loop Logic**: Use loops with XOR operations
+3. **XOR Logic**: Leverage XOR properties (a^a=0, a^0=a)
+4. **Efficiency**: O(n) time complexity
+5. **Bit Algorithm**: XOR optimization
 
 **Step-by-Step Solution**:
-1. **GCD Algorithm**: Use Euclidean algorithm with while loop
-2. **Swap Values**: Keep swapping a and b until b becomes 0
-3. **Return GCD**: Return a when b becomes 0
-4. **LCM Formula**: Use mathematical formula with GCD
-5. **Return Results**: Return both GCD and LCM
+1. Initialize result to 0
+2. Loop through each number
+3. XOR with result
+4. Return final result
+5. Handle edge cases
 
-**Sample Input**: a = 48, b = 18
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-GCD of 48 and 18 = 6
-LCM of 48 and 18 = 144
+Input: [2, 2, 1]
+Output: 1
+
+Input: [4, 1, 2, 1, 2]
+Output: 4
 ```
 
-**Time Complexity**: O(log min(a, b)) - Euclidean algorithm
-**Space Complexity**: O(1) - Constant space
-
-**Key Learning Points**:
-- Mathematical algorithms
-- Number theory
-- Euclidean algorithm
-- Loop optimization
+**Time Complexity**: O(n)
+**Space Complexity**: O(1)
+**Key Learning Points**: XOR properties, bit manipulation, array analysis
 
 ```go
 package main
 
 import "fmt"
 
-func gcd(a, b int) int {
-    for b != 0 {
-        a, b = b, a%b
+func singleNumber(nums []int) int {
+    result := 0
+    for _, num := range nums {
+        result ^= num
     }
-    return a
-}
-
-func lcm(a, b int) int {
-    return (a * b) / gcd(a, b)
+    return result
 }
 
 func main() {
-    a, b := 48, 18
-    fmt.Printf("GCD of %d and %d = %d\n", a, b, gcd(a, b))
-    fmt.Printf("LCM of %d and %d = %d\n", a, b, lcm(a, b))
+    nums := []int{2, 2, 1}
+    result := singleNumber(nums)
+    fmt.Printf("Single number: %d\n", result)
 }
 ```
 
-### 20. Armstrong Number
+### 74. Bit Manipulation - Count Set Bits
 
 **Description**: 
-Check if a number is an Armstrong number (sum of digits raised to the power of number of digits equals the number) using loops and mathematical operations. This tests understanding of mathematical algorithms, digit manipulation, and number theory.
+Count number of set bits (1s) in a number using bit manipulation. This tests understanding of bit operations, binary representation, and counting algorithms.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Sum of digits raised to power of digit count equals original number
-2. **Loop Logic**: Use loops to count digits, calculate powers, and sum
-3. **Mathematical Operations**: Use power function and digit extraction
+1. **Visual Pattern**: Count 1s in binary representation
+2. **Loop Logic**: Use loops with bit operations
+3. **Bit Logic**: Use bitwise AND and right shift
 4. **Efficiency**: O(log n) time complexity
-5. **Mathematical Algorithm**: Armstrong number detection
+5. **Bit Algorithm**: Bit counting optimization
 
 **Step-by-Step Solution**:
-1. **Count Digits**: Use loop to count number of digits
-2. **Calculate Power**: Use loop to calculate power of base
-3. **Extract Digits**: Use loop to extract each digit
-4. **Calculate Sum**: Sum each digit raised to power of digit count
-5. **Compare**: Check if sum equals original number
+1. Initialize count to 0
+2. Loop while number is not zero
+3. Check if least significant bit is 1
+4. Right shift number
+5. Return total count
 
-**Sample Input**: numbers = [153, 371, 9474, 123]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-153 is Armstrong: true
-371 is Armstrong: true
-9474 is Armstrong: true
-123 is Armstrong: false
+Input: 5 (binary: 101)
+Output: 2
+
+Input: 7 (binary: 111)
+Output: 3
 ```
 
-**Time Complexity**: O(log n) - Process each digit
-**Space Complexity**: O(1) - Constant space
-
-**Key Learning Points**:
-- Mathematical algorithms
-- Digit manipulation
-- Number theory
-- Loop algorithms
+**Time Complexity**: O(log n)
+**Space Complexity**: O(1)
+**Key Learning Points**: Bit operations, binary representation, counting algorithms
 
 ```go
 package main
 
 import "fmt"
 
-func countDigits(n int) int {
+func countSetBits(n int) int {
     count := 0
     for n > 0 {
-        n /= 10
-        count++
+        if n&1 == 1 {
+            count++
+        }
+        n >>= 1
     }
     return count
 }
 
-func power(base, exp int) int {
-    result := 1
-    for i := 0; i < exp; i++ {
-        result *= base
-    }
-    return result
+func main() {
+    n := 5
+    result := countSetBits(n)
+    fmt.Printf("Number of set bits in %d: %d\n", n, result)
+}
+```
+
+### 75. System Design - Rate Limiter
+
+**Description**: 
+Implement a rate limiter using sliding window algorithm. This tests understanding of system design, rate limiting, and time-based algorithms.
+
+**How to Understand the Problem**:
+1. **Visual Pattern**: Limit requests per time window
+2. **Loop Logic**: Use loops for time window management
+3. **Rate Logic**: Track requests and enforce limits
+4. **Efficiency**: O(1) average time complexity
+5. **System Algorithm**: Rate limiting optimization
+
+**Step-by-Step Solution**:
+1. Initialize request tracking
+2. Check if request is within limit
+3. Update request count
+4. Clean old requests
+5. Return allow/deny decision
+
+**Sample Input/Output**:
+```
+Input: limit=5, window=60s, requests=[1,2,3,4,5,6]
+Output: [true,true,true,true,true,false]
+
+Input: limit=3, window=10s, requests=[1,2,3,4]
+Output: [true,true,true,false]
+```
+
+**Time Complexity**: O(1) average
+**Space Complexity**: O(n)
+**Key Learning Points**: System design, rate limiting, time-based algorithms
+
+```go
+package main
+
+import "fmt"
+import "time"
+
+type RateLimiter struct {
+    requests []time.Time
+    limit    int
+    window   time.Duration
 }
 
-func isArmstrong(n int) bool {
-    original := n
-    digits := countDigits(n)
-    sum := 0
+func NewRateLimiter(limit int, window time.Duration) *RateLimiter {
+    return &RateLimiter{
+        requests: make([]time.Time, 0),
+        limit:    limit,
+        window:   window,
+    }
+}
+
+func (rl *RateLimiter) Allow() bool {
+    now := time.Now()
     
-    for n > 0 {
-        digit := n % 10
-        sum += power(digit, digits)
-        n /= 10
+    // Remove old requests outside window
+    cutoff := now.Add(-rl.window)
+    for len(rl.requests) > 0 && rl.requests[0].Before(cutoff) {
+        rl.requests = rl.requests[1:]
     }
     
-    return sum == original
+    // Check if under limit
+    if len(rl.requests) < rl.limit {
+        rl.requests = append(rl.requests, now)
+        return true
+    }
+    
+    return false
 }
 
 func main() {
-    numbers := []int{153, 371, 9474, 123}
-    for _, num := range numbers {
-        fmt.Printf("%d is Armstrong: %t\n", num, isArmstrong(num))
+    limiter := NewRateLimiter(5, 60*time.Second)
+    
+    for i := 0; i < 7; i++ {
+        allowed := limiter.Allow()
+        fmt.Printf("Request %d: %t\n", i+1, allowed)
     }
 }
 ```
 
-### 21. Perfect Number
+### 76. System Design - LRU Cache
 
 **Description**: 
-Check if a number is perfect (sum of its proper divisors equals the number) using loops and mathematical operations. This tests understanding of mathematical algorithms, divisor calculation, and number theory.
+Implement LRU (Least Recently Used) cache using doubly linked list and hash map. This tests understanding of system design, caching algorithms, and data structures.
 
 **How to Understand the Problem**:
-1. **Visual Pattern**: Sum of proper divisors equals the number itself
-2. **Loop Logic**: Use loop to find all divisors up to square root
-3. **Mathematical Operations**: Add divisors and their pairs
-4. **Efficiency**: O(√n) time complexity
-5. **Mathematical Algorithm**: Perfect number detection
+1. **Visual Pattern**: Maintain cache with size limit
+2. **Loop Logic**: Use loops for cache operations
+3. **LRU Logic**: Remove least recently used items
+4. **Efficiency**: O(1) time complexity
+5. **System Algorithm**: Cache optimization
 
 **Step-by-Step Solution**:
-1. **Check Input**: Handle edge cases for n <= 1
-2. **Initialize Sum**: Start with sum = 1 (1 is always a divisor)
-3. **Find Divisors**: Loop from 2 to √n to find divisors
-4. **Add Divisors**: Add divisor and its pair if different
-5. **Compare**: Check if sum equals original number
+1. Initialize cache with capacity
+2. Implement get operation
+3. Implement put operation
+4. Handle cache eviction
+5. Maintain access order
 
-**Sample Input**: numbers = [6, 28, 496, 12]
-**Sample Output**: 
+**Sample Input/Output**:
 ```
-6 is perfect: true
-28 is perfect: true
-496 is perfect: true
-12 is perfect: false
+Input: capacity=2, operations=[put(1,1), put(2,2), get(1), put(3,3), get(2)]
+Output: [null, null, 1, null, -1]
+
+Input: capacity=1, operations=[put(1,1), get(1), put(2,2), get(1)]
+Output: [null, 1, null, -1]
 ```
 
-**Time Complexity**: O(√n) - Check divisors up to square root
-**Space Complexity**: O(1) - Constant space
-
-**Key Learning Points**:
-- Mathematical algorithms
-- Divisor calculation
-- Number theory
-- Loop optimization
+**Time Complexity**: O(1) for get and put
+**Space Complexity**: O(capacity)
+**Key Learning Points**: System design, caching algorithms, data structures
 
 ```go
 package main
 
 import "fmt"
 
-func isPerfect(n int) bool {
-    if n <= 1 {
-        return false
-    }
-    
-    sum := 1
-    for i := 2; i*i <= n; i++ {
-        if n%i == 0 {
-            sum += i
-            if i != n/i {
-                sum += n / i
-            }
-        }
-    }
-    return sum == n
+type Node struct {
+    key, value int
+    prev, next *Node
 }
 
-func main() {
-    numbers := []int{6, 28, 496, 12}
-    for _, num := range numbers {
-        fmt.Printf("%d is perfect: %t\n", num, isPerfect(num))
-    }
-}
-```
-
----
-
-## Nested Loops Problems
-
-### 22. Matrix Multiplication
-
-**Description**: 
-Multiply two matrices using nested loops. This tests understanding of matrix operations, nested loop algorithms, and mathematical computations.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Result[i][j] = sum of A[i][k] * B[k][j]
-2. **Nested Loop Logic**: Use three nested loops for matrix multiplication
-3. **Dimension Check**: Columns of first matrix = rows of second matrix
-4. **Efficiency**: O(m*n*p) time complexity
-5. **Matrix Algorithm**: Standard matrix multiplication
-
-**Step-by-Step Solution**:
-1. **Check Dimensions**: Verify compatibility of matrix dimensions
-2. **Initialize Result**: Create result matrix with proper dimensions
-3. **Triple Nested Loop**: Use three nested loops for multiplication
-4. **Calculate Product**: Sum products of corresponding elements
-5. **Return Result**: Return multiplied matrix
-
-**Sample Input**: a = [[1, 2], [3, 4]], b = [[5, 6], [7, 8]]
-**Sample Output**: 
-```
-Matrix A:
-[1 2]
-[3 4]
-Matrix B:
-[5 6]
-[7 8]
-Result A × B:
-[19 22]
-[43 50]
-```
-
-**Time Complexity**: O(m*n*p) - Three nested loops
-**Space Complexity**: O(m*n) - Result matrix
-
-**Key Learning Points**:
-- Matrix operations
-- Nested loop algorithms
-- Mathematical computations
-- Dimension handling
-
-```go
-package main
-
-import "fmt"
-
-func multiplyMatrices(a, b [][]int) [][]int {
-    rowsA, colsA := len(a), len(a[0])
-    rowsB, colsB := len(b), len(b[0])
-    
-    if colsA != rowsB {
-        return nil
-    }
-    
-    result := make([][]int, rowsA)
-    for i := range result {
-        result[i] = make([]int, colsB)
-    }
-    
-    for i := 0; i < rowsA; i++ {
-        for j := 0; j < colsB; j++ {
-            for k := 0; k < colsA; k++ {
-                result[i][j] += a[i][k] * b[k][j]
-            }
-        }
-    }
-    return result
+type LRUCache struct {
+    capacity int
+    cache    map[int]*Node
+    head     *Node
+    tail     *Node
 }
 
-func printMatrix(matrix [][]int) {
-    for _, row := range matrix {
-        fmt.Println(row)
+func Constructor(capacity int) LRUCache {
+    head := &Node{}
+    tail := &Node{}
+    head.next = tail
+    tail.prev = head
+    
+    return LRUCache{
+        capacity: capacity,
+        cache:    make(map[int]*Node),
+        head:     head,
+        tail:     tail,
     }
 }
 
-func main() {
-    a := [][]int{{1, 2}, {3, 4}}
-    b := [][]int{{5, 6}, {7, 8}}
-    
-    result := multiplyMatrices(a, b)
-    if result != nil {
-        fmt.Println("Matrix A:")
-        printMatrix(a)
-        fmt.Println("Matrix B:")
-        printMatrix(b)
-        fmt.Println("Result A × B:")
-        printMatrix(result)
+func (lru *LRUCache) Get(key int) int {
+    if node, exists := lru.cache[key]; exists {
+        lru.moveToHead(node)
+        return node.value
     }
-}
-```
-
-### 23. Spiral Matrix
-
-**Description**: 
-Traverse a 2D matrix in spiral order (clockwise from outside to inside) using nested loops and boundary management. This tests understanding of matrix traversal, boundary conditions, and spiral algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Spiral traversal from outside to inside
-2. **Loop Logic**: Use nested loops with boundary management
-3. **Direction Logic**: Right → Down → Left → Up pattern
-4. **Efficiency**: O(m*n) time complexity
-5. **Matrix Algorithm**: Spiral traversal technique
-
-**Step-by-Step Solution**:
-1. **Initialize Boundaries**: Set top, bottom, left, right
-2. **Traverse Right**: Move from left to right on top row
-3. **Traverse Down**: Move from top to bottom on right column
-4. **Traverse Left**: Move from right to left on bottom row
-5. **Traverse Up**: Move from bottom to top on left column
-6. **Update Boundaries**: Adjust boundaries after each direction
-7. **Return Result**: Return spiral order array
-
-**Sample Input**: matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
-**Sample Output**: 
-```
-Matrix:
-[1 2 3 4]
-[5 6 7 8]
-[9 10 11 12]
-Spiral order: [1 2 3 4 8 12 11 10 9 5 6 7]
-```
-
-**Time Complexity**: O(m*n) - Visit each element once
-**Space Complexity**: O(m*n) - Result array
-
-**Key Learning Points**:
-- Matrix traversal
-- Boundary management
-- Spiral algorithms
-- Direction handling
-
-```go
-package main
-
-import "fmt"
-
-func spiralOrder(matrix [][]int) []int {
-    if len(matrix) == 0 {
-        return []int{}
-    }
-    
-    rows, cols := len(matrix), len(matrix[0])
-    result := make([]int, 0, rows*cols)
-    
-    top, bottom := 0, rows-1
-    left, right := 0, cols-1
-    
-    for top <= bottom && left <= right {
-        // Traverse right
-        for col := left; col <= right; col++ {
-            result = append(result, matrix[top][col])
-        }
-        top++
-        
-        // Traverse down
-        for row := top; row <= bottom; row++ {
-            result = append(result, matrix[row][right])
-        }
-        right--
-        
-        // Traverse left
-        if top <= bottom {
-            for col := right; col >= left; col-- {
-                result = append(result, matrix[bottom][col])
-            }
-            bottom--
-        }
-        
-        // Traverse up
-        if left <= right {
-            for row := bottom; row >= top; row-- {
-                result = append(result, matrix[row][left])
-            }
-            left++
-        }
-    }
-    return result
+    return -1
 }
 
-func main() {
-    matrix := [][]int{
-        {1, 2, 3, 4},
-        {5, 6, 7, 8},
-        {9, 10, 11, 12},
-    }
-    
-    fmt.Println("Matrix:")
-    for _, row := range matrix {
-        fmt.Println(row)
-    }
-    fmt.Println("Spiral order:", spiralOrder(matrix))
-}
-```
-
-### 24. Find Duplicates in Array
-
-**Description**: 
-Find all duplicate elements in an array using loops and maps. This tests understanding of array traversal, map operations, and duplicate detection algorithms.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Find elements that appear more than once
-2. **Loop Logic**: Use loop to traverse array and track seen elements
-3. **Map Operations**: Use maps to track seen elements and duplicates
-4. **Efficiency**: O(n) time complexity
-5. **Array Algorithm**: Duplicate detection
-
-**Step-by-Step Solution**:
-1. **Initialize Maps**: Create maps for seen elements and duplicates
-2. **Traverse Array**: Use loop to iterate through array
-3. **Check Duplicates**: If element seen before and not already marked as duplicate
-4. **Mark Duplicate**: Mark element as duplicate and add to result
-5. **Mark Seen**: Mark element as seen
-6. **Return Result**: Return array of duplicate elements
-
-**Sample Input**: arr = [1, 2, 3, 2, 4, 3, 5, 6, 1]
-**Sample Output**: 
-```
-Array: [1 2 3 2 4 3 5 6 1]
-Duplicates: [2 3 1]
-```
-
-**Time Complexity**: O(n) - Single pass through array
-**Space Complexity**: O(n) - Maps for tracking
-
-**Key Learning Points**:
-- Array traversal
-- Map operations
-- Duplicate detection
-- Loop algorithms
-
-```go
-package main
-
-import "fmt"
-
-func findDuplicates(arr []int) []int {
-    seen := make(map[int]bool)
-    duplicates := make(map[int]bool)
-    var result []int
-    
-    for _, num := range arr {
-        if seen[num] && !duplicates[num] {
-            duplicates[num] = true
-            result = append(result, num)
-        }
-        seen[num] = true
-    }
-    return result
-}
-
-func main() {
-    arr := []int{1, 2, 3, 2, 4, 3, 5, 6, 1}
-    fmt.Println("Array:", arr)
-    fmt.Println("Duplicates:", findDuplicates(arr))
-}
-```
-
-### 25. Two Sum Problem
-
-**Description**: 
-Find two numbers in an array that add up to a target sum using nested loops. This tests understanding of array traversal, nested loop algorithms, and pair finding techniques.
-
-**How to Understand the Problem**:
-1. **Visual Pattern**: Find two elements that sum to target
-2. **Loop Logic**: Use nested loops to check all pairs
-3. **Sum Check**: Check if sum of two elements equals target
-4. **Efficiency**: O(n²) time complexity
-5. **Array Algorithm**: Pair finding
-
-**Step-by-Step Solution**:
-1. **Initialize Loops**: Use nested loops to check all pairs
-2. **Check Sum**: If sum of two elements equals target
-3. **Return Indices**: Return indices of the two elements
-4. **Handle No Solution**: Return empty array if no solution found
-5. **Result**: Return indices of the two numbers
-
-**Sample Input**: arr = [2, 7, 11, 15], target = 9
-**Sample Output**: 
-```
-Indices: [0 1], Values: [2, 7]
-```
-
-**Time Complexity**: O(n²) - Nested loops
-**Space Complexity**: O(1) - Constant space
-
-**Key Learning Points**:
-- Array traversal
-- Nested loop algorithms
-- Pair finding techniques
-- Sum checking
-
-```go
-package main
-
-import "fmt"
-
-func twoSum(arr []int, target int) []int {
-    for i := 0; i < len(arr); i++ {
-        for j := i + 1; j < len(arr); j++ {
-            if arr[i]+arr[j] == target {
-                return []int{i, j}
-            }
-        }
-    }
-    return []int{}
-}
-
-func main() {
-    arr := []int{2, 7, 11, 15}
-    target := 9
-    result := twoSum(arr, target)
-    if len(result) == 2 {
-        fmt.Printf("Indices: %v, Values: [%d, %d]\n", result, arr[result[0]], arr[result[1]])
+func (lru *LRUCache) Put(key, value int) {
+    if node, exists := lru.cache[key]; exists {
+        node.value = value
+        lru.moveToHead(node)
     } else {
-        fmt.Println("No solution found")
+        if len(lru.cache) >= lru.capacity {
+            lru.removeTail()
+        }
+        newNode := &Node{key: key, value: value}
+        lru.cache[key] = newNode
+        lru.addToHead(newNode)
     }
+}
+
+func (lru *LRUCache) addToHead(node *Node) {
+    node.prev = lru.head
+    node.next = lru.head.next
+    lru.head.next.prev = node
+    lru.head.next = node
+}
+
+func (lru *LRUCache) removeNode(node *Node) {
+    node.prev.next = node.next
+    node.next.prev = node.prev
+}
+
+func (lru *LRUCache) moveToHead(node *Node) {
+    lru.removeNode(node)
+    lru.addToHead(node)
+}
+
+func (lru *LRUCache) removeTail() {
+    last := lru.tail.prev
+    lru.removeNode(last)
+    delete(lru.cache, last.key)
+}
+
+func main() {
+    lru := Constructor(2)
+    lru.Put(1, 1)
+    lru.Put(2, 2)
+    fmt.Printf("Get 1: %d\n", lru.Get(1))
+    lru.Put(3, 3)
+    fmt.Printf("Get 2: %d\n", lru.Get(2))
 }
 ```
 
