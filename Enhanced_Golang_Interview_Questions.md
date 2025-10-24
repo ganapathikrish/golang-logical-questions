@@ -3369,7 +3369,7 @@ func main() {
 
 ## Array Manipulation
 
-### 6. Reverse Array
+### 1. Reverse Array
 
 **Description**: 
 Reverse the elements of an array using two different approaches: creating a new array and in-place reversal. This tests understanding of array manipulation, two-pointer technique, and in-place algorithms.
@@ -3439,7 +3439,7 @@ func main() {
 }
 ```
 
-### 7. Bubble Sort
+### 2. Bubble Sort
 
 **Description**: 
 Sort an array using the bubble sort algorithm with optimization. The algorithm repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. This tests understanding of sorting algorithms, nested loops, and comparison-based sorting.
@@ -3503,7 +3503,7 @@ func main() {
 }
 ```
 
-### 8. Selection Sort
+### 3. Selection Sort
 
 **Description**: 
 Sort an array using the selection sort algorithm, which repeatedly finds the minimum element from the unsorted portion and places it at the beginning. This tests understanding of sorting algorithms, nested loops, and selection-based sorting.
@@ -3564,7 +3564,7 @@ func main() {
 }
 ```
 
-### 9. Array Rotation
+### 4. Array Rotation
 
 **Description**: 
 Rotate an array to the right by k positions using the reverse algorithm. This tests understanding of array manipulation, modular arithmetic, and efficient rotation algorithms.
@@ -3632,7 +3632,7 @@ func main() {
 }
 ```
 
-### 10. Find Maximum and Minimum
+### 5. Find Maximum and Minimum
 
 **Description**: 
 Find the maximum and minimum elements in an array using a single pass through the array. This tests understanding of array traversal, comparison operations, and efficient algorithms.
@@ -3695,7 +3695,7 @@ func main() {
 }
 ```
 
-### 11. Insertion Sort
+### 6. Insertion Sort
 
 **Description**: 
 Sort an array using the insertion sort algorithm, which builds the final sorted array one element at a time. This tests understanding of sorting algorithms, nested loops, and insertion-based sorting.
@@ -3756,7 +3756,7 @@ func main() {
 }
 ```
 
-### 12. Merge Sort
+### 7. Merge Sort
 
 **Description**: 
 Sort an array using the merge sort algorithm, which divides the array into two halves, sorts them separately, and then merges them back together. This tests understanding of divide-and-conquer algorithms, recursion, and merge operations.
@@ -3843,7 +3843,7 @@ func main() {
 }
 ```
 
-### 13. Quick Sort
+### 8. Quick Sort
 
 **Description**: 
 Sort an array using the quick sort algorithm, which chooses a pivot element and partitions the array around it. This tests understanding of divide-and-conquer algorithms, partitioning, and pivot selection.
@@ -3913,7 +3913,7 @@ func main() {
 }
 ```
 
-### 14. Heap Sort
+### 9. Heap Sort
 
 **Description**: 
 Sort an array using the heap sort algorithm, which uses a binary heap data structure. This tests understanding of heap operations, tree data structures, and heap-based sorting.
@@ -3995,7 +3995,7 @@ func main() {
 }
 ```
 
-### 15. Counting Sort
+### 10. Counting Sort
 
 **Description**: 
 Sort an array using the counting sort algorithm, which counts the number of occurrences of each element and uses this information to place elements in their correct positions. This tests understanding of non-comparison sorting algorithms and counting techniques.
@@ -4077,7 +4077,7 @@ func main() {
 }
 ```
 
-### 16. Radix Sort
+### 11. Radix Sort
 
 **Description**: 
 Sort an array using the radix sort algorithm, which sorts integers by processing individual digits. This tests understanding of non-comparison sorting algorithms, digit processing, and stable sorting.
@@ -4166,7 +4166,7 @@ func main() {
 }
 ```
 
-### 17. Find Second Largest Element
+### 12. Find Second Largest Element
 
 **Description**: 
 Find the second largest element in an array using a single pass through the array. This tests understanding of array traversal, comparison operations, and efficient algorithms.
@@ -4231,7 +4231,7 @@ func main() {
 }
 ```
 
-### 18. Find Kth Largest Element
+### 13. Find Kth Largest Element
 
 **Description**: 
 Find the kth largest element in an array by sorting the array in descending order and returning the element at position k-1. This tests understanding of sorting algorithms, array manipulation, and selection algorithms.
@@ -4295,7 +4295,7 @@ func main() {
 }
 ```
 
-### 19. Find Duplicate Elements
+### 14. Find Duplicate Elements
 
 **Description**: 
 Find all duplicate elements in an array using hash maps to track seen elements and duplicates. This tests understanding of hash map operations, duplicate detection, and efficient algorithms.
@@ -4359,7 +4359,7 @@ func main() {
 }
 ```
 
-### 20. Remove Duplicates
+### 15. Remove Duplicates
 
 **Description**: 
 Remove duplicate elements from an array using hash maps to track seen elements and maintain only unique elements. This tests understanding of hash map operations, duplicate removal, and efficient algorithms.
@@ -4421,7 +4421,7 @@ func main() {
 }
 ```
 
-### 21. Find Missing Number
+### 16. Find Missing Number
 
 **Description**: 
 Find the missing number in an array containing numbers from 1 to n (where one number is missing). This tests understanding of mathematical formulas, array traversal, and arithmetic operations.
@@ -4479,7 +4479,7 @@ func main() {
 }
 ```
 
-### 22. Find All Missing Numbers
+### 17. Find All Missing Numbers
 
 **Description**: 
 Find all missing numbers in an array containing numbers from 1 to n (where multiple numbers may be missing). This tests understanding of hash maps, array traversal, and set operations.
@@ -4543,7 +4543,7 @@ func main() {
 }
 ```
 
-### 23. Find Pair with Given Sum
+### 18. Find Pair with Given Sum
 
 **Description**: 
 Find a pair of elements in an array that sum to a given target value using nested loops. This tests understanding of array traversal, nested loops, and pair finding algorithms.
@@ -4605,7 +4605,7 @@ func main() {
 }
 ```
 
-### 24. Find Triplet with Given Sum
+### 19. Find Triplet with Given Sum
 
 **Description**: 
 Find a triplet of elements in an array that sum to a given target value using nested loops. This tests understanding of array traversal, nested loops, and triplet finding algorithms.
@@ -4669,7 +4669,7 @@ func main() {
 }
 ```
 
-### 25. Move Zeros to End
+### 20. Move Zeros to End
 
 **Description**: 
 Move all zeros to the end of an array while maintaining the relative order of non-zero elements. This tests understanding of array manipulation, two-pointer technique, and in-place algorithms.
@@ -4735,7 +4735,7 @@ func main() {
 }
 ```
 
-### 26. Find Peak Element
+### 21. Find Peak Element
 
 **Description**: 
 Find a peak element in an array where a peak element is greater than its neighbors. This tests understanding of array traversal, boundary conditions, and peak detection algorithms.
@@ -4801,7 +4801,7 @@ func main() {
 }
 ```
 
-### 27. Find Majority Element
+### 22. Find Majority Element
 
 **Description**: 
 Find the majority element in an array using Boyer-Moore voting algorithm. A majority element appears more than n/2 times. This tests understanding of voting algorithms, array traversal, and majority detection.
@@ -4878,7 +4878,7 @@ func main() {
 }
 ```
 
-### 28. Find Subarray with Given Sum
+### 23. Find Subarray with Given Sum
 
 **Description**: 
 Find a contiguous subarray that sums to a given target value using nested loops. This tests understanding of array traversal, subarray generation, and sum calculations.
@@ -4942,7 +4942,7 @@ func main() {
 }
 ```
 
-### 29. Find Maximum Subarray Sum
+### 24. Find Maximum Subarray Sum
 
 **Description**: 
 Find the maximum sum of a contiguous subarray using Kadane's algorithm. This tests understanding of dynamic programming, array traversal, and maximum subarray algorithms.
@@ -5011,7 +5011,7 @@ func main() {
 }
 ```
 
-### 30. Find Product of Array Except Self
+### 25. Find Product of Array Except Self
 
 **Description**: 
 Find the product of all elements in an array except the element at each position using two passes. This tests understanding of array manipulation, prefix/suffix products, and in-place algorithms.
@@ -5077,7 +5077,7 @@ func main() {
 }
 ```
 
-### 31. Find Longest Increasing Subsequence
+### 26. Find Longest Increasing Subsequence
 
 **Description**: 
 Find the length of the longest increasing subsequence using dynamic programming. This tests understanding of dynamic programming, array traversal, and subsequence algorithms.
@@ -5151,7 +5151,7 @@ func main() {
 }
 ```
 
-### 32. Find Maximum Product Subarray
+### 27. Find Maximum Product Subarray
 
 **Description**: 
 Find the maximum product of a contiguous subarray using dynamic programming. This tests understanding of dynamic programming, array traversal, and product calculations.
@@ -5233,7 +5233,7 @@ func main() {
 }
 ```
 
-### 33. Find Minimum in Rotated Sorted Array
+### 28. Find Minimum in Rotated Sorted Array
 
 **Description**: 
 Find the minimum element in a rotated sorted array using binary search. This tests understanding of binary search, rotated arrays, and search algorithms.
@@ -5295,7 +5295,7 @@ func main() {
 }
 ```
 
-### 34. Find Target in Rotated Sorted Array
+### 29. Find Target in Rotated Sorted Array
 
 **Description**: 
 Find a target element in a rotated sorted array using binary search. This tests understanding of binary search, rotated arrays, and search algorithms.
@@ -5370,7 +5370,7 @@ func main() {
 }
 ```
 
-### 35. Find First and Last Position
+### 30. Find First and Last Position
 
 **Description**: 
 Find the first and last positions of a target element in a sorted array using binary search. This tests understanding of binary search, array traversal, and search algorithms.
